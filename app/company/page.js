@@ -18,13 +18,18 @@ const NextPage = () => {
         alert("Not Authorised!");
         window.location = "/";
       } else {
-        console.log(user);
+        document.getElementById("info").innerHTML = user.email
       }
     };
     fetchUser();
   }, []);
 
-  return <div><button onClick={signOut}>Sign Out</button></div>;
+  return (
+    <div>
+      <button onClick={signOut}>Sign Out</button>
+      <div id="info"></div>
+    </div>
+  );
 };
 
 export default NextPage;
