@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
 import supabase from "./../authCompany";
+import { useRouter } from 'next/navigation'
 
 export default function CompanySignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const router = useRouter()
   const handleSignIn = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
@@ -16,8 +17,7 @@ export default function CompanySignIn() {
       alert(error.message);
     } else {
       console.log(supabase);
-      window.location = "http://localhost:3000/company";
-      console.log("Signed in successfully:", data);
+      router.push('/company')
     }
   };
 

@@ -2,21 +2,21 @@
 
 import React, { useEffect } from "react";
 import supabase from "../authCompany";
+import { useRouter } from 'next/navigation'
 
-async function signOut() {
-  const { error } = await supabase.auth.signOut();
-  window.location.href='/'
-}
+
+
 
 const NextPage = () => {
+  const router = useRouter()
   useEffect(() => {
     const fetchUser = async () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
       if (!user) {
-        alert("Not Authorised!");
-        window.location = "/";
+        router.push('../')
+        // window.location = "/";
       } else {
         document.getElementById("info").innerHTML = user.email
       }
@@ -24,8 +24,14 @@ const NextPage = () => {
     fetchUser();
   }, []);
 
+  async function signOut() {
+    const { error } = await supabase.auth.signOut();
+    router.push('../')
+  }
+  
   return (
     <div>
+      
       <button onClick={signOut}>Sign Out</button>
       <div id="info"></div>
     </div>
