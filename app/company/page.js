@@ -17,7 +17,8 @@ const NextPage = () => {
       if (!user) {
         router.push('/')
       } else {
-        document.getElementById("info").innerHTML = user.email
+        // document.getElementById("info").innerHTML = user.email
+        router.push("/dashboard");
       }
     };
     fetchUser();
@@ -27,10 +28,10 @@ const NextPage = () => {
     const { error } = await supabase.auth.signOut();
     router.push('../')
   }
-  
+
   return (
     <div>
-      
+
       <button onClick={signOut}>Sign Out</button>
       <div id="info"></div>
     </div>
