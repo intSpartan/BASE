@@ -15,8 +15,7 @@ const NextPage = () => {
         data: { user },
       } = await supabase.auth.getUser();
       if (!user) {
-        router.push('../')
-        // window.location = "/";
+        router.push('/')
       } else {
         document.getElementById("info").innerHTML = user.email
       }
