@@ -18,7 +18,8 @@ const NextPage = () => {
         router.push('/')
       } else {
         // document.getElementById("info").innerHTML = user.email
-        router.push("/dashboard");
+        // console.log(user.id)
+        router.push("/dashboard?id=" + user.id);
       }
     };
     fetchUser();

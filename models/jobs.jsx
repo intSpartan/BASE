@@ -4,7 +4,7 @@ const jobsSchema = new Schema(
     {
         title: String,
         description: String,
-        companyid: String
+        companyid: String,
     },
     {
         timestamps: true,

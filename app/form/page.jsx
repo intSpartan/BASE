@@ -1,7 +1,9 @@
 // pages/FormPage.js
 "use client"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import supabase from "../authCompany";
 import { useRouter } from 'next/navigation';
+
 
 // requiremnets/skills , tags , your responsibilities , tenure
 
@@ -9,7 +11,7 @@ const FormPage = () => {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [companyid, setcompanyid] = useState("");
+    // const [companyid, setcompanyid] = useState("");
 
     // const handleChange = (e) => {
     //     const { name, value } = e.target;
@@ -19,12 +21,29 @@ const FormPage = () => {
     //     }));
     // };
 
+    const [companyid, setCompId] = useState(null);
+    useEffect(() => {
+        const fetchUser = async () => {
+            const {
+                data: { user },
+            } = await supabase.auth.getUser();
+            if (!user) {
+
+            } else {
+                setCompId(user.id);
+            }
+        };
+        fetchUser();
+    }, []);
+
     const router = useRouter();
+
+    // console.log(compId);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!title || !description) {
+        if (!title || !description || !companyid) {
             alert("Maa Chuda");
             return;
         }
@@ -35,13 +54,14 @@ const FormPage = () => {
                 headers: {
                     "Content-type": "applications/json"
                 },
-                body: JSON.stringify({ title, description }),
+                body: JSON.stringify({ title, description, companyid }),
 
             });
 
-            router.push("/dashboard");
+            router.push("/dashboard?id=" + companyid);
         }
         catch (e) { console.log(e); }
+        // console.log(body);
     };
 
     return (

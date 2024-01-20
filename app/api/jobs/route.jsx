@@ -27,7 +27,7 @@ export async function DELETE(request) {
 
     await connectMongoDB();
 
-     await Job.findByIdAndDelete(id);
+    await Job.findByIdAndDelete(id);
 
-    return NextResponse.json({ message : "Deleted" });
+    return NextResponse.json({ message: "Deleted" });
 }

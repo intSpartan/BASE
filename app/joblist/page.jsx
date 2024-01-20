@@ -1,5 +1,10 @@
+"use client"
+
 import Link from "next/link";
+import supabase from "../authCompany";
 import { HiPencilAlt } from "react-icons/hi";
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from "react";
 
 const getJobs = async () => {
     try {
@@ -11,20 +16,44 @@ const getJobs = async () => {
             throw new Error("Failed to fetch topics");
         }
 
-        return res.json();
+        return await res.json();
     } catch (error) {
         console.log("Error loading topics: ", error);
     }
 };
 
-export default async function TopicsList() {
-    // Fetch the list of jobs using getJobs function
-    const { jobs } = await getJobs();
+export default function TopicsList() {
+
+
+    const [compId, setCompId] = useState([]);
+    useEffect(() => {
+        const fetchUser = async () => {
+            const {
+                data: { user },
+            } = await supabase.auth.getUser();
+            if (!user) {
+
+            } else {
+                setCompId(user.id);
+            }
+        };
+        fetchUser();
+    }, []);
+
+    const [jobs, setJobs] = useState([]);
+    useEffect(() => {
+        getJobs().then(jobs => setJobs(jobs.jobs));
+    }, [])
+    // console.log(jobs);
+
+
+    const filteredJobs = jobs.filter((t) => t.companyid === compId);
+
+
 
     return (
         <>
-            {/* Map over each job and create a rectangular card */}
-            {jobs.map((t) => (
+            {filteredJobs.map((t) => (
                 <div
                     key={t._id}
                     className="p-4 border border-slate-300 my-3 flex justify-between items-start rounded-md"
@@ -36,9 +65,6 @@ export default async function TopicsList() {
 
                     <div className="flex gap-2">
                         <HiPencilAlt id={t._id} />
-                        <Link href={`/editTopic/${t._id}`}>
-                            <HiPencilAlt size={24} />
-                        </Link>
                     </div>
                 </div>
             ))}
