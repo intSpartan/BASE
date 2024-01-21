@@ -3,31 +3,32 @@
 import { useState } from "react";
 import supabase from "../authCompany";
 
-export default function CompanySignUp() {
+export default function StudentSignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [companyname, setCompanyName] = useState("");
+  const [studentname, setStudentName] = useState("");
   const [username, setUsername] = useState("");
 
   const handleSignup = async () => {
     try {
       const { user, error } = await supabase.auth.signUp({
         email: email,
-        password: password, 
+        password: password,
         options: {
           data: {
-            role: "company",
+            role: "student",
             username: username
           },
-          emailRedirectTo: "http://localhost:3000/company/dashboard",
+          emailRedirectTo: "http://localhost:3000/student/dashboard",
         },
       });
 
       if (error) {
-        console.error("Error signing up:", error.message);
+        console.error(error)
+        alert("Error signing up");
       } else {
         console.log(user)
-        console.log("Signup successful:", user);
+        alert("Signup successful");
       }
     } catch (error) {
       console.error("Error:", error.message);
@@ -52,11 +53,11 @@ export default function CompanySignUp() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <label>Company Name:</label>
+        <label>Student Name:</label>
         <input
           type="text"
-          value={companyname}
-          onChange={(e) => setCompanyName(e.target.value)}
+          value={studentname}
+          onChange={(e) => setStudentName(e.target.value)}
         />
 
         <label>Username:</label>

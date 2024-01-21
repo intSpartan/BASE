@@ -5,8 +5,6 @@ import supabase from "../authCompany";
 import { useRouter } from 'next/navigation'
 
 
-
-
 const NextPage = () => {
   const router = useRouter()
   useEffect(() => {
@@ -19,7 +17,7 @@ const NextPage = () => {
       } else {
         // document.getElementById("info").innerHTML = user.email
         // console.log(user.id)
-        router.push("/company/dashboard?id=" + user.id);
+        router.push("/student/dashboard?id=" + user.id);
       }
     };
     fetchUser();
@@ -27,7 +25,7 @@ const NextPage = () => {
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
-    router.push('../')
+    router.push('/')
   }
 
   return (

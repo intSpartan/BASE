@@ -55,14 +55,15 @@ const FormPage = () => {
                     "Content-type": "applications/json"
                 },
                 body: JSON.stringify({ title, description, companyid }),
-
             });
 
-            router.push("/dashboard?id=" + companyid);
+            router.push("/dashboard");
         }
         catch (e) { console.log(e); }
         // console.log(body);
+        
     };
+    
 
     return (
         <div>

@@ -5,7 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import supabase from "../authCompany";
+import supabase from "../../authCompany";
 
 
 const Dashboard = () => {
