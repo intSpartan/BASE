@@ -17,7 +17,8 @@ const NextPage = () => {
       } else {
         // document.getElementById("info").innerHTML = user.email
         // console.log(user.id)
-        router.push("/student/dashboard?id=" + user.id);
+
+        router.push("/student/dashboard");
       }
     };
     fetchUser();
