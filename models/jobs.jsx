@@ -5,6 +5,7 @@ const jobsSchema = new Schema(
         title: String,
         description: String,
         companyid: String,
+        curr_state: String,
     },
     {
         timestamps: true,

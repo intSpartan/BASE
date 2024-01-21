@@ -11,6 +11,7 @@ const FormPage = () => {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [curr_state, setCurr_State] = useState("");
     // const [companyid, setcompanyid] = useState("");
 
     // const handleChange = (e) => {
@@ -54,16 +55,15 @@ const FormPage = () => {
                 headers: {
                     "Content-type": "applications/json"
                 },
-                body: JSON.stringify({ title, description, companyid }),
+                body: JSON.stringify({ title, description, companyid, curr_state }),
+
             });
 
-            router.push("/dashboard");
+            router.push("/company/dashboard");
         }
         catch (e) { console.log(e); }
         // console.log(body);
-        
     };
-    
 
     return (
         <div>
@@ -75,13 +75,14 @@ const FormPage = () => {
                 </label>
                 <br />
                 <label>
-                    Job Descriptiom
+                    Job Description
                     <input type="text" name="description" onChange={(e) => setDescription(e.target.value)} value={description} />
                 </label>
-                {/* <label>
-                    CompanyID
-                    <input type="text" name="description" onChange={(e) => setDescription(e.target.value)} value={description} />
-                </label> */}
+                <br />
+                <label>
+                    State
+                    <input type="text" name="curr_state" onChange={(e) => setCurr_State(e.target.value)} value={curr_state} />
+                </label>
                 <br />
                 <button type="submit">Submit</button>
             </form>

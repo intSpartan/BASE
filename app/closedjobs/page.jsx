@@ -24,22 +24,6 @@ const getJobs = async () => {
 
 export default function TopicsList() {
 
-
-    const [compId, setCompId] = useState([]);
-    useEffect(() => {
-        const fetchUser = async () => {
-            const {
-                data: { user },
-            } = await supabase.auth.getUser();
-            if (!user) {
-
-            } else {
-                setCompId(user.id);
-            }
-        };
-        fetchUser();
-    }, []);
-
     const [jobs, setJobs] = useState([]);
     useEffect(() => {
         getJobs().then(jobs => setJobs(jobs.jobs));
@@ -47,7 +31,7 @@ export default function TopicsList() {
     // console.log(jobs);
 
 
-    const filteredJobs = jobs.filter((t) => (t.companyid === compId) && (t.curr_state != "4"));
+    const filteredJobs = jobs.filter((t) => t.curr_state === "4");
 
 
 
@@ -61,7 +45,6 @@ export default function TopicsList() {
                     <div>
                         <h2 className="font-bold text-2xl">{t.title}</h2>
                         <div>{t.description}</div>
-                        <div>{t.curr_state}</div>
                     </div>
 
                     <div className="flex gap-2">

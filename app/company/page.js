@@ -19,7 +19,7 @@ const NextPage = () => {
       } else {
         // document.getElementById("info").innerHTML = user.email
         // console.log(user.id)
-        router.push("/company/dashboard?id=" + user.id);
+        router.push("/company/dashboard");
       }
     };
     fetchUser();
