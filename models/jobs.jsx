@@ -6,9 +6,7 @@ const jobsSchema = new Schema(
         description: String,
         companyid: String,
         curr_state: String,
-    },
-    {
-        timestamps: true,
+        applicantsApplied: { type: [String], default: [] },
     }
 );
 

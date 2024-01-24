@@ -13,7 +13,7 @@ export default function CompanySignUp() {
     try {
       const { user, error } = await supabase.auth.signUp({
         email: email,
-        password: password, 
+        password: password,
         options: {
           data: {
             role: "company",

@@ -49,7 +49,9 @@ export default function TopicsList() {
 
     const filteredJobs = jobs.filter((t) => (t.companyid === compId) && (t.curr_state != "4"));
 
-
+    const showApplicants = (jobId) => {
+        
+    }
 
     return (
         <>
@@ -60,7 +62,7 @@ export default function TopicsList() {
                 >
                     <div>
                         <h2 className="font-bold text-2xl">{t.title}</h2>
-                        <div>{t.description}</div>
+                        <div onClick={() => showApplicants(t._id)}>{t.description}</div>
                         <div>{t.curr_state}</div>
                     </div>
 

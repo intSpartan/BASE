@@ -6,7 +6,8 @@ const applicantSchema = new Schema(
         college: String,
         company: String,
         cgpa: String,
-        loginid : String,
+        loginid: String,
+        jobsApplied: { type: [String], default: [] },
     }
 );
 
