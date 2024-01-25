@@ -3,7 +3,7 @@ import connectMongoDB from "@/libs/mongodb_jobs";
 import Applicant from "@/models/applicant";
 
 export async function GET(req, { params, body }) {
-    console.log(req.method);
+    // console.log(req.method);
 
     await connectMongoDB();
 

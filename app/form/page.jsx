@@ -17,11 +17,27 @@ const Preloader = () => {
     )
 }
 
+const getCompany = async (id) => {
+    try {
+        const res = await fetch(`http://localhost:3000/api/company/${id}`, {
+            // method: "GET",
+            cache: "no-store",
+        });
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch topics");
+        }
+        return await res.json();
+    } catch (error) {
+        console.log("Error loading topics: ", error);
+    }
+};
+
 const FormPage = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [curr_state, setCurr_State] = useState("");
-    const [status, setStatus] = useState("")
+    const [status, setStatus] = useState()
     const [loading, setLoading] = useState(true)
     const [companyid, setCompId] = useState(null);
 
@@ -33,15 +49,9 @@ const FormPage = () => {
             if (!user) {
             } else {
                 setCompId(user.id);
-                let statusCode = await statusCheck(user.id).then((status) => {
-                    console.log("Response status:", status);
-                    return status
-                })
-                    .catch((error) => {
-                        console.error("Error in statusCheck:", error);
-                    });
-                console.log(statusCode)
-                setStatus(statusCode)
+                const comp = await getCompany(user.id);
+                console.log(comp);
+                setStatus(comp == null)
                 setLoading(!loading)
             }
         };
@@ -70,34 +80,36 @@ const FormPage = () => {
             });
 
             router.push("/company/dashboard");
+            // console.log({ title, description, companyid, curr_state });
         } catch (e) {
             console.log(e);
         }
         // console.log(body);
     };
 
-    async function statusCheck(id) {
-        const url = `http://localhost:3000/api/company/${id}`;
+    // async function statusCheck(id) {
+    //     const url = `http://localhost:3000/api/company/${id}`;
 
-        try {
-            const response = await fetch(url, {
-                method: "GET",
-            });
+    //     try {
+    //         const response = await fetch(url, {
+    //             method: "GET",
+    //         });
 
-            console.log("c: " + id);
+    //         console.log("c: " + id);
 
-            if (response.ok) {
-                return response.status;
-            } else {
-                console.error("Fetch error:", response.statusText);
-                return -1;
-            }
-        } catch (error) {
-            console.error("Error during fetch:", error.message);
-            return -1;
-        }
+    //         if (response.ok) {
+    //             return response.status;
+    //         } else {
+    //             console.error("Fetch error:", response.statusText);
+    //             return -1;
+    //         }
+    //     } catch (error) {
+    //         console.error("Error during fetch:", error.message);
+    //         return -1;
+    //     }
+    //     return 200;
 
-    }
+    // }
 
     if (loading) {
         return <Preloader />
@@ -105,7 +117,7 @@ const FormPage = () => {
 
     try {
 
-        if (status == 200) {
+        if (!status) {
             return (
                 <div>
                     <h1>Form Page</h1>
