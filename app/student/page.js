@@ -2,22 +2,18 @@
 
 import React, { useEffect } from "react";
 import supabase from "../authCompany";
-import { useRouter } from 'next/navigation'
-
+import { useRouter } from "next/navigation";
 
 const NextPage = () => {
-  const router = useRouter()
+  const router = useRouter();
   useEffect(() => {
     const fetchUser = async () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
       if (!user) {
-        router.push('/')
+        router.push("/");
       } else {
-        // document.getElementById("info").innerHTML = user.email
-        // console.log(user.id)
-
         router.push("/student/dashboard");
       }
     };
@@ -26,12 +22,11 @@ const NextPage = () => {
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
-    router.push('/')
+    router.push("/");
   }
 
   return (
     <div>
-
       <button onClick={signOut}>Sign Out</button>
       <div id="info"></div>
     </div>

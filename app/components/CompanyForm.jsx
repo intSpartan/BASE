@@ -1,20 +1,22 @@
-import React from 'react'
+import React from "react";
 import { useRouter } from "next/navigation";
 
 const CompanyForm = (companyId) => {
+  const router = useRouter();
 
-  const router = useRouter()
-
-  const [formData, setFormData] = React.useState(
-    { CompanyName: "", linkedin: "", website: "", description: "", logo: null }
-  )
-
+  const [formData, setFormData] = React.useState({
+    CompanyName: "",
+    linkedin: "",
+    website: "",
+    description: "",
+    logo: null,
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -22,9 +24,10 @@ const CompanyForm = (companyId) => {
     const file = e.target.files[0];
     setFormData({
       ...formData,
-      logo: file
+      logo: file,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,13 +37,8 @@ const CompanyForm = (companyId) => {
         companyName: formData.CompanyName,
         description: formData.description,
         linkedin: formData.linkedin,
-        website: formData.website
-      }
-      // console.log(companyId.companyId)
-      // setFormData({
-      //   ...formData,
-      //   [companyId]: companyId.companyId
-      // })
+        website: formData.website,
+      };
 
       await fetch("http://localhost:3000/api/company", {
         method: "POST",
@@ -49,46 +47,33 @@ const CompanyForm = (companyId) => {
         },
         body: JSON.stringify(obj2),
       });
-      alert("Details added")
+      alert("Details added");
       router.push("/company/dashboard");
     } catch (e) {
       console.log(e);
     }
-    // console.log(body);
   };
+
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="CompanyName">Company name:
+      <label htmlFor="CompanyName">
+        Company name:
         <input
           type="text"
-          //    placeholder='Company Name'
           onChange={handleChange}
-          name='CompanyName'
-          required
-
-        /></label>
-      <br />
-      <label>
-        LinkedIn Link:
-        <input
-          type="text"
-          //    placeholder='Linkedin'
-          onChange={handleChange}
-          name='linkedin'
+          name="CompanyName"
           required
         />
       </label>
       <br />
       <label>
+        LinkedIn Link:
+        <input type="text" onChange={handleChange} name="linkedin" required />
+      </label>
+      <br />
+      <label>
         Website Link:
-        <input
-          type="text"
-          //    placeholder='Linkedin'
-          onChange={handleChange}
-          name='website'
-          required
-
-        />
+        <input type="text" onChange={handleChange} name="website" required />
       </label>
       <br />
       <label>
@@ -103,19 +88,12 @@ const CompanyForm = (companyId) => {
       <br />
       <label>
         Logo Image:
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handlelogoChange}
-        />
+        <input type="file" accept="image/*" onChange={handlelogoChange} />
       </label>
       <br />
       <button type="submit">Submit</button>
-
-
-
     </form>
-  )
-}
+  );
+};
 
-export default CompanyForm
+export default CompanyForm;

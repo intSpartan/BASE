@@ -1,5 +1,3 @@
-// Assuming this is CompanySignUp.js
-
 import { useState } from "react";
 import supabase from "../authCompany";
 
@@ -17,18 +15,18 @@ export default function StudentSignUp() {
         options: {
           data: {
             role: "student",
-            username: username
+            username: username,
           },
           emailRedirectTo: "http://localhost:3000/student/dashboard",
         },
       });
 
       if (error) {
-        console.error(error)
+        console.error("Error signing up:", error.message);
         alert("Error signing up");
       } else {
-        console.log(user)
         alert("Signup successful");
+        console.log(user);
       }
     } catch (error) {
       console.error("Error:", error.message);

@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
 import supabase from "./../authCompany";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 export default function CompanySignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter()
+  const router = useRouter();
   const handleSignIn = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
@@ -17,7 +17,7 @@ export default function CompanySignIn() {
       alert(error.message);
     } else {
       console.log(supabase);
-      router.push('/company')
+      router.push("/company");
     }
   };
 
@@ -37,9 +37,7 @@ export default function CompanySignIn() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">
-          Sign In
-        </button>
+        <button type="submit">Sign In</button>
       </form>
     </div>
   );
