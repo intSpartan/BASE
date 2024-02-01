@@ -89,7 +89,7 @@ const Dashboard = () => {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ currJobs: currJobs[0] }),
+        body: JSON.stringify({ curr_job: currJobs[0] }),
       });
 
       if (!res_jobs.ok) {
