@@ -69,8 +69,8 @@ const Dashboard = () => {
       updatedres.jobsApplied.push(jobId);
 
       const currJobs = jobs.filter((t) => t._id === jobId);
-      const applicant_id = applicantWithID._id;
-      currJobs[0].applicantsApplied.push(applicant_id);
+      // const applicant_id = applicantWithID._id;
+      currJobs[0].applicantsApplied.push(supabaseid);
       console.log(currJobs[0].applicantsApplied);
 
       const res = await fetch(
@@ -102,6 +102,10 @@ const Dashboard = () => {
     }
   };
 
+  const handleOA = () => {
+    router.push("/OA")
+  };
+
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
     router.push("/");
@@ -125,6 +129,9 @@ const Dashboard = () => {
                   <div>{t.curr_state}</div>
                   <button onClick={() => handleApplication(t._id)}>
                     Apply Now
+                  </button>
+                  <button onClick={handleOA}>
+                    OA
                   </button>
                 </div>
 
