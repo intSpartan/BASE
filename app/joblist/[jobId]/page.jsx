@@ -16,9 +16,9 @@ const TopBarComponent = ({ params }) => {
             case '1':
                 return < AboutJob />;
             case '2':
-                return <ApplicantApplied jobId={params.jobId} />;
+                return <ApplicantApplied jobId={params.jobId} functionality={"Shortlist"} />;
             case '3':
-                return <OA_company />;
+                return <OA_company jobId={params.jobId} />;
             case '4':
                 return <Interview />;
             default:

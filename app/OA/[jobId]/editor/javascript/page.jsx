@@ -33,7 +33,40 @@ else {
   DayName = "CodoFile";
 }
 
-function Javascript() {
+// const fetchOA = async (jobId) => {
+//   try {
+//     const res = await fetch(`http://localhost:3000/api/jobs/${jobId}/OA`, {
+//       method: "GET",
+//       cache: "no-store",
+//     });
+
+//     if (!res.ok) {
+//       throw new Error("Failed to fetch topics");
+//     }
+//     return await res.json();
+//   } catch (error) {
+//     console.log("Error loading topics: ", error);
+//   }
+// }
+
+const Javascript = async ({ params }) => {
+  
+  const CodingQuestionsPool = [
+    'Q1: Find the sum of all elements in an array: arr.reduce((sum, num) => sum + num, 0);',
+
+    'Q2: Find the maximum element in an array: Math.max(...arr);',
+
+    'Q3: Check if an array contains a specific element: arr.includes(target);',
+
+    'Q4: Reverse the elements of an array: arr.reverse();',
+
+    'Q5: Filter even numbers from an array: arr.filter(num => num % 2 === 0);',
+  ];
+
+  shuffleArray(CodingQuestionsPool)
+
+  // const jobInfo = await fetchOA(params.jobId);
+
   const router = useRouter();
 
   const [code, setcode] = useState("");
@@ -91,6 +124,14 @@ function Javascript() {
     alert("Copied to Clipboard")
   }
 
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
   const codeToFile = () => {
     alert("Download Started");
 
@@ -105,12 +146,17 @@ function Javascript() {
     // link.click();
   }
 
+
   const submitCode = () => {
-    router.push("/student/dashboard");
+    router.push(`/OA/${params.jobId}/coding`);
+  }
+  const checkf = () => {
+    console.log(params.jobId);
   }
 
   return (
     <>
+      <div>{CodingQuestionsPool[0]}</div>
       <div className="jsContainer">
         <div className="jsBody wholeeditorBody">
           <div className="leftLang">
@@ -147,6 +193,9 @@ function Javascript() {
               </div>
               <div>
                 <button onClick={submitCode}>Submit</button>
+              </div>
+              <div>
+                <button onClick={checkf}>Check</button>
               </div>
 
             </div>

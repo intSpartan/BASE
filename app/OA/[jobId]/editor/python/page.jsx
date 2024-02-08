@@ -19,8 +19,6 @@ function Python() {
     };
 
     try {
-
-      // const {data} = await axios.post("http://localhost:5000/runpy",payload)
       const response = await fetch("http://localhost:5000/runpy", {
         method: 'POST',
         headers: {
@@ -37,10 +35,6 @@ function Python() {
         setOutput(data.error);
         alert("An error Occured.");
       }
-      // console.log("Faizan Alam",data);
-      // alert.remove();
-      // alert.remove();
-      // setCode("");
     } catch (err) {
       setOutput("Error in communication with the server")
       alert("Please Enter Valid Python Code");

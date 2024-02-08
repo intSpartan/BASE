@@ -44,12 +44,14 @@ const ApplicantApplied = (props) => {
         getApplicant();
     }, [props.jobId]);
 
+    // console.log(props.functionality);
+
     return (
         <div>
             <>
-                {applicants.map((t) => (
+                {applicants.map((t, index) => (
                     <>
-                        <div
+                        <div key={index}
                             className="p-4 border border-slate-300 my-3 flex justify-between items-start rounded-md"
                         >
                             <div>
@@ -64,6 +66,9 @@ const ApplicantApplied = (props) => {
                         </div>
                         <div>
                             <p>{t.applicants.cgpa}</p>
+                        </div>
+                        <div>
+                            <button>{props.functionality}</button>
                         </div>
                     </>
                 ))}

@@ -7,6 +7,9 @@ const jobsSchema = new Schema(
         companyid: String,
         curr_state: String,
         applicantsApplied: { type: [String], default: [] },
+        mcqs: Number,
+        coding_questions: Number,
+
     }
 );
 

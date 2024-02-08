@@ -6,7 +6,11 @@ import "./style.css"
 
 import { useRouter } from 'next/navigation';
 
-const HtmlQuiz = () => {
+
+
+const HtmlQuiz = (props) => {
+    // console.log(props.jobId);
+
     const [examType, setExamType] = useState('HTML');
     const [selectedExamQuestions, setSelectedExamQuestions] = useState([]);
     const [questionIndex, setQuestionIndex] = useState(0);
@@ -14,73 +18,148 @@ const HtmlQuiz = () => {
     const [yourAnswers, setYourAnswers] = useState([]);
     const [timePassed, setTimePassed] = useState(300);
 
+
+    // setCodingQuestions(jobInfo.coding_questions)
+
+    // console.log(props.mcqs);
+
+
     const router = useRouter();
 
-    const htmlQuestions = [
+    const computerScienceQuestions = [
+        // OOP (Object-Oriented Programming)
         {
-            question: 'Q1: the tag &lt;p&gt; is',
-            choice1: 'block element',//
-            choice2: 'inline element',
-            choice3: 'inline-block element',
+            question: 'Q1: What is the purpose of inheritance in OOP?',
+            choice1: 'To create multiple instances of a class',
+            choice2: 'To reuse code and establish a relationship between classes',
+            choice3: 'To provide encapsulation for data',
+            correctChoice: 2,
         },
         {
-            question: 'Q2: what is the  compenents of the HTML structure ? :',
-            choice1: '&lt;section&gt; and &lt;div&gt;',
-            choice2: '&lt;head&gt; and &lt;body&gt;',//
-            choice3: '&lt;form&gt; and &lt;table&gt;',
+            question: 'Q2: What is abstraction in OOP   ?',
+            choice1: 'Hiding the implementation details and exposing only the necessary functionalities',
+            choice2: 'Creating instances of a class',
+            choice3: 'Using abstract data types',
+            correctChoice: 1,
+        },
+
+        // Operating Systems
+        {
+            question: 'Q3: What is a deadlock in operating systems?',
+            choice1: 'A situation where a process is waiting for a resource that is held by another process',
+            choice2: 'A process that is running indefinitely and not making progress',
+            choice3: 'A state where two or more processes cannot proceed because each is waiting for the other to release a resource',
+            correctChoice: 3,
         },
         {
-            question: 'Q3: what are the three types of lists ?',
-            choice1: '&lt;ol&gt; &lt;ul&gt; &lt;dl&gt;',//
-            choice2: '&lt;li&gt; &lt;tr&gt; &lt;td&gt;',
-            choice3: '&lt;b&gt; &lt;i&gt; &lt;p&gt;',
+            question: 'Q4: What is a kernel in an operating system?',
+            choice1: 'The central processing unit (CPU)',
+            choice2: 'The core of the operating system that provides essential services',
+            choice3: 'A type of file system',
+            correctChoice: 2,
+        },
+
+        // DBMS (Database Management Systems)
+        {
+            question: 'Q5: What is ACID in the context of database transactions?',
+            choice1: 'A database query language',
+            choice2: 'A set of properties that guarantee database transactions are processed reliably',
+            choice3: 'A data encryption standard',
+            correctChoice: 2,
         },
         {
-            question: 'Q4: which is the right way to write the anchor tag?',
-            choice1: '&lt; a href="url"  new&gt;',
-            choice2: '&lt; a href="url" target="new"&gt;',
-            choice3: '&lt;a href="url" target="_blank"&gt;',//
+            question: 'Q6: What is the purpose of a JOIN operation in SQL?',
+            choice1: 'To filter rows based on a condition',
+            choice2: 'To combine rows from two or more tables based on a related column',
+            choice3: 'To create a new table with specific columns',
+            correctChoice: 2,
+        },
+
+        // Computer Networks
+        {
+            question: 'Q7: What is the function of the Transport layer in the OSI model?',
+            choice1: 'Ensuring error-free transmission of data',
+            choice2: 'Establishing, maintaining, and terminating connections',
+            choice3: 'Providing routing and forwarding of data packets',
+            correctChoice: 2,
         },
         {
-            question: 'Q5: which of these element are all &lt;table&gt; element?',
-            choice1: '&lt;table&gt; &lt;tr&gt; &lt;tt&gt;',
-            choice2: '&lt;table&gt; &lt;tr&gt; &lt;td&gt;',//
-            choice3: '&lt;table&gt; &lt;head&gt; &lt;tfoot&gt;',
+            question: 'Q8: What is the purpose of DNS (Domain Name System) in networking?',
+            choice1: 'Encrypting data during transmission',
+            choice2: 'Translating domain names to IP addresses',
+            choice3: 'Providing secure communication between network devices',
+            correctChoice: 2,
+        },
+
+        // Data Structures and Algorithms
+        {
+            question: 'Q9: What is a stack in data structures?',
+            choice1: 'A data structure that follows the Last In, First Out (LIFO) principle',
+            choice2: 'A data structure that follows the First In, First Out (FIFO) principle',
+            choice3: 'A type of sorting algorithm',
+            correctChoice: 1,
         },
         {
-            question: 'Q6: How many types of heading does an HTML contain?',
-            choice1: '8',
-            choice2: '6',//
-            choice3: '5',
+            question: 'Q10: What is the time complexity of the quicksort algorithm in the average case?',
+            choice1: 'O(1)',
+            choice2: 'O(n log n)',
+            choice3: 'O(n^2)',
+            correctChoice: 2,
         },
+
+        // Additional questions
+
         {
-            question: 'Q7: tags can be used to separate a section of texts',
-            choice1: '&lt;br&gt; &lt;hr&gt;',//
-            choice2: '&lt;br&gt; &lt;gt&gt;',
-            choice3: '&lt;bd&gt; &lt;bl&gt;',
+            question: 'Q11: Explain the concept of a binary tree in data structures.',
+            choice1: 'A tree with only one child node for each parent node',
+            choice2: 'A tree with two child nodes for each parent node',
+            choice3: 'A tree with no child nodes',
+            correctChoice: 2,
         },
+
         {
-            question: 'Q8: What is the use of a span tag??',
-            choice1: 'For adding color on specific text',
-            choice2: 'For adding background on specific text',
-            choice3: 'both',//
+            question: 'Q12: What is the purpose of the SELECT statement in SQL?',
+            choice1: 'To insert data into a table',
+            choice2: 'To retrieve data from one or more tables',
+            choice3: 'To update existing data in a table',
+            correctChoice: 2,
         },
+
         {
-            question: 'Q9: a &lt;!DOCTYPE html&gt; tag is a HTML tag?',
-            choice1: 'True',
-            choice2: 'False',//
-            choice3: 'depends on the situation',
+            question: 'Q13: How does TCP (Transmission Control Protocol) ensure reliable communication?',
+            choice1: 'By using checksums to detect errors in transmitted data',
+            choice2: 'By providing flow control and error checking',
+            choice3: 'By encrypting the data during transmission',
+            correctChoice: 2,
         },
+
         {
-            question: 'Q10: Which type of video formats are supported by HTML5?',
-            choice1: 'mp4 WebM Ogg',//
-            choice2: 'mp4 avi 3gp',
-            choice3: 'mp4 3gp WebM',
-        }
+            question: 'Q14: What is a binary search tree, and how does it differ from a binary tree?',
+            choice1: 'A binary search tree is always balanced, while a binary tree may not be balanced',
+            choice2: 'A binary search tree is a specific type of binary tree that follows a particular ordering property',
+            choice3: 'A binary tree is always complete, while a binary search tree may not be complete',
+            correctChoice: 2,
+        },
+
+        {
+            question: 'Q15: Explain the concept of normalization in database design.',
+            choice1: 'Ensuring that all data in a database is stored in a single table',
+            choice2: 'Organizing data to minimize redundancy and dependency',
+            choice3: 'Adding redundancy to improve query performance',
+            correctChoice: 2,
+        },
+
     ];
 
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+    shuffleArray(computerScienceQuestions)
     const questionSets = {
-        HTML: htmlQuestions,
+        HTML: computerScienceQuestions,
     };
 
     const [timerInterval, setTimerInterval] = useState(0);
@@ -152,7 +231,7 @@ const HtmlQuiz = () => {
 
         setQuestionIndex((prevIndex) => prevIndex + 1);
 
-        if (questionIndex === 8 || timerInterval === 0) {
+        if (questionIndex === (props.mcqs - 1) || timerInterval === 0) {
             onTimesUp();
         } else {
             const currentQuestion = SpecifiedQuestions[questionIndex];
@@ -192,7 +271,7 @@ const HtmlQuiz = () => {
         const showResultBtn = document.getElementById('showResult');
         showResultBtn.style.display = 'block';
 
-        router.push("/OA/editor");
+        router.push(`/OA/${props.jobId}/coding`);
 
     };
 

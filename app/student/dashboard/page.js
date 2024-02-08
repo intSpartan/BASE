@@ -76,7 +76,7 @@ const Dashboard = () => {
       const res = await fetch(
         `http://localhost:3000/api/applicants/${supabaseid}`,
         {
-          method: "PUT",
+          method: "PUT",        // console.log(id);
           headers: {
             "Content-type": "application/json",
           },
@@ -102,8 +102,8 @@ const Dashboard = () => {
     }
   };
 
-  const handleOA = () => {
-    router.push("/OA")
+  const handleOA = (jobId) => {
+    router.push(`/OA/${jobId}`)
   };
 
   const signOut = async () => {
@@ -130,7 +130,7 @@ const Dashboard = () => {
                   <button onClick={() => handleApplication(t._id)}>
                     Apply Now
                   </button>
-                  <button onClick={handleOA}>
+                  <button onClick={() => handleOA(t._id)}>
                     OA
                   </button>
                 </div>
