@@ -5,11 +5,39 @@ import LangList from '../Editor/LangList';
 // import axios from 'axios';
 import copy_icon from '../assets/copy_icon.gif';
 import download_icon from '../assets/download_logo.png';
+import { useRouter } from 'next/navigation';
 
-function Python() {
+function Python({ params }) {
 
-  const [code, setCode] = useState('');
   const [output, setOutput] = useState('');
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+
+  const CodingQuestionsPool = [
+    'Q: Find the sum of all elements in an array: arr.reduce((sum, num) => sum + num, 0);',
+
+    'Q: Find the maximum element in an array: Math.max(...arr);',
+
+    'Q: Check if an array contains a specific element: arr.includes(target);',
+
+    'Q: Reverse the elements of an array: arr.reverse();',
+
+    'Q: Filter even numbers from an array: arr.filter(num => num % 2 === 0);',
+  ];
+
+  const router = useRouter();
+
+  // shuffleArray(CodingQuestionsPool)
+
+  const savedCode = localStorage.getItem(`savedCodePy${params.qno}`) || '';
+  const [code, setcode] = useState(savedCode);
+
 
   const handleSubmit = async () => {
     alert('Please Wait while File is Execuing');
@@ -66,6 +94,16 @@ function Python() {
   }
 
 
+  const codeSave = (e) => {
+    setcode(e.target.value)
+    localStorage.setItem(`savedCodePy${params.qno}`, code);
+  }
+
+  const submitCode = () => {
+    router.push(`/OA/${params.jobId}/coding`);
+  }
+
+
   return (
     <>
       <div className="voiceContainer">
@@ -93,13 +131,16 @@ function Python() {
             </div>
             <div className='jsplayground playground'>
               <div className='leftplayground snippet'>
-                <textarea className='dartpython' name="python" id="python" value={code} onChange={(e) => setCode(e.target.value)} placeholder='print("hello codoPlayers")'></textarea>
+                <textarea className='dartpython' name="python" id="python" value={code} onChange={(e) => codeSave(e)} placeholder='print("hello codoPlayers")'></textarea>
               </div>
               <h1 className="invisible">
                 <mark>Output</mark>
               </h1>
               <div className='rightplayground snippet' id='consoleOutput' >
                 <p>{output}</p>
+              </div>
+              <div>
+                <button onClick={submitCode}>Submit</button>
               </div>
             </div>
           </div>

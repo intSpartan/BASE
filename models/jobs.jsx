@@ -9,6 +9,8 @@ const jobsSchema = new Schema(
         applicantsApplied: { type: [String], default: [] },
         mcqs: Number,
         coding_questions: Number,
+        OA_candidates: { type: [String], default: [] },
+        Interview_candidates: { type: [String], default: [] },
 
     }
 );

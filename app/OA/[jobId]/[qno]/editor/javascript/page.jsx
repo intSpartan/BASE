@@ -32,35 +32,18 @@ else if (data.getDay() === 0) {
 else {
   DayName = "CodoFile";
 }
+const Javascript = ({ params }) => {
 
-// const fetchOA = async (jobId) => {
-//   try {
-//     const res = await fetch(`http://localhost:3000/api/jobs/${jobId}/OA`, {
-//       method: "GET",
-//       cache: "no-store",
-//     });
-
-//     if (!res.ok) {
-//       throw new Error("Failed to fetch topics");
-//     }
-//     return await res.json();
-//   } catch (error) {
-//     console.log("Error loading topics: ", error);
-//   }
-// }
-
-const Javascript = async ({ params }) => {
-  
   const CodingQuestionsPool = [
-    'Q1: Find the sum of all elements in an array: arr.reduce((sum, num) => sum + num, 0);',
+    'Q: Find the sum of all elements in an array: arr.reduce((sum, num) => sum + num, 0);',
 
-    'Q2: Find the maximum element in an array: Math.max(...arr);',
+    'Q: Find the maximum element in an array: Math.max(...arr);',
 
-    'Q3: Check if an array contains a specific element: arr.includes(target);',
+    'Q: Check if an array contains a specific element: arr.includes(target);',
 
-    'Q4: Reverse the elements of an array: arr.reverse();',
+    'Q: Reverse the elements of an array: arr.reverse();',
 
-    'Q5: Filter even numbers from an array: arr.filter(num => num % 2 === 0);',
+    'Q: Filter even numbers from an array: arr.filter(num => num % 2 === 0);',
   ];
 
   shuffleArray(CodingQuestionsPool)
@@ -69,7 +52,9 @@ const Javascript = async ({ params }) => {
 
   const router = useRouter();
 
-  const [code, setcode] = useState("");
+  const savedCode = localStorage.getItem(`savedCodeJs${params.qno}`) || '';
+
+  const [code, setcode] = useState(savedCode);
 
   const runCode = () => {
     try {
@@ -146,21 +131,25 @@ const Javascript = async ({ params }) => {
     // link.click();
   }
 
+  // console.log(params);
+
+  const codeSave = (e) => {
+    setcode(e.target.value)
+    localStorage.setItem(`savedCodeJs${params.qno}`, code);
+  }
+
 
   const submitCode = () => {
     router.push(`/OA/${params.jobId}/coding`);
   }
-  const checkf = () => {
-    console.log(params.jobId);
-  }
+
 
   return (
     <>
-      <div>{CodingQuestionsPool[0]}</div>
+      <div>{CodingQuestionsPool[Math.floor(Math.random() * 5)]}</div>
       <div className="jsContainer">
         <div className="jsBody wholeeditorBody">
           <div className="leftLang">
-            {/* <LangList leftcolorjs="white" /> */}
           </div>
           <div className="PlaygroundMain">
             <div className='runHeaderJS'>
@@ -172,7 +161,6 @@ const Javascript = async ({ params }) => {
                   <button className='vbtn'>
                     <img className='voicebtn' onClick={codeToFile} src={download_icon} alt='DownLoadCode' />
                   </button>
-                  {/* <button className='btn btn1' onClick={handleSubmit}>RUN</button> */}
                   <button className='btn btn1' onClick={runCode}>RUN</button>
                 </div>
               </div>
@@ -183,7 +171,7 @@ const Javascript = async ({ params }) => {
             </div>
             <div className='jsplayground playground'>
               <div className='leftplayground snippet'>
-                <textarea className='dartpython' data-testid="jsTextarea" name="javascript" id="javascript" value={code} onChange={(e) => setcode(e.target.value)} placeholder='console.log("Hello CodoPlayer");'></textarea>
+                <textarea className='dartpython' data-testid="jsTextarea" name="javascript" id="javascript" value={code} onChange={(e) => codeSave(e)} placeholder='console.log("Hello CodoPlayer");'></textarea>
               </div>
               <h1 className="invisible">
                 <mark>Output</mark>
@@ -194,10 +182,6 @@ const Javascript = async ({ params }) => {
               <div>
                 <button onClick={submitCode}>Submit</button>
               </div>
-              <div>
-                <button onClick={checkf}>Check</button>
-              </div>
-
             </div>
           </div>
         </div>
