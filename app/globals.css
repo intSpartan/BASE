@@ -31,3 +31,15 @@ body {
 .font-inter{
   font-family: "Inter", sans-serif;
 }
+.slideimage{
+  height: 1.5rem;
+  transition: height 0.25s linear;
+  background: #333;
+  border-radius: 0.25rem
+}
+.secslideimage{
+  height: 5.5rem;
+  transition: height 0.25s linear;
+  background: #333;
+  border-radius: 0.25rem
+}
