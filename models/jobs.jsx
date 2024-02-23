@@ -7,9 +7,12 @@ const jobsSchema = new Schema(
         companyid: String,
         curr_state: String,
         applicantsApplied: { type: [String], default: [] },
+        applicantsInterview: {
+      type: Schema.Types.Mixed
+         }
     }
 );
 
 const Job = mongoose.models.Job || mongoose.model("Job", jobsSchema);
 
-export default Job; 
+export default Job;
