@@ -76,7 +76,7 @@ const Dashboard = () => {
       const res = await fetch(
         `http://localhost:3000/api/applicants/${supabaseid}`,
         {
-          method: "PUT", // console.log(id);
+          method: "PUT",
           headers: {
             "Content-type": "application/json",
           },

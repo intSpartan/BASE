@@ -26,8 +26,7 @@ const TopBarComponent = ({ params }) => {
         return null;
     }
   };
-  // console.log(params.jobId)
-
+  
   return (
     <div>
       <div className="top-bar">

@@ -1,6 +1,5 @@
-import React from 'react'
-import HtmlQuiz from "../components/html"
-
+import React from "react";
+import HtmlQuiz from "../components/html";
 
 const fetchOA = async (jobId) => {
   try {
@@ -16,21 +15,24 @@ const fetchOA = async (jobId) => {
   } catch (error) {
     console.log("Error loading topics: ", error);
   }
-}
+};
 
 const OA = async ({ params }) => {
-
   const jobInfo = await fetchOA(params.jobId);
-  // console.log(jobInfo.job.mcqs);
-
   return (
     <>
-      {jobInfo && <div>
-        <HtmlQuiz jobId={params.jobId} mcqs={jobInfo.job.mcqs} codingquestions={jobInfo.job.coding_questions} />
-      </div>}
+      {jobInfo && (
+        <div>
+          <HtmlQuiz
+            jobId={params.jobId}
+            mcqs={jobInfo.job.mcqs}
+            codingquestions={jobInfo.job.coding_questions}
+          />
+        </div>
+      )}
       {!jobInfo && <div>Loading...</div>}
     </>
-  )
-}
+  );
+};
 
-export default OA
+export default OA;

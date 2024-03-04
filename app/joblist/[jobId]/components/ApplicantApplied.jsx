@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import supabase from "@/app/authCompany";
 import { useParams } from "next/navigation";
 
 const updateOAList = async (applicant_id, jobId) => {
@@ -19,6 +20,7 @@ const ApplicantApplied = ({ ...props }) => {
   const params = useParams();
   const { jobId } = params;
   const [applicants, setApplicants] = useState([]);
+  const [resumes, setResumes] = useState([]);
 
   useEffect(() => {
     const getApplicant = async () => {
@@ -62,6 +64,25 @@ const ApplicantApplied = ({ ...props }) => {
     getApplicant();
   }, [props.jobId]);
 
+  useEffect(() => {
+    const fetchResumes = async () => {
+      try {
+        const { data, error } = await supabase.storage
+          .from("resumes")
+          .list("", { limit: 1000 });
+
+        if (error) {
+          console.error("Error fetching resumes:", error);
+          return;
+        }
+        setResumes(data);
+      } catch (error) {
+        console.error("Error fetching resumes:", error);
+      }
+    };
+    fetchResumes();
+  }, []);
+  console.log(resumes);
   const handleApplication = async (applicant_id) => {
     if (props.functionality === "Shortlist") {
     }
@@ -70,9 +91,53 @@ const ApplicantApplied = ({ ...props }) => {
     }
   };
 
+  const downloadAllResumes = async () => {
+    for (const file of resumes) {
+      await downloadResume(file);
+    }
+  };
+
+  const downloadResume = async (file) => {
+    try {
+      const { data, error } = await supabase.storage
+        .from("resumes")
+        .download(file.name);
+
+      if (error) {
+        console.error("Error downloading resume:", error);
+        return;
+      }
+      const blob = new Blob([data]);
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = file.name;
+      link.click();
+    } catch (error) {
+      console.error("Error downloading resume:", error);
+    }
+  };
+
+  const downloadUsingLoginid = async (loginid) => {
+    const { data, error } = await supabase.storage
+      .from("resumes")
+      .download(`${loginid}.pdf`);
+
+    if (error) {
+      alert("No Resume Uploaded by the Candidate", error);
+      return;
+    }
+    const blob = new Blob([data]);
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${loginid}.pdf`;
+    link.click();
+  };
+
   return (
     <div>
       <>
+        <h1>Resumes</h1>
+        <button onClick={downloadAllResumes}>Download All Resumes</button>
         {applicants.map((t) => (
           <div
             key={t.applicants._id}
@@ -93,6 +158,15 @@ const ApplicantApplied = ({ ...props }) => {
             <div>
               <button onClick={() => handleApplication(t.applicants._id)}>
                 {props.functionality}
+              </button>
+            </div>
+            <div>
+              <button
+                onClick={async () => {
+                  downloadUsingLoginid(t.applicants.loginid);
+                }}
+              >
+                Download Resume
               </button>
             </div>
           </div>
