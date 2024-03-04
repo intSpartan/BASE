@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import supabase from "../../authCompany";
 import { useRouter } from "next/navigation";
 import ApplicantDetails from "@/app/components/ApplicantDetails";
@@ -69,14 +70,13 @@ const Dashboard = () => {
       updatedres.jobsApplied.push(jobId);
 
       const currJobs = jobs.filter((t) => t._id === jobId);
-      // const applicant_id = applicantWithID._id;
       currJobs[0].applicantsApplied.push(supabaseid);
       console.log(currJobs[0].applicantsApplied);
 
       const res = await fetch(
         `http://localhost:3000/api/applicants/${supabaseid}`,
         {
-          method: "PUT",        // console.log(id);
+          method: "PUT", // console.log(id);
           headers: {
             "Content-type": "application/json",
           },
@@ -103,7 +103,7 @@ const Dashboard = () => {
   };
 
   const handleOA = (jobId) => {
-    router.push(`/OA/${jobId}`)
+    router.push(`/OA/${jobId}`);
   };
 
   const signOut = async () => {
@@ -116,6 +116,7 @@ const Dashboard = () => {
       {status && <ApplicantDetails />}
       {!status && (
         <>
+          <Link href="/student/dashboard/resume">Upload Resume</Link>
           <div>
             {jobs.map((t) => (
               <div
@@ -130,9 +131,7 @@ const Dashboard = () => {
                   <button onClick={() => handleApplication(t._id)}>
                     Apply Now
                   </button>
-                  <button onClick={() => handleOA(t._id)}>
-                    OA
-                  </button>
+                  <button onClick={() => handleOA(t._id)}>OA</button>
                 </div>
 
                 <div className="flex gap-2">
