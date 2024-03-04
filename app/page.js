@@ -24,9 +24,9 @@ export default function Home() {
     ;
   }
   return (
-    <div className="flex w-[100%] h-[100%]  justify-center items-center">
+    <div className="flex w-[100%]   h-[100%]  justify-center items-center">
 
-      <div className="w-[100%] ">
+      <div className="w-[100%] overflow-hidden h-screen ">
         {
           <div className="w-[100%]  h-screen  bg-white items-center  relative" style={{ height: (active) ? '0' : '', zIndex: (active) ? '-10' : '' }}>
             <div className="h-full relative w-[55%]  bg-gray-100 flex justify-center" style={{
@@ -81,7 +81,7 @@ export default function Home() {
           </div>
         }
         {                                                                                            //student part
-          <div className="w-[100%]  h-screen items-center  relative" style={{ height: (!active) ? '0' : "", height: (!active) ? '-10' : '30' }}>
+          <div className="w-[100%]  h-screen items-center  relative" style={{  z: (!active) ? '-10' : '30',height: (!active) ? '0' : ""  }}>
             {console.log(active)}
             <div className="w-[45%] h-[100%] bg-white z-[20]  right-0 absolute flex flex-col items-center gap-[8px]" style={{
               left: active ? '0' : '55%',
@@ -117,7 +117,7 @@ export default function Home() {
                 {isSignInButtonClicked2 && <StudentSignIn />}
 
               </div>
-              <button className="text-zinc-800 text-2xl font-bold font-inter mt-[20px]" onClick={() => setActive(!active)}>Sign in is copmany</button>
+              <button className="text-zinc-800 text-2xl font-bold font-inter mt-[20px] capitalize" onClick={() => setActive(!active)}>Sign in is company</button>
             </div>
             <div className="h-full z-[50] absolute  w-[55%] bg-gray-100 flex justify-center" style={{
               right: active ? '0' : '45%',
