@@ -4,8 +4,8 @@ import { useDropzone } from "react-dropzone";
 import supabase from "@/app/authCompany";
 import { useRouter } from "next/navigation";
 
-const FileUpload = ({ userId }) => {
-  const [cgpa, setcgpa] = useState();
+const FileUpload = () => {
+  const [cgpa, setcgpa] = useState('');
   const [supabaseid, setSupabaseid] = useState();
   const [uploadedFile, setUploadedFile] = useState(null);
   const router = useRouter();
@@ -53,15 +53,18 @@ const FileUpload = ({ userId }) => {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    setcgpa(e.target.value);
+  };
+
   return (
     <div>
       <input
         type="text"
         placeholder="CGPA"
         value={cgpa}
-        onChange={(e) => {
-          setcgpa(e.target.value);
-        }}
+        onChange={handleChange}
       ></input>
       <div
         {...getRootProps()}

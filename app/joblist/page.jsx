@@ -53,8 +53,6 @@ export default function TopicsList() {
     router.push(`joblist/${jobId}`);
   };
 
-  console.log(resumes);
-
   return (
     <>
       {filteredJobs.map((t) => (
