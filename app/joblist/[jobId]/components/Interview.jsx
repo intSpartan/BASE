@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client"
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation'; // Corrected import for useRouter
@@ -135,3 +136,13 @@ const ApplicantApplied = ({ jobId }) => {
 };
 
 export default ApplicantApplied;
+=======
+"use client";
+import React from "react";
+
+const Interview = () => {
+  return <div>This is the interview page</div>;
+};
+
+export default Interview;
+>>>>>>> origin/OnlineAssessment

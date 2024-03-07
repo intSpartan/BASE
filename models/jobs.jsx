@@ -9,7 +9,12 @@ const jobsSchema = new Schema(
         applicantsApplied: { type: [String], default: [] },
         applicantsInterview: {
       type: Schema.Types.Mixed
-         }
+         },
+        mcqs: Number,
+        coding_questions: Number,
+        OA_candidates: { type: [String], default: [] },
+        Interview_candidates: { type: [String], default: [] },
+
     }
 );
 

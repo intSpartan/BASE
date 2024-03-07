@@ -16,6 +16,7 @@ export default function Home() {
     setSignUpButtonClicked(!isSignUpButtonClicked);
   };
   const handleSignIn = () => {
+<<<<<<< HEAD
 
   }
   const handleSignUp2 = () => {
@@ -84,5 +85,28 @@ export default function Home() {
       </div>
 
     </div >
+=======
+    setSignInButtonClicked(!isSignInButtonClicked);
+  };
+  const handleSignUp2 = () => {
+    setSignUpButtonClicked2(!isSignUpButtonClicked2);
+  };
+  const handleSignIn2 = () => {
+    setSignInButtonClicked2(!isSignInButtonClicked2);
+  };
+  return (
+    <div>
+      <h1>Company -</h1>
+      <button onClick={handleSignUp}>Sign Up</button>
+      {isSignUpButtonClicked && <CompanySignUp />}
+      <button onClick={handleSignIn}>Sign In</button>
+      {isSignInButtonClicked && <CompanySignIn />}
+      <h1>Student -</h1>
+      <button onClick={handleSignUp2}>Sign Up</button>
+      {isSignUpButtonClicked2 && <StudentSignUp />}
+      <button onClick={handleSignIn2}>Sign In</button>
+      {isSignInButtonClicked2 && <StudentSignIn />}
+    </div>
+>>>>>>> origin/OnlineAssessment
   );
 }

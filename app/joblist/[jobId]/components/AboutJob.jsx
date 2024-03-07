@@ -1,12 +1,8 @@
-'use client'
-import React from 'react'
+"use client";
+import React from "react";
 
 const AboutJob = () => {
-    return (
-        <div>
-            This is AboutJob
-        </div>
-    )
-}
+  return <div>This is AboutJob</div>;
+};
 
-export default AboutJob
+export default AboutJob;
