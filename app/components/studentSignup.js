@@ -1,5 +1,7 @@
 import { useState } from "react";
 import supabase from "../authCompany";
+import StudentSignIn from "./studentSignIn";
+
 
 export default function StudentSignUp() {
   const [email, setEmail] = useState("");

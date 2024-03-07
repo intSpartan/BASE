@@ -69,8 +69,8 @@ const Dashboard = () => {
       updatedres.jobsApplied.push(jobId);
 
       const currJobs = jobs.filter((t) => t._id === jobId);
-      const applicant_id = applicantWithID._id;
-      currJobs[0].applicantsApplied.push(applicant_id);
+      // const applicant_id = applicantWithID._id;
+      currJobs[0].applicantsApplied.push(supabaseid);
       console.log(currJobs[0].applicantsApplied);
 
       const res = await fetch(
@@ -89,7 +89,7 @@ const Dashboard = () => {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ currJobs: currJobs[0] }),
+        body: JSON.stringify({ curr_job: currJobs[0] }),
       });
 
       if (!res_jobs.ok) {
@@ -100,6 +100,10 @@ const Dashboard = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleOA = () => {
+    router.push("/OA")
   };
 
   const signOut = async () => {
@@ -125,6 +129,9 @@ const Dashboard = () => {
                   <div>{t.curr_state}</div>
                   <button onClick={() => handleApplication(t._id)}>
                     Apply Now
+                  </button>
+                  <button onClick={handleOA}>
+                    OA
                   </button>
                 </div>
 

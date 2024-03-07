@@ -24,6 +24,7 @@ const getJobs = async () => {
 
 export default function TopicsList() {
 
+    const router = useRouter();
 
     const [compId, setCompId] = useState([]);
     useEffect(() => {
@@ -49,8 +50,8 @@ export default function TopicsList() {
 
     const filteredJobs = jobs.filter((t) => (t.companyid === compId) && (t.curr_state != "4"));
 
-    const showApplicants = (jobId) => {
-        
+    const handleJob = (jobId) => {
+        router.push(`joblist/${jobId}`);
     }
 
     return (
@@ -61,8 +62,8 @@ export default function TopicsList() {
                     className="p-4 border border-slate-300 my-3 flex justify-between items-start rounded-md"
                 >
                     <div>
-                        <h2 className="font-bold text-2xl">{t.title}</h2>
-                        <div onClick={() => showApplicants(t._id)}>{t.description}</div>
+                        <h2 className="font-bold text-2xl" onClick={() => handleJob(t._id)}>{t.title}</h2>
+                        <div >{t.description}</div>
                         <div>{t.curr_state}</div>
                     </div>
 
