@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 "use client"
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation'; // Corrected import for useRouter
 import { v1 as uuid } from "uuid";
 
-const ApplicantApplied = ({ jobId }) => {
+const Interview = ({ jobId }) => {
   const router = useRouter();
   const [applicants, setApplicants] = useState([]);
   const [interviewLinks, setInterviewLinks] = useState({});
@@ -88,7 +87,7 @@ const ApplicantApplied = ({ jobId }) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({applicantID: applicantId})
+      body: JSON.stringify({ applicantID: applicantId })
     });
     if (!res.ok) {
       throw new Error("Failed to send interview invitation");
@@ -96,7 +95,7 @@ const ApplicantApplied = ({ jobId }) => {
 
     setInterviewLinks(prev => {
       // Create a new object excluding the applicantId that was removed
-      const {[applicantId]: value, ...remaining} = prev;
+      const { [applicantId]: value, ...remaining } = prev;
       return remaining;
     });
 
@@ -104,45 +103,35 @@ const ApplicantApplied = ({ jobId }) => {
   }
 
   return (
-  <div>
-    {isLoading ? (
-      <p>Loading...</p> // Or any loading indicator you prefer
-    ) : (
-      applicants.map(({applicants}) => (
-        <div key={applicants._id} className="p-4 border border-slate-300 my-3 flex flex-col justify-between items-start rounded-md">
-          <h2 className="text-2xl">{applicants.name}</h2>
-          {interviewLinks[applicants._id] ? (
-                <>
-            <button className="text-xl border border-black p-1 rounded-lg" onClick={() => router.push(interviewLinks[applicants._id])}>
-              Attend Interview
-            </button>
-            <button className="text-xl border border-black p-1 rounded-lg" onClick={() => handleUnsendInterview(applicants._id)}>
-              Unsend Interview
-            </button>
-                </>
-          ) : (
-            <button className="text-xl border border-black p-1 rounded-lg" onClick={() => handleSendInterview(applicants._id)}>
-              Send Interview
-            </button>
-          )}
-          <p>{applicants._id}</p>
-          <p>{applicants.college}</p>
-          <p>{applicants.cgpa}</p>
-        </div>
-      ))
-    )}
-  </div>
+    <div>
+      {isLoading ? (
+        <p>Loading...</p> // Or any loading indicator you prefer
+      ) : (
+        applicants.map(({ applicants }) => (
+          <div key={applicants._id} className="p-4 border border-slate-300 my-3 flex flex-col justify-between items-start rounded-md">
+            <h2 className="text-2xl">{applicants.name}</h2>
+            {interviewLinks[applicants._id] ? (
+              <>
+                <button className="text-xl border border-black p-1 rounded-lg" onClick={() => router.push(interviewLinks[applicants._id])}>
+                  Attend Interview
+                </button>
+                <button className="text-xl border border-black p-1 rounded-lg" onClick={() => handleUnsendInterview(applicants._id)}>
+                  Unsend Interview
+                </button>
+              </>
+            ) : (
+              <button className="text-xl border border-black p-1 rounded-lg" onClick={() => handleSendInterview(applicants._id)}>
+                Send Interview
+              </button>
+            )}
+            <p>{applicants._id}</p>
+            <p>{applicants.college}</p>
+            <p>{applicants.cgpa}</p>
+          </div>
+        ))
+      )}
+    </div>
   );
 };
 
-export default ApplicantApplied;
-=======
-"use client";
-import React from "react";
-
-const Interview = () => {
-  return <div>This is the interview page</div>;
-};
-
 export default Interview;
->>>>>>> origin/OnlineAssessment

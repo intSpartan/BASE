@@ -3,7 +3,7 @@ import connectMongoDB from "../../../../libs/mongodb_jobs";
 import Job from "@/models/jobs"
 
 
-export async function GET(request, {params}) {
+export async function GET(request, { params }) {
   const { jobID } = params;
 
   await connectMongoDB();
@@ -20,6 +20,10 @@ export async function PUT(request, { params }) {
   const { jobID } = params;
   const { applicantID, link } = await request.json();
 
+  // console.log({ applicantID, link });
+
+  // console.log(jobID);
+
   await connectMongoDB();
   const update = {
     $set: {
@@ -28,8 +32,8 @@ export async function PUT(request, { params }) {
   };
 
   try {
-    const result = await Job.updateOne(
-      { _id: jobID},  update
+    const result = await Job.findOneAndUpdate(
+      { _id: jobID }, update
     );
 
     return NextResponse.json({ message: "Applicant Updated" }, { status: 200 });
@@ -52,7 +56,7 @@ export async function DELETE(request, { params }) {
   };
 
   try {
-    const result = await Job.updateOne(
+    const result = await Job.findOneAndUpdate(
       { _id: jobID }, update
     );
 
@@ -63,3 +67,5 @@ export async function DELETE(request, { params }) {
     return NextResponse.json({ message: "Error removing applicant interview" }, { status: 500 });
   }
 }
+
+

@@ -16,14 +16,14 @@ export default function Home() {
     setSignUpButtonClicked(!isSignUpButtonClicked);
   };
   const handleSignIn = () => {
-<<<<<<< HEAD
 
   }
   const handleSignUp2 = () => {
-  }
+    setSignUpButtonClicked2(!isSignUpButtonClicked2);
+  };
   const handleSignIn2 = () => {
-    ;
-  }
+    setSignInButtonClicked2(!isSignInButtonClicked2);
+  };
   return (
     <div className="flex w-[100%]   h-[100%]  justify-center items-center">
 
@@ -51,10 +51,10 @@ export default function Home() {
               </div>
 
               <div className="w-full gap-y-2 flex flex-col mt-[80px] items-center">
-                <div className="font-inter" style={{ width: 198, height: 29, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 4, display: 'inline-flex' }}>
+                <div className="font-inter" style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 4, display: 'inline-flex' }}>
                   <div className="font-inter text-[#333333] text-[24px] font-bold break-words "  >Get Started Here</div>
+                  <p className="font-inter text-[#ADADAD] text-[14px] font-normal" >We help you make better future for yourself</p>
                 </div>
-                <p className="font-inter text-[#ADADAD] text-[14px] font-normal" >We help you make better future for yourself</p>
                 <div className="font-inter w-[302px] h-[48px] px-[20px] py-[6px] bg-[#F0F2F8] rounded-[4px] justify-start items-start gap-[16px] inline-flex " >
                   <div className="font-inter w-[115px] px-[36px] py-[8px] rounded-[4px] justify-center items-center flex gap-[10px]" style={{ backgroundColor: (isSignInButtonClicked) ? 'white' : '' }}>
                     <button className="font-inter text-center text-[#414B64] text-[16px] font-semibold break-words" onClick={() => {
@@ -82,7 +82,7 @@ export default function Home() {
           </div>
         }
         {                                                                                            //student part
-          <div className="w-[100%]  h-screen items-center  relative" style={{  z: (!active) ? '-10' : '30',height: (!active) ? '0' : ""  }}>
+          <div className="w-[100%]  h-screen items-center  relative" style={{ z: (!active) ? '-10' : '30', height: (!active) ? '0' : "" }}>
             {console.log(active)}
             <div className="w-[45%] h-[100%] bg-white z-[20]  right-0 absolute flex flex-col items-center gap-[8px]" style={{
               left: active ? '0' : '55%',
@@ -95,10 +95,10 @@ export default function Home() {
 
               </div>
               <div className="w-full gap-y-2 flex flex-col mt-[80px] items-center">
-                <div className="font-inter" style={{ width: 198, height: 29, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 4, display: 'inline-flex' }}>
+                <div className="font-inter" style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 4, display: 'inline-flex' }}>
                   <div className="font-inter text-[#333333] text-[24px] font-bold break-words "  >Get Started Here</div>
+                  <p className="font-inter text-[#ADADAD] text-[14px] font-normal" >We help you make better future for yourself</p>
                 </div>
-                <p className="font-inter text-[#ADADAD] text-[14px] font-normal" >We help you make better future for yourself</p>
                 <div className="font-inter w-[302px] h-[48px] px-[20px] py-[6px] bg-[#F0F2F8] rounded-[4px] justify-start items-start gap-[16px] inline-flex " >
                   <button className="font-inter w-[115px] font-inter text-center text-[#414B64] text-[16px] font-semibold break-words px-[36px] py-[8px] rounded-[4px] justify-center items-center flex gap-[10px]" style={{ backgroundColor: (isSignInButtonClicked2) ? 'white' : '' }} onClick={() => {
                     setSignInButtonClicked2(true);
@@ -136,28 +136,21 @@ export default function Home() {
       </div>
 
     </div >
-=======
-    setSignInButtonClicked(!isSignInButtonClicked);
-  };
-  const handleSignUp2 = () => {
-    setSignUpButtonClicked2(!isSignUpButtonClicked2);
-  };
-  const handleSignIn2 = () => {
-    setSignInButtonClicked2(!isSignInButtonClicked2);
-  };
-  return (
-    <div>
-      <h1>Company -</h1>
-      <button onClick={handleSignUp}>Sign Up</button>
-      {isSignUpButtonClicked && <CompanySignUp />}
-      <button onClick={handleSignIn}>Sign In</button>
-      {isSignInButtonClicked && <CompanySignIn />}
-      <h1>Student -</h1>
-      <button onClick={handleSignUp2}>Sign Up</button>
-      {isSignUpButtonClicked2 && <StudentSignUp />}
-      <button onClick={handleSignIn2}>Sign In</button>
-      {isSignInButtonClicked2 && <StudentSignIn />}
-    </div>
->>>>>>> origin/OnlineAssessment
-  );
-}
+  )
+
+};
+
+  // return (
+  //   <div>
+  //     <h1>Company -</h1>
+  //     <button onClick={handleSignUp}>Sign Up</button>
+  //     {isSignUpButtonClicked && <CompanySignUp />}
+  //     <button onClick={handleSignIn}>Sign In</button>
+  //     {isSignInButtonClicked && <CompanySignIn />}
+  //     <h1>Student -</h1>
+  //     <button onClick={handleSignUp2}>Sign Up</button>
+  //     {isSignUpButtonClicked2 && <StudentSignUp />}
+  //     <button onClick={handleSignIn2}>Sign In</button>
+  //     {isSignInButtonClicked2 && <StudentSignIn />}
+  //   </div>
+  // );

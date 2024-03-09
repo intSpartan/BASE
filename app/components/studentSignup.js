@@ -3,7 +3,7 @@ import supabase from "../authCompany";
 import StudentSignIn from "./studentSignIn";
 
 
-export default function StudentSignUp() {
+export default function   StudentSignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [studentname, setStudentName] = useState("");
