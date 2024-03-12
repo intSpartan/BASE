@@ -5,7 +5,21 @@ import React, { useState, useEffect } from 'react';
 import "./style.css"
 
 import { useRouter } from 'next/navigation';
+import { useGlobalContext } from '@/app/GlobalContext';
 
+const updateOAScoreList = async (applicant_id, jobId, score) => {
+    // console.log(applicant_id);
+    const res_jobs = await fetch(
+        `http://localhost:3000/api/jobs/${jobId}/OA_scores`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({ candidate_id: applicant_id, score: score }),
+        }
+    );
+};
 
 
 const HtmlQuiz = (props) => {
@@ -17,7 +31,8 @@ const HtmlQuiz = (props) => {
     const [savedAnswers, setSavedAnswers] = useState([]);
     const [yourAnswers, setYourAnswers] = useState([]);
     const [timePassed, setTimePassed] = useState(300);
-
+    const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+    const state = useGlobalContext();
 
     // setCodingQuestions(jobInfo.coding_questions)
 
@@ -29,14 +44,14 @@ const HtmlQuiz = (props) => {
     const computerScienceQuestions = [
         // OOP (Object-Oriented Programming)
         {
-            question: 'Q1: What is the purpose of inheritance in OOP?',
+            question: 'Q: What is the purpose of inheritance in OOP?',
             choice1: 'To create multiple instances of a class',
             choice2: 'To reuse code and establish a relationship between classes',
             choice3: 'To provide encapsulation for data',
             correctChoice: 2,
         },
         {
-            question: 'Q2: What is abstraction in OOP   ?',
+            question: 'Q: What is abstraction in OOP   ?',
             choice1: 'Hiding the implementation details and exposing only the necessary functionalities',
             choice2: 'Creating instances of a class',
             choice3: 'Using abstract data types',
@@ -45,14 +60,14 @@ const HtmlQuiz = (props) => {
 
         // Operating Systems
         {
-            question: 'Q3: What is a deadlock in operating systems?',
+            question: 'Q: What is a deadlock in operating systems?',
             choice1: 'A situation where a process is waiting for a resource that is held by another process',
             choice2: 'A process that is running indefinitely and not making progress',
             choice3: 'A state where two or more processes cannot proceed because each is waiting for the other to release a resource',
             correctChoice: 3,
         },
         {
-            question: 'Q4: What is a kernel in an operating system?',
+            question: 'Q: What is a kernel in an operating system?',
             choice1: 'The central processing unit (CPU)',
             choice2: 'The core of the operating system that provides essential services',
             choice3: 'A type of file system',
@@ -61,14 +76,14 @@ const HtmlQuiz = (props) => {
 
         // DBMS (Database Management Systems)
         {
-            question: 'Q5: What is ACID in the context of database transactions?',
+            question: 'Q: What is ACID in the context of database transactions?',
             choice1: 'A database query language',
             choice2: 'A set of properties that guarantee database transactions are processed reliably',
             choice3: 'A data encryption standard',
             correctChoice: 2,
         },
         {
-            question: 'Q6: What is the purpose of a JOIN operation in SQL?',
+            question: 'Q: What is the purpose of a JOIN operation in SQL?',
             choice1: 'To filter rows based on a condition',
             choice2: 'To combine rows from two or more tables based on a related column',
             choice3: 'To create a new table with specific columns',
@@ -77,14 +92,14 @@ const HtmlQuiz = (props) => {
 
         // Computer Networks
         {
-            question: 'Q7: What is the function of the Transport layer in the OSI model?',
+            question: 'Q: What is the function of the Transport layer in the OSI model?',
             choice1: 'Ensuring error-free transmission of data',
             choice2: 'Establishing, maintaining, and terminating connections',
             choice3: 'Providing routing and forwarding of data packets',
             correctChoice: 2,
         },
         {
-            question: 'Q8: What is the purpose of DNS (Domain Name System) in networking?',
+            question: 'Q: What is the purpose of DNS (Domain Name System) in networking?',
             choice1: 'Encrypting data during transmission',
             choice2: 'Translating domain names to IP addresses',
             choice3: 'Providing secure communication between network devices',
@@ -93,24 +108,22 @@ const HtmlQuiz = (props) => {
 
         // Data Structures and Algorithms
         {
-            question: 'Q9: What is a stack in data structures?',
+            question: 'Q: What is a stack in data structures?',
             choice1: 'A data structure that follows the Last In, First Out (LIFO) principle',
             choice2: 'A data structure that follows the First In, First Out (FIFO) principle',
             choice3: 'A type of sorting algorithm',
             correctChoice: 1,
         },
         {
-            question: 'Q10: What is the time complexity of the quicksort algorithm in the average case?',
+            question: 'Q: What is the time complexity of the quicksort algorithm in the average case?',
             choice1: 'O(1)',
             choice2: 'O(n log n)',
             choice3: 'O(n^2)',
             correctChoice: 2,
         },
 
-        // Additional questions
-
         {
-            question: 'Q11: Explain the concept of a binary tree in data structures.',
+            question: 'Q: Explain the concept of a binary tree in data structures.',
             choice1: 'A tree with only one child node for each parent node',
             choice2: 'A tree with two child nodes for each parent node',
             choice3: 'A tree with no child nodes',
@@ -118,7 +131,7 @@ const HtmlQuiz = (props) => {
         },
 
         {
-            question: 'Q12: What is the purpose of the SELECT statement in SQL?',
+            question: 'Q: What is the purpose of the SELECT statement in SQL?',
             choice1: 'To insert data into a table',
             choice2: 'To retrieve data from one or more tables',
             choice3: 'To update existing data in a table',
@@ -126,7 +139,7 @@ const HtmlQuiz = (props) => {
         },
 
         {
-            question: 'Q13: How does TCP (Transmission Control Protocol) ensure reliable communication?',
+            question: 'Q: How does TCP (Transmission Control Protocol) ensure reliable communication?',
             choice1: 'By using checksums to detect errors in transmitted data',
             choice2: 'By providing flow control and error checking',
             choice3: 'By encrypting the data during transmission',
@@ -134,7 +147,7 @@ const HtmlQuiz = (props) => {
         },
 
         {
-            question: 'Q14: What is a binary search tree, and how does it differ from a binary tree?',
+            question: 'Q: What is a binary search tree, and how does it differ from a binary tree?',
             choice1: 'A binary search tree is always balanced, while a binary tree may not be balanced',
             choice2: 'A binary search tree is a specific type of binary tree that follows a particular ordering property',
             choice3: 'A binary tree is always complete, while a binary search tree may not be complete',
@@ -142,7 +155,7 @@ const HtmlQuiz = (props) => {
         },
 
         {
-            question: 'Q15: Explain the concept of normalization in database design.',
+            question: 'Q: Explain the concept of normalization in database design.',
             choice1: 'Ensuring that all data in a database is stored in a single table',
             choice2: 'Organizing data to minimize redundancy and dependency',
             choice3: 'Adding redundancy to improve query performance',
@@ -219,12 +232,18 @@ const HtmlQuiz = (props) => {
     };
 
     const nextQuestion = () => {
+
         const SpecifiedQuestions = selectedExamQuestions;
         const questionAns = document.getElementsByName('radio');
 
         for (let j = 0; j < questionAns.length; j++) {
             if (questionAns[j].checked) {
+                const selectedAnswer = parseInt(questionAns[j].value, 10);
                 setSavedAnswers((prevAnswers) => [...prevAnswers, questionAns[j].value]);
+                if (selectedAnswer === selectedExamQuestions[questionIndex].correctChoice) {
+                    setCorrectAnswersCount((count) => count + 1);
+                }
+
                 questionAns[j].checked = false;
             }
         }
@@ -270,7 +289,9 @@ const HtmlQuiz = (props) => {
         // Show result button
         const showResultBtn = document.getElementById('showResult');
         showResultBtn.style.display = 'block';
+        // console.log(correctAnswersCount);
 
+        updateOAScoreList(state.state.entity_id, props.jobId, correctAnswersCount)
         router.push(`/OA/${props.jobId}/coding`);
 
     };

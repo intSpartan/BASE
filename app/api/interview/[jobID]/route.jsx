@@ -45,13 +45,13 @@ export async function PUT(request, { params }) {
 
 export async function DELETE(request, { params }) {
   const { jobID } = params;
-  const { applicantID } = await request.json(); // Assuming you send the applicantID in the request body
+  const { applicantID } = await request.json(); 
 
   await connectMongoDB();
 
   const update = {
     $unset: {
-      [`applicantsInterview.${applicantID}`]: "" // Unset the specific applicant's interview link
+      [`applicantsInterview.${applicantID}`]: "" 
     }
   };
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import supabase from "@/app/authCompany";
 import { useParams } from "next/navigation";
 
+
 const updateOAList = async (applicant_id, jobId) => {
   // console.log(applicant_id);
   const res_jobs = await fetch(
@@ -14,9 +15,20 @@ const updateOAList = async (applicant_id, jobId) => {
       body: JSON.stringify({ candidate_id: applicant_id }),
     }
   );
+  const res_applicant = await fetch(
+    `http://localhost:3000/api/applicants/${applicant_id}/OA_List`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ jobId: jobId }),
+    }
+  );
 };
 
 const ApplicantApplied = ({ ...props }) => {
+
   const params = useParams();
   const { jobId } = params;
   const [applicants, setApplicants] = useState([]);
@@ -48,7 +60,7 @@ const ApplicantApplied = ({ ...props }) => {
             }
           );
           if (!response.ok) {
-            console.error(`Failed to fetsch applicant with ID ${id}`);
+            console.error(`Failed to fetch applicant with ID ${id}`);
             continue;
           }
           const applicant = await response.json();
@@ -82,12 +94,15 @@ const ApplicantApplied = ({ ...props }) => {
     };
     fetchResumes();
   }, []);
-  console.log(resumes);
+  // console.log(resumes);
+
   const handleApplication = async (applicant_id) => {
     if (props.functionality === "Shortlist") {
     }
     if (props.functionality === "Send OA") {
       const res = await updateOAList(applicant_id, jobId);
+      alert("OA sent")
+
     }
   };
 

@@ -13,7 +13,17 @@ const jobsSchema = new Schema(
         mcqs: Number,
         coding_questions: Number,
         OA_candidates: { type: [String], default: [] },
-
+        OA_scores: [
+            {
+                id: {
+                    type: String,
+                },
+                score: {
+                    type: Number,
+                    default: 0,
+                },
+            },
+        ],
     }
 );
 

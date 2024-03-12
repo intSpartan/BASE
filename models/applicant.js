@@ -8,6 +8,7 @@ const applicantSchema = new Schema(
         cgpa: String,
         loginid: String,
         jobsApplied: { type: [String], default: [] },
+        OA_list: { type: [String], default: [] },
         interview_link: { type: [String], default: [] },
 
     }

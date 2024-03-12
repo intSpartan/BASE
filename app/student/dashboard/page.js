@@ -6,6 +6,9 @@ import supabase from "../../authCompany";
 import { useRouter } from "next/navigation";
 import ApplicantDetails from "@/app/components/ApplicantDetails";
 import { HiPencilAlt } from "react-icons/hi";
+import { useGlobalContext } from '../../GlobalContext'
+import OA from "./OA/page";
+
 
 const getApplicant = async (id) => {
   try {
@@ -41,6 +44,13 @@ const getAllJobs = async () => {
 };
 
 const Dashboard = () => {
+
+  const state = useGlobalContext();
+  console.log(state)
+  const [renderOA, setRenderOA] = useState(false);
+  const handleClick = () => {
+    setRenderOA(true);
+  };
   const router = useRouter();
   const [status, setStatus] = useState();
   const [jobs, setJobs] = useState([]);
@@ -110,13 +120,19 @@ const Dashboard = () => {
     const { error } = await supabase.auth.signOut();
     router.push("/");
   };
+  // console.log(state.entity_id);
 
   return (
+
     <div>
       {status && <ApplicantDetails />}
       {!status && (
         <>
           <Link href="/student/dashboard/resume">Upload Resume</Link>
+          <Link href="/student/dashboard/OA">
+            <button style={{ backgroundColor: 'black', color: 'white' }}>OA</button>
+          </Link>
+
           <div>
             {jobs.map((t) => (
               <div
@@ -146,6 +162,7 @@ const Dashboard = () => {
         </>
       )}
     </div>
+
   );
 };
 
