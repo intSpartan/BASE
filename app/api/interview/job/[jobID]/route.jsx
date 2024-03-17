@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
-import connectMongoDB from "../../../../libs/mongodb_jobs";
+import connectMongoDB from "../../../../../libs/mongodb_jobs";
 import Job from "@/models/jobs"
 
 
 export async function GET(request, {params}) {
+  console.log("hi")
   const { jobID } = params;
 
   await connectMongoDB();

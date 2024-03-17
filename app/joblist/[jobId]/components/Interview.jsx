@@ -24,7 +24,7 @@ const ApplicantApplied = ({ jobId }) => {
 
         const job = await res.json();
 
-        const interviewRes = await fetch(`http://localhost:3000/api/interview/${jobId}`, {
+        const interviewRes = await fetch(`http://localhost:3000/api/interview/job/${jobId}`, {
           method: "GET",
           cache: "no-store",
         });
@@ -59,7 +59,7 @@ const ApplicantApplied = ({ jobId }) => {
   const handleSendInterview = async (applicantId) => {
     const meetingLink = `/room/${uuid()}`;
     try {
-      const res = await fetch(`/api/interview/${jobId}`, {
+      const res = await fetch(`/api/interview/job/${jobId}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ const ApplicantApplied = ({ jobId }) => {
   };
 
   const handleUnsendInterview = async (applicantId) => {
-    const res = await fetch(`/api/interview/${jobId}`, {
+    const res = await fetch(`/api/interview/job/${jobId}`, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json'

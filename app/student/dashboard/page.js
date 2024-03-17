@@ -22,6 +22,21 @@ const getApplicant = async (id) => {
   }
 };
 
+const interviewLink = async (id) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/interview/applicant/${id}`
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch interview links");
+    }
+    console.log("interview:", res);
+    return await res.json();
+  } catch (error) {
+    console.log("error");
+  }
+};
+
 const getAllJobs = async () => {
   try {
     const res = await fetch("http://localhost:3000/api/jobs", {
@@ -45,6 +60,7 @@ const Dashboard = () => {
   const [jobs, setJobs] = useState([]);
   const [supabaseid, setSupabaseid] = useState();
   const [applicantWithID, setApplicantWithID] = useState();
+  const [interviewLinks, setInterviewLinks] = useState([]); // New state for interview links
 
   useEffect(() => {
     getAllJobs().then((jobs) => setJobs(jobs.jobs));
@@ -52,12 +68,15 @@ const Dashboard = () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      if (!user) {
-      } else {
-        const obj = await getApplicant(user.id);
+      if (user) {
         setSupabaseid(user.id);
-        setApplicantWithID(obj.applicants);
-        setStatus(obj.applicants === null);
+        const obj = await getApplicant(user.id);
+        console.log(obj);
+        setApplicantWithID(obj ? obj.applicants : null);
+        setStatus(!obj || obj.applicants === null);
+        const links = await interviewLink(obj.applicants._id);
+        // Ensure interviewLinks is always an array
+        setInterviewLinks(Array.isArray(links) ? links : []); // Update state with fetched interview links or an empty array
       }
     };
     fetchUser();
@@ -103,7 +122,7 @@ const Dashboard = () => {
   };
 
   const handleOA = () => {
-    router.push("/OA")
+    router.push("/OA");
   };
 
   const signOut = async () => {
@@ -113,6 +132,26 @@ const Dashboard = () => {
 
   return (
     <div>
+      {interviewLinks.length > 0 && (
+        <div className="m-5 top-16 right-5 md:right-10 lg:right-16 xl:right-20 2xl:right-24 w-72 bg-white shadow-xl rounded-lg z-50">
+          <div className="bg-blue-600 text-white text-lg font-semibold p-3 rounded-t-lg">
+            Interview Links
+          </div>
+          <div className="max-h-96 overflow-y-auto">
+            {interviewLinks.map((link) => (
+              <a
+                key={link.jobId}
+                href={link.applicantInterviewLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-4 py-2 border-b border-gray-200 hover:bg-blue-50 text-gray-800"
+              >
+                {link.jobTitle}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
       {status && <ApplicantDetails />}
       {!status && (
         <>
@@ -130,9 +169,7 @@ const Dashboard = () => {
                   <button onClick={() => handleApplication(t._id)}>
                     Apply Now
                   </button>
-                  <button onClick={handleOA}>
-                    OA
-                  </button>
+                  <button onClick={handleOA}>OA</button>
                 </div>
 
                 <div className="flex gap-2">
