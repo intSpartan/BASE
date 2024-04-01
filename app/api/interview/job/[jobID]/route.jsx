@@ -1,9 +1,14 @@
 import { NextResponse } from "next/server";
-import connectMongoDB from "../../../../libs/mongodb_jobs";
+import connectMongoDB from "../../../../../libs/mongodb_jobs";
 import Job from "@/models/jobs"
 
 
+<<<<<<< HEAD:app/api/interview/[jobID]/route.jsx
 export async function GET(request, { params }) {
+=======
+export async function GET(request, {params}) {
+  console.log("hi")
+>>>>>>> WebRTC:app/api/interview/job/[jobID]/route.jsx
   const { jobID } = params;
 
   await connectMongoDB();
