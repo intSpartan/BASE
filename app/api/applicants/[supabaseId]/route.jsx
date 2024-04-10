@@ -9,7 +9,7 @@ export async function GET(req, { params, body }) {
   return NextResponse.json({ error: "Method Not Allowed" }, { status: 405 });
 }
 export async function PUT(req, { params, body }) {
-  console.log(req.method);
+  // console.log(req.method);
   await connectMongoDB();
   try {
     const { updatedres } = await req.json();

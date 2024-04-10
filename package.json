@@ -15,6 +15,7 @@
     "fs": "^0.0.1-security",
     "js-cookie": "^3.0.5",
     "js-resume-parser": "^1.0.12",
+    "lucide-react": "^0.366.0",
     "mongoose": "^8.1.0",
     "next": "14.0.4",
     "pdf2json": "^3.0.5",
