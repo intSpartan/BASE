@@ -3,8 +3,7 @@ import connectMongoDB from "../../../../../libs/mongodb_jobs";
 import Job from "@/models/jobs"
 
 
-export async function GET(request, { params }) {
-  console.log("hi")
+export async function GET(request, {params}) {
   const { jobID } = params;
 
   await connectMongoDB();
@@ -68,5 +67,3 @@ export async function DELETE(request, { params }) {
     return NextResponse.json({ message: "Error removing applicant interview" }, { status: 500 });
   }
 }
-
-
