@@ -34,10 +34,9 @@ const Sidebar = (props) => {
 
     return (
         <div>
-            <Header/>
-        <div className='flex'>
-
-            <aside className="flex h-screen w-64 flex-col overflow-y-auto border-r bg-white px-5 py-8">
+        <Header/>
+        <div className='flex space-y-12'>
+                <aside className="flex h-screen w-64 flex-col overflow-y-auto border-r bg-neutral-50 px-5 py-8">
                 <a >
                     <svg
                         width="40"

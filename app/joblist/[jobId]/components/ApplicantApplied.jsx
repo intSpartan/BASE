@@ -164,14 +164,14 @@ const ApplicantApplied = ({ ...props }) => {
           <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
             <div>
               <h2 className="text-lg font-semibold">Candidates who applied</h2>
-              <p className="mt-1 text-sm text-gray-700">
+              <p className="mt-1 text-base text-gray-700">
                 This is a list of all the candidates who applied for this job
               </p>
             </div>
             <div>
               <button onClick={downloadAllResumes}
                 type="button"
-                className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                className="rounded-md bg-black px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
               >
                 Download All Resumes
               </button>
@@ -186,27 +186,27 @@ const ApplicantApplied = ({ ...props }) => {
                       <tr>
                         <th
                           scope="col"
-                          className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                          className="px-4 py-3.5 text-left text-base font-normal text-gray-700"
                         >
                           <span>Name</span>
                         </th>
                         <th
                           scope="col"
-                          className="px-12 py-3.5 text-left text-sm font-normal text-gray-700"
+                          className="px-12 py-3.5 text-left text-base font-normal text-gray-700"
                         >
                           College
                         </th>
 
                         <th
                           scope="col"
-                          className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                          className="px-4 py-3.5 text-left text-base font-normal text-gray-700"
                         >
                           CGPA
                         </th>
 
                         <th
                           scope="col"
-                          className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                          className="px-4 py-3.5 text-left text-base font-normal text-gray-700"
                         >
                           Resume
                         </th>
@@ -228,16 +228,16 @@ const ApplicantApplied = ({ ...props }) => {
                                                                     /> */}
                               </div>
                               <div className="ml-4">
-                                <div className="text-sm font-medium text-gray-900">{applicant.applicants.name}</div>
-                                {/* <div className="text-sm text-gray-700">{job.job.title}</div> */}
+                                <div className="text-base font-medium text-gray-900">{applicant.applicants.name}</div>
+                                {/* <div className="text-base text-gray-700">{job.job.title}</div> */}
                               </div>
                             </div>
                           </td>
                           <td className="whitespace-nowrap px-12 py-4">
-                            {/* <div className="text-sm text-gray-900 ">{job.job.title}</div> */}
-                            <div className="text-sm text-gray-700">{applicant.applicants.college}</div>
+                            {/* <div className="text-base text-gray-900 ">{job.job.title}</div> */}
+                            <div className="text-base text-gray-700">{applicant.applicants.college}</div>
                           </td>
-                          <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                          <td className="whitespace-nowrap px-4 py-4 text-base text-gray-700">
                             {applicant.applicants.cgpa}
                           </td>
                           <td className="whitespace-nowrap px-4 py-4">
@@ -251,11 +251,11 @@ const ApplicantApplied = ({ ...props }) => {
                               </button>
                             </span>
                           </td>
-                          <td className="whitespace-nowrap px-4 py-4 text-right text-sm font-medium">
+                          <td className="whitespace-nowrap px-4 py-4 text-right text-base font-medium">
                             <div className="text-gray-700">
                               <button
                                 type="button" onClick={() => handleApplication(applicant.applicants.loginid)}
-                                className="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white hover:bg-black/100"
+                                className="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-base font-semibold text-white hover:bg-black/100"
                               >
                                 Shortlist
                                 <ArrowRight className="ml-2 h-4 w-4" />

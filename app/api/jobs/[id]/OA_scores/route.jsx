@@ -12,9 +12,10 @@ export async function GET(request, { params }) {
 
 export async function PUT(req, { params, body }) {
     await connectMongoDB();
-
+    
     try {
         const data = await req.json();
+        // console.log(data);
         await Job.findOneAndUpdate(
             { _id: params.id },
             { $push: { OA_scores: data } },

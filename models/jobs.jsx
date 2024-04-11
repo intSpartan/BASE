@@ -17,7 +17,7 @@ const jobsSchema = new Schema(
         OA_candidates: { type: [String], default: [] },
         OA_scores: [
             {
-                id: {
+                candidate_id: {
                     type: String,
                 },
                 score: {

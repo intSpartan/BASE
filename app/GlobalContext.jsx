@@ -25,10 +25,12 @@ export const GlobalProvider = ({ children }) => {
                     state: initialState,
                 };
                 setContextValue(value);
+ 
             }
         };
 
         fetchUser();
+        
     }, []);
 
 

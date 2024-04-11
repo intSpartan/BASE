@@ -37,7 +37,7 @@ export default function Header() {
   };
 
   return (
-    <div className="relative w-full bg-white">
+    <div className="relative w-full bg-neutral-50">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>
@@ -62,7 +62,7 @@ export default function Header() {
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+                  className="inline-flex items-center text-base font-semibold text-gray-800 hover:text-gray-900"
                 >
                   {item.name}
                   <span>
@@ -75,7 +75,7 @@ export default function Header() {
         </div>
         <div className="flex grow justify-end">
           <input
-            className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-base placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             type="text"
             placeholder="Search"
           ></input>
@@ -132,7 +132,7 @@ export default function Header() {
                       <a
                         key={item.name}
                         href={item.href}
-                        className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
+                        className="-m-3 flex items-center rounded-md p-3 text-base font-semibold hover:bg-gray-50"
                       >
                         <span className="ml-3 text-base font-medium text-gray-900">
                           {item.name}
@@ -151,10 +151,10 @@ export default function Header() {
                     alt="Dan_Abromov"
                   />
                   <span className="flex flex-col">
-                    <span className="text-sm font-medium text-gray-900">
+                    <span className="text-base font-medium text-gray-900">
                       Dan Abromov
                     </span>
-                    <span className="text-sm font-medium text-gray-500">
+                    <span className="text-base font-medium text-gray-500">
                       @dan_abromov
                     </span>
                   </span>

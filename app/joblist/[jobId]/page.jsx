@@ -35,11 +35,7 @@ const TopBarComponent = ({ params }) => {
     <div>
         <div>
       <Sidebar jobId = {params.jobId}>
-          {/* <button onClick={() => setSelectedOption("1")}>" "AboutJob </button>
-          <button onClick={() => setSelectedOption("2")}>" "ApplicantApplied </button>
-          <button onClick={() => setSelectedOption("3")}>" "OA </button>
-          <button onClick={() => setSelectedOption("5")}>" "OA scores </button>
-          <button onClick={() => setSelectedOption("4")}>" "Interview </button> */}
+      
         <div className="content">{renderSelectedComponent()}</div>
       </Sidebar>
         </div>
