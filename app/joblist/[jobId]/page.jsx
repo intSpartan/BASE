@@ -3,7 +3,7 @@
 import AboutJob from "./components/AboutJob";
 import ApplicantApplied from "./components/ApplicantApplied";
 import OA_company from "./components/OA_company";
-import Interview from "./components/Interview"
+import Interview from "./components/Interview";
 import OA_Scores from "./components/OA_Scores";
 import Sidebar from "./components/Sidebar";
 
@@ -33,16 +33,11 @@ const TopBarComponent = ({ params }) => {
 
   return (
     <div>
-        <div>
-      <Sidebar jobId = {params.jobId}>
-          {/* <button onClick={() => setSelectedOption("1")}>" "AboutJob </button>
-          <button onClick={() => setSelectedOption("2")}>" "ApplicantApplied </button>
-          <button onClick={() => setSelectedOption("3")}>" "OA </button>
-          <button onClick={() => setSelectedOption("5")}>" "OA scores </button>
-          <button onClick={() => setSelectedOption("4")}>" "Interview </button> */}
-        <div className="content">{renderSelectedComponent()}</div>
-      </Sidebar>
-        </div>
+      <div>
+        <Sidebar jobId={params.jobId}>
+          <div className="content">{renderSelectedComponent()}</div>
+        </Sidebar>
+      </div>
     </div>
   );
 };
