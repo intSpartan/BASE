@@ -5,7 +5,6 @@ import Link from "next/link";
 import supabase from "../../authCompany";
 import { useRouter } from "next/navigation";
 import ApplicantDetails from "@/app/components/ApplicantDetails";
-import { HiPencilAlt } from "react-icons/hi";
 import { useGlobalContext } from '../../GlobalContext'
 import Header from "../components/header"
 import Footer from "../components/footer";
