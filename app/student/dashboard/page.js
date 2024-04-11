@@ -8,6 +8,7 @@ import ApplicantDetails from "@/app/components/ApplicantDetails";
 import { HiPencilAlt } from "react-icons/hi";
 import { useGlobalContext } from '../../GlobalContext'
 import Header from "../components/header"
+import Footer from "../components/footer";
 import OA from "./OA/page";
 import Sidebar from "../components/sidebar";
 
@@ -219,6 +220,7 @@ const Dashboard = () => {
           <div>
             <button onClick={signOut}>Sign Out</button>
           </div>
+          <Footer />
 
         </>
       )}

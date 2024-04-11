@@ -5,6 +5,7 @@ import ApplicantApplied from "./components/ApplicantApplied";
 import OA_company from "./components/OA_company";
 import Interview from "./components/Interview"
 import OA_Scores from "./components/OA_Scores";
+import Sidebar from "./components/Sidebar";
 
 import { useState } from "react";
 
@@ -21,7 +22,7 @@ const TopBarComponent = ({ params }) => {
         );
       case "3":
         return <OA_company jobId={params.jobId} />;
-      case "4":
+      case "4 ":
         return <Interview jobId={params.jobId} />;
       case "5":
         return <OA_Scores jobId={params.jobId} />;
@@ -32,14 +33,16 @@ const TopBarComponent = ({ params }) => {
 
   return (
     <div>
-      <div className="top-bar">
-        <button onClick={() => setSelectedOption("1")}>" "AboutJob </button>
-        <button onClick={() => setSelectedOption("2")}>" "ApplicantApplied </button>
-        <button onClick={() => setSelectedOption("3")}>" "OA </button>
-        <button onClick={() => setSelectedOption("5")}>" "OA scores </button>
-        <button onClick={() => setSelectedOption("4")}>" "Interview </button>
-      </div>
-      <div className="content">{renderSelectedComponent()}</div>
+        <div>
+      <Sidebar jobId = {params.jobId}>
+          {/* <button onClick={() => setSelectedOption("1")}>" "AboutJob </button>
+          <button onClick={() => setSelectedOption("2")}>" "ApplicantApplied </button>
+          <button onClick={() => setSelectedOption("3")}>" "OA </button>
+          <button onClick={() => setSelectedOption("5")}>" "OA scores </button>
+          <button onClick={() => setSelectedOption("4")}>" "Interview </button> */}
+        <div className="content">{renderSelectedComponent()}</div>
+      </Sidebar>
+        </div>
     </div>
   );
 };

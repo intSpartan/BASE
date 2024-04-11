@@ -7,6 +7,8 @@ const jobsSchema = new Schema(
         companyid: String,
         curr_state: String,
         applicantsApplied: { type: [String], default: [] },
+        applicantsResumeShortlist: { type: [String], default: [] },
+
         applicantsInterview: {
             type: Schema.Types.Mixed
         },

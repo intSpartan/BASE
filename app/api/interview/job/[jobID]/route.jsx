@@ -3,12 +3,8 @@ import connectMongoDB from "../../../../../libs/mongodb_jobs";
 import Job from "@/models/jobs"
 
 
-<<<<<<< HEAD:app/api/interview/[jobID]/route.jsx
 export async function GET(request, { params }) {
-=======
-export async function GET(request, {params}) {
   console.log("hi")
->>>>>>> WebRTC:app/api/interview/job/[jobID]/route.jsx
   const { jobID } = params;
 
   await connectMongoDB();
@@ -50,13 +46,13 @@ export async function PUT(request, { params }) {
 
 export async function DELETE(request, { params }) {
   const { jobID } = params;
-  const { applicantID } = await request.json(); 
+  const { applicantID } = await request.json();
 
   await connectMongoDB();
 
   const update = {
     $unset: {
-      [`applicantsInterview.${applicantID}`]: "" 
+      [`applicantsInterview.${applicantID}`]: ""
     }
   };
 

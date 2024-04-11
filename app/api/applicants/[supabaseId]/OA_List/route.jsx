@@ -10,7 +10,7 @@ export async function PUT(req, { params, body }) {
         // console.log(data.jobId);
         // console.log(params.supabaseId);
         await Applicant.findOneAndUpdate(
-            { _id: params.supabaseId },
+            { loginid: params.supabaseId },
             { $push: { OA_list: data.jobId } },
             { new: true }
         );
