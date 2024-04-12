@@ -137,7 +137,7 @@ const Interview = ({ jobId }) => {
                           <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
                             {interviewLinks[applicant.applicants._id] ? (
                               <>
-                                <button onClick={() => { handleSendInterview(applicant.applicants._id) }} className="m-1 inline-flex items-center rounded-md bg-blue-500 hover:bg-blue-600 px-3 py-2 text-sm font-semibold text-white">
+                                <button onClick={() => window.open(interviewLinks[applicant.applicants._id])} className="m-1 inline-flex items-center rounded-md bg-blue-500 hover:bg-blue-600 px-3 py-2 text-sm font-semibold text-white">
                                   Attend Interview
                                   <ArrowRight className="ml-2 h-4 w-4" />
                                 </button>
@@ -147,7 +147,7 @@ const Interview = ({ jobId }) => {
                                 </button>
                               </>
                             ) : (
-                                <button onClick={()=>{ handleSendInterview(applicant.applicants._id)}} className="m-1 inline-flex items-center rounded-md bg-green-500 hover:bg-green-600 px-3 py-2 text-sm font-semibold text-white">
+                                <button onClick={() => {handleSendInterview(applicant.applicants._id)}} className="m-1 inline-flex items-center rounded-md bg-green-500 hover:bg-green-600 px-3 py-2 text-sm font-semibold text-white">
                                   Send Interview
                                   <ArrowRight className="ml-2 h-4 w-4" />
                                 </button>
