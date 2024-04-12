@@ -46,6 +46,8 @@ const updateOAList = async (applicant_id, jobId) => {
 
 const OA_company = (props) => {
 
+  console.log(props);
+
   const params = useParams();
   const { jobId } = params;
   const [applicants, setApplicants] = useState([]);

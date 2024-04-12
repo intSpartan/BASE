@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useGlobalContext } from "@/app/GlobalContext";
+
 import Header from "../components/header";
 import TableOne from "../components/jobdetails";
+import { useGlobalContext } from "@/app/GlobalContext";
+import React, { useState, useEffect } from "react";
 
 const Profile = () => {
   const state = useGlobalContext();
@@ -63,7 +64,6 @@ const Profile = () => {
     }
   }, [applicantData]);
 
-  console.log(jobDetails);
   return (
     <div className="min-h-screen bg-white">
       <Header />

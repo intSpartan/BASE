@@ -1,13 +1,13 @@
-import Header from "@/app/student/components/header";
+import { Card, Typography } from "@material-tailwind/react";
 
-export default function AboutJob() {
+export default function AboutJob( { ...props } ) {
   const jobDetails = {
     title: "Software Engineer",
     company: "Tech Corp",
     location: "San Francisco, CA",
     salary: "$100,000 - $120,000 per year",
     description:
-      "Tech Corp is looking for a Software Engineer to join our dynamic team...",
+      "Tech Corp is looking for a Software Engineer to join our dynamic team. You will be responsible for developing and maintaining software solutions, collaborating with other teams, and writing clean, efficient code.",
     responsibilities: [
       "Develop and maintain software solutions",
       "Collaborate with other teams",
@@ -20,36 +20,73 @@ export default function AboutJob() {
     ],
   };
 
-  return (
-    <>
-      <div className="p-8 max-w-3xl mx-auto bg-white shadow-lg rounded-lg">
-        <h1 className="text-2xl font-bold mb-4">{jobDetails.title}</h1>
-        <p className="text-gray-600">
-          {jobDetails.company} - {jobDetails.location}
-        </p>
-        <p className="text-gray-700 mb-4">{jobDetails.salary}</p>
+  console.log(props);
 
-        <h2 className="text-xl font-bold mb-2">Job Description</h2>
-        <p className="mb-4">{jobDetails.description}</p>
+  if (!props.job) {
+    return <>Loading...</>;
+  } else {
+    return (
+      <div className="p-8 max-w-3xl mx-auto space-y-4">
+        {/* Title Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white">
+          <Typography variant="h4" className="font-bold">
+            {jobDetails.title}
+          </Typography>
+        </Card>
 
-        <h2 className="text-xl font-bold mb-2">Responsibilities</h2>
-        <ul className="list-disc pl-5 mb-4">
-          {jobDetails.responsibilities.map((item, index) => (
-            <li key={index} className="mb-2">
-              {item}
-            </li>
-          ))}
-        </ul>
+        {/* Company and Location Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white flex flex-row justify-between">
+          <Typography color="gray" className="font-semibold">
+            Company: {jobDetails.company}
+          </Typography>
+          <Typography color="gray" className="font-semibold">
+            Location: {jobDetails.location}
+          </Typography>
+        </Card>
 
-        <h2 className="text-xl font-bold mb-2">Requirements</h2>
-        <ul className="list-disc pl-5">
-          {jobDetails.requirements.map((item, index) => (
-            <li key={index} className="mb-2">
-              {item}
-            </li>
-          ))}
-        </ul>
+        {/* Salary Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white">
+          <Typography color="blue-gray" className="font-semibold">
+            Salary: {jobDetails.salary}
+          </Typography>
+        </Card>
+
+        {/* Job Description Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white">
+          <Typography variant="h5" className="font-bold mb-2">
+            Job Description
+          </Typography>
+          <Typography color="blue-gray">{jobDetails.description}</Typography>
+        </Card>
+
+        {/* Responsibilities and Expectations Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white">
+          <Typography variant="h5" className="font-bold mb-2">
+            Responsibilities and Expectations
+          </Typography>
+          <ul className="list-disc pl-5">
+            {jobDetails.responsibilities.map((item, index) => (
+              <li key={index} className="mb-2">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Card>
+
+        {/* Requirements Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white">
+          <Typography variant="h5" className="font-bold mb-2">
+            Requirements
+          </Typography>
+          <ul className="list-disc pl-5">
+            {jobDetails.requirements.map((item, index) => (
+              <li key={index} className="mb-2">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Card>
       </div>
-    </>
-  );
+    );
+  }
 }
