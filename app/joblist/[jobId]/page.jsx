@@ -33,12 +33,12 @@ const TopBarComponent = ({ params }) => {
 
   return (
     <div>
-        <div>
-      <Sidebar jobId = {params.jobId}>
-      
-        <div className="content">{renderSelectedComponent()}</div>
-      </Sidebar>
-        </div>
+      <div>
+        <Sidebar jobId={params.jobId}>
+
+          <div className="content">{renderSelectedComponent()}</div>
+        </Sidebar>
+      </div>
     </div>
   );
 };

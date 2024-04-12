@@ -25,7 +25,7 @@ const Interview = ({ jobId }) => {
         const interviewData = await interviewRes.json();
         setInterviewLinks(interviewData || {});
 
-        const applicantsData = await Promise.all(job.job.applicantsApplied.map(async id => {
+        const applicantsData = await Promise.all(job.job.applicantsInterviewShortlist.map(async id => {
           const response = await fetch(`http://localhost:3000/api/applicants/${id}`, { cache: "no-store" });
           if (!response.ok) {
             console.error(`Failed to fetch applicant with ID ${id}`);
@@ -108,60 +108,60 @@ const Interview = ({ jobId }) => {
       {isLoading ? (
         <p className="text-center text-lg">Loading...</p>
       ) : (
-          <div className="flex flex-col p-8">
-            <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div className="overflow-hidden border border-gray-200 md:rounded-lg shadow">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th
-                          className="px-4 py-3.5 text-left text-sm font-semibold text-gray-700 cursor-pointer"
-                          onClick={sortApplicants}
-                        >
-                          Name
-                        </th>
-                        <th className="px-4 py-3.5 text-left text-sm font-semibold text-gray-700">ID</th>
-                        <th className="px-4 py-3.5 text-left text-sm font-semibold text-gray-700">College</th>
-                        <th className="px-4 py-3.5 text-left text-sm font-semibold text-gray-700">CGPA</th>
-                        <th className="px-4 py-3.5 text-left text-sm font-semibold text-gray-700">Actions</th>
+        <div className="flex flex-col p-8">
+          <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+              <div className="overflow-hidden border border-gray-200 md:rounded-lg shadow">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th
+                        className="px-4 py-3.5 text-left text-sm font-semibold text-gray-700 cursor-pointer"
+                        onClick={sortApplicants}
+                      >
+                        Name
+                      </th>
+                      <th className="px-4 py-3.5 text-left text-sm font-semibold text-gray-700">ID</th>
+                      <th className="px-4 py-3.5 text-left text-sm font-semibold text-gray-700">College</th>
+                      <th className="px-4 py-3.5 text-left text-sm font-semibold text-gray-700">CGPA</th>
+                      <th className="px-4 py-3.5 text-left text-sm font-semibold text-gray-700">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {applicants.map(applicant => (
+                      <tr key={applicant.applicants._id}>
+                        <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">{applicant.applicants.name}</td>
+                        <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">{applicant.applicants._id}</td>
+                        <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">{applicant.applicants.college}</td>
+                        <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">{applicant.applicants.cgpa}</td>
+                        <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                          {interviewLinks[applicant.applicants._id] ? (
+                            <>
+                              <button onClick={() => window.open(interviewLinks[applicant.applicants._id])} className="m-1 inline-flex items-center rounded-md bg-blue-500 hover:bg-blue-600 px-3 py-2 text-sm font-semibold text-white">
+                                Attend Interview
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                              </button>
+                              <button onClick={() => { handleUnsendInterview(applicant.applicants._id) }} className="m-1 inline-flex items-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-white">
+                                Unsend Interview
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                              </button>
+                            </>
+                          ) : (
+                            <button onClick={() => { handleSendInterview(applicant.applicants._id) }} className="m-1 inline-flex items-center rounded-md bg-green-500 hover:bg-green-600 px-3 py-2 text-sm font-semibold text-white">
+                              Send Interview
+                              <ArrowRight className="ml-2 h-4 w-4" />
+                            </button>
+                          )}
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                      {applicants.map(applicant => (
-                        <tr key={applicant.applicants._id}>
-                          <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">{applicant.applicants.name}</td>
-                          <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">{applicant.applicants._id}</td>
-                          <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">{applicant.applicants.college}</td>
-                          <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">{applicant.applicants.cgpa}</td>
-                          <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
-                            {interviewLinks[applicant.applicants._id] ? (
-                              <>
-                                <button onClick={() => window.open(interviewLinks[applicant.applicants._id])} className="m-1 inline-flex items-center rounded-md bg-blue-500 hover:bg-blue-600 px-3 py-2 text-sm font-semibold text-white">
-                                  Attend Interview
-                                  <ArrowRight className="ml-2 h-4 w-4" />
-                                </button>
-                                <button onClick={()=>{handleUnsendInterview(applicant.applicants._id)}} className="m-1 inline-flex items-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-white">
-                                  Unsend Interview
-                                  <ArrowRight className="ml-2 h-4 w-4" />
-                                </button>
-                              </>
-                            ) : (
-                                <button onClick={() => {handleSendInterview(applicant.applicants._id)}} className="m-1 inline-flex items-center rounded-md bg-green-500 hover:bg-green-600 px-3 py-2 text-sm font-semibold text-white">
-                                  Send Interview
-                                  <ArrowRight className="ml-2 h-4 w-4" />
-                                </button>
-                              )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 };
