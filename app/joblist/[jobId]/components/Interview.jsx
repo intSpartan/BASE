@@ -101,6 +101,8 @@ const Interview = ({ jobId }) => {
     setApplicants(sortedApplicants);
   };
 
+  console.log(applicants)
+
   return (
     <div>
       {isLoading ? (
@@ -135,17 +137,17 @@ const Interview = ({ jobId }) => {
                           <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
                             {interviewLinks[applicant.applicants._id] ? (
                               <>
-                                <button className="m-1 inline-flex items-center rounded-md bg-blue-500 hover:bg-blue-600 px-3 py-2 text-sm font-semibold text-white">
+                                <button onClick={() => { handleSendInterview(applicant.applicants._id) }} className="m-1 inline-flex items-center rounded-md bg-blue-500 hover:bg-blue-600 px-3 py-2 text-sm font-semibold text-white">
                                   Attend Interview
                                   <ArrowRight className="ml-2 h-4 w-4" />
                                 </button>
-                                <button className="m-1 inline-flex items-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-white">
+                                <button onClick={()=>{handleUnsendInterview(applicant.applicants._id)}} className="m-1 inline-flex items-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-white">
                                   Unsend Interview
                                   <ArrowRight className="ml-2 h-4 w-4" />
                                 </button>
                               </>
                             ) : (
-                                <button className="m-1 inline-flex items-center rounded-md bg-green-500 hover:bg-green-600 px-3 py-2 text-sm font-semibold text-white">
+                                <button onClick={()=>{ handleSendInterview(applicant.applicants._id)}} className="m-1 inline-flex items-center rounded-md bg-green-500 hover:bg-green-600 px-3 py-2 text-sm font-semibold text-white">
                                   Send Interview
                                   <ArrowRight className="ml-2 h-4 w-4" />
                                 </button>
