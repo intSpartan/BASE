@@ -10,35 +10,11 @@ import { cache, useEffect, useState } from "react";
 
 const TopBarComponent = ({ params }) => {
   const [selectedOption, setSelectedOption] = useState("1");
-  const [jobDetails, setJobDetails] = useState({});
-
-  useEffect(() => {
-    const getJobDetail = async () => {
-      try {
-        const res = await fetch(
-          `http://localhost:3000/api/jobs/${params.jobId}`,
-          {
-            method: "GET",
-            cache: "no-store",
-          }
-        );
-        if (!res.ok) {
-        } else {
-          const data = await res.json();
-          setJobDetails(data);
-          return data;
-        }
-      } catch (err) {
-        console.log(`Error is ${err}`);
-      }
-    };
-    getJobDetail();
-  }, [params.jobId]);
 
   const renderSelectedComponent = () => {
     switch (selectedOption) {
       case "1":
-        return <AboutJob job={jobDetails} key={"hello"} />;
+        return <AboutJob />;
       case "2":
         return <ApplicantApplied jobId={params.jobId} />;
       case "3":
