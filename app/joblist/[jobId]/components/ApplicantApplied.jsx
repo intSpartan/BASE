@@ -1,3 +1,6 @@
+"use client"
+
+import React, { useEffect, useState } from "react";
 import supabase from "@/app/authCompany";
 import { ArrowRight } from "lucide-react";
 import { useParams } from "next/navigation";
@@ -140,7 +143,7 @@ const ApplicantApplied = (props) => {
           <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
             <div>
               <h2 className="text-lg font-semibold">Candidates who applied</h2>
-              <p className="mt-1 text-sm text-gray-700">
+              <p className="mt-1 text-base text-gray-700">
                 This is a list of all the candidates who applied for this job
               </p>
             </div>
@@ -148,7 +151,7 @@ const ApplicantApplied = (props) => {
               <button
                 onClick={downloadAllResumes}
                 type="button"
-                className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                className="rounded-md bg-black px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
               >
                 Download All Resumes
               </button>
@@ -163,27 +166,27 @@ const ApplicantApplied = (props) => {
                       <tr>
                         <th
                           scope="col"
-                          className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                          className="px-4 py-3.5 text-left text-base font-normal text-gray-700"
                         >
                           <span>Name</span>
                         </th>
                         <th
                           scope="col"
-                          className="px-12 py-3.5 text-left text-sm font-normal text-gray-700"
+                          className="px-12 py-3.5 text-left text-base font-normal text-gray-700"
                         >
                           College
                         </th>
 
                         <th
                           scope="col"
-                          className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                          className="px-4 py-3.5 text-left text-base font-normal text-gray-700"
                         >
                           CGPA
                         </th>
 
                         <th
                           scope="col"
-                          className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                          className="px-4 py-3.5 text-left text-base font-normal text-gray-700"
                         >
                           Resume
                         </th>

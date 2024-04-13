@@ -167,118 +167,121 @@ const OA_company = (props) => {
     link.href = URL.createObjectURL(blob);
     link.download = `${loginid}.pdf`;
     link.click();
-  };
+  }
+  
   return (
     <div>
-      <OA_creater jobId={props.jobId} />
-      <section className="mx-auto w-full max-w-7xl px-4 py-4">
-        <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
-          <div>
-            <h2 className="text-lg font-semibold">Candidates shortlisted for Online Assessment (OA)</h2>
-            <p className="mt-1 text-sm text-gray-700">
-              This is a list of all the candidates who are shortlisted for Online Assessment
-            </p>
+      <section className="mx-auto w-full max-w-7xl px-4 py-4 flex-col justify-between space-y-32">
+        <OA_creater jobId={props.jobId} />
+        <div>
+          <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+            <div>
+              <h2 className="text-2xl font-semibold">Candidates shortlisted for Online Assessment (OA)</h2>
+              <p className="mt-1 text-base text-gray-700">
+                This is a list of all the candidates who are shortlisted for Online Assessment
+              </p>
+            </div>
+            <div>
+              <button onClick={downloadAllResumes}
+                type="button"
+                className="rounded-md bg-black px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                Download All Resumes
+              </button>
+            </div>
           </div>
-          <div>
-            <button onClick={downloadAllResumes}
-              type="button"
-              className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              Download All Resumes
-            </button>
-          </div>
-        </div>
-        <div className="mt-6 flex flex-col">
-          <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-              <div className="overflow-hidden border border-gray-200 md:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
-                      >
-                        <span>Name</span>
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-12 py-3.5 text-left text-sm font-normal text-gray-700"
-                      >
-                        College
-                      </th>
+          <div className="mt-6 flex flex-col">
+            <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div className="overflow-hidden border border-gray-200 md:rounded-lg">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th
+                          scope="col"
+                          className="px-4 py-3.5 text-left text-base font-normal text-gray-700"
+                        >
+                          <span>Name</span>
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-12 py-3.5 text-left text-base font-normal text-gray-700"
+                        >
+                          College
+                        </th>
 
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
-                      >
-                        CGPA
-                      </th>
+                        <th
+                          scope="col"
+                          className="px-4 py-3.5 text-left text-base font-normal text-gray-700"
+                        >
+                          CGPA
+                        </th>
 
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
-                      >
-                        Resume
-                      </th>
-                      <th scope="col" className="relative px-4 py-3.5">
-                        <span className="sr-only">Edit</span>
-                      </th>
-                    </tr>
-                  </thead>
+                        <th
+                          scope="col"
+                          className="px-4 py-3.5 text-left text-base font-normal text-gray-700"
+                        >
+                          Resume
+                        </th>
+                        <th scope="col" className="relative px-4 py-3.5">
+                          <span className="sr-only">Edit</span>
+                        </th>
+                      </tr>
+                    </thead>
 
-                  <tbody className="divide-y divide-gray-200 bg-white">
-                    {applicants.map((applicant) => (
-                      <tr key={applicant.applicants._id}>
-                        <td className="whitespace-nowrap px-4 py-4">
-                          <div className="flex items-center">
-                            <div className="h-10 w-10 flex-shrink-0">
-                              {/* <img
+                    <tbody className="divide-y divide-gray-200 bg-white">
+                      {applicants.map((applicant) => (
+                        <tr key={applicant.applicants._id}>
+                          <td className="whitespace-nowrap px-4 py-4">
+                            <div className="flex items-center">
+                              <div className="h-10 w-10 flex-shrink-0">
+                                {/* <img
                                                                         className="h-10 w-10 rounded-full object-cover"
                                                                         src={person.image}
                                                                         alt=""
                                                                     /> */}
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-base font-medium text-gray-900">{applicant.applicants.name}</div>
+                                {/* <div className="text-base text-gray-700">{job.job.title}</div> */}
+                              </div>
                             </div>
-                            <div className="ml-4">
-                              <div className="text-sm font-medium text-gray-900">{applicant.applicants.name}</div>
-                              {/* <div className="text-sm text-gray-700">{job.job.title}</div> */}
+                          </td>
+                          <td className="whitespace-nowrap px-12 py-4">
+                            {/* <div className="text-base text-gray-900 ">{job.job.title}</div> */}
+                            <div className="text-base text-gray-700">{applicant.applicants.college}</div>
+                          </td>
+                          <td className="whitespace-nowrap px-4 py-4 text-base text-gray-700">
+                            {applicant.applicants.cgpa}
+                          </td>
+                          <td className="whitespace-nowrap px-4 py-4">
+                            <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+                              <button
+                                onClick={async () => {
+                                  downloadUsingLoginid(applicant.applicants.loginid);
+                                }}
+                              >
+                                Download Resume
+                              </button>
+                            </span>
+                          </td>
+                          <td className="whitespace-nowrap px-4 py-4 text-right text-base font-medium">
+                            <div className="text-gray-700">
+                              <button
+                                type="button" onClick={() => handleOA(applicant.applicants._id)}
+                                className="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-base font-semibold text-white hover:bg-black/100"
+                              >
+                                Send OA
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                              </button>
                             </div>
-                          </div>
-                        </td>
-                        <td className="whitespace-nowrap px-12 py-4">
-                          {/* <div className="text-sm text-gray-900 ">{job.job.title}</div> */}
-                          <div className="text-sm text-gray-700">{applicant.applicants.college}</div>
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
-                          {applicant.applicants.cgpa}
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-4">
-                          <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
-                            <button
-                              onClick={async () => {
-                                downloadUsingLoginid(applicant.applicants.loginid);
-                              }}
-                            >
-                              Download Resume
-                            </button>
-                          </span>
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-4 text-right text-sm font-medium">
-                          <div className="text-gray-700">
-                            <button
-                              type="button" onClick={() => handleOA(applicant.applicants._id)}
-                              className="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white hover:bg-black/100"
-                            >
-                              Send OA
-                              <ArrowRight className="ml-2 h-4 w-4" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
 
-                </table>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
