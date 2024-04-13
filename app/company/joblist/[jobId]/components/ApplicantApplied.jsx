@@ -2,11 +2,35 @@
 
 import React, { useEffect, useState } from "react";
 import supabase from "@/app/authCompany";
-import { ArrowRight } from "lucide-react";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { ArrowRight } from 'lucide-react'
 
+
+// const updateOAList = async (applicant_id, jobId) => {
+//   // console.log(applicant_id);
+//   const res_jobs = await fetch(
+//     `http://localhost:3000/api/jobs/${jobId}/OA_selection`,
+//     {
+//       method: "PUT",
+//       headers: {
+//         "Content-type": "application/json",
+//       },
+//       body: JSON.stringify({ candidate_id: applicant_id }),
+//     }
+//   );
+//   const res_applicant = await fetch(
+//     `http://localhost:3000/api/applicants/${applicant_id}/OA_List`,
+//     {
+//       method: "PUT",
+//       headers: {
+//         "Content-type": "application/json",
+//       },
+//       body: JSON.stringify({ jobId: jobId }),
+//     }
+//   );
+// };
 const updateShortlistList = async (applicant_id, jobId) => {
+  // console.log(applicant_id);
   const res_jobs = await fetch(
     `http://localhost:3000/api/jobs/${jobId}/ResumeShortlist`,
     {
@@ -19,13 +43,12 @@ const updateShortlistList = async (applicant_id, jobId) => {
   );
 };
 
-const ApplicantApplied = (props) => {
+const ApplicantApplied = ({ ...props }) => {
+
   const params = useParams();
   const { jobId } = params;
   const [applicants, setApplicants] = useState([]);
   const [resumes, setResumes] = useState([]);
-
-  console.log(props);
 
   useEffect(() => {
     const getApplicant = async () => {
@@ -91,7 +114,7 @@ const ApplicantApplied = (props) => {
 
   const handleApplication = async (applicant_id) => {
     const res = await updateShortlistList(applicant_id, jobId);
-    alert("Candidate Shortlisted");
+    alert("Candidate Shortlisted")
   };
 
   const downloadAllResumes = async () => {
@@ -148,8 +171,7 @@ const ApplicantApplied = (props) => {
               </p>
             </div>
             <div>
-              <button
-                onClick={downloadAllResumes}
+              <button onClick={downloadAllResumes}
                 type="button"
                 className="rounded-md bg-black px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
               >
@@ -197,65 +219,52 @@ const ApplicantApplied = (props) => {
                     </thead>
                     <tbody className="divide-y divide-gray-200 bg-white">
                       {applicants.map((applicant) => (
-                        <div key={applicant.applicants._id}>
-                          <tr key={applicant.applicants._id}>
-                            <td className="whitespace-nowrap px-4 py-4">
-                              <div className="flex items-center">
-                                <div className="h-10 w-10 flex-shrink-0">
-                                  {/* <img
+                        <tr key={applicant.applicants._id}>
+                          <td className="whitespace-nowrap px-4 py-4">
+                            <div className="flex items-center">
+                              <div className="h-10 w-10 flex-shrink-0">
+                                {/* <img
                                                                         className="h-10 w-10 rounded-full object-cover"
                                                                         src={person.image}
                                                                         alt=""
                                                                     /> */}
-                                </div>
-                                <div className="ml-4">
-                                  <div className="text-sm font-medium text-gray-900">
-                                    {applicant.applicants.name}
-                                  </div>
-                                  {/* <div className="text-sm text-gray-700">{job.job.title}</div> */}
-                                </div>
                               </div>
-                            </td>
-                            <td className="whitespace-nowrap px-12 py-4">
-                              {/* <div className="text-sm text-gray-900 ">{job.job.title}</div> */}
-                              <div className="text-sm text-gray-700">
-                                {applicant.applicants.college}
+                              <div className="ml-4">
+                                <div className="text-base font-medium text-gray-900">{applicant.applicants.name}</div>
+                                {/* <div className="text-base text-gray-700">{job.job.title}</div> */}
                               </div>
-                            </td>
-                            <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
-                              {applicant.applicants.cgpa}
-                            </td>
-                            <td className="whitespace-nowrap px-4 py-4">
-                              <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
-                                <button
-                                  onClick={async () => {
-                                    downloadUsingLoginid(
-                                      applicant.applicants.loginid
-                                    );
-                                  }}
-                                >
-                                  Download Resume
-                                </button>
-                              </span>
-                            </td>
-                            <td className="whitespace-nowrap px-4 py-4 text-right text-sm font-medium">
-                              <div className="text-gray-700">
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    handleApplication(
-                                      applicant.applicants.loginid
-                                    )
-                                  }
-                                  className="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white hover:bg-black/100"
-                                >
-                                  Shortlist
-                                  <ArrowRight className="ml-2 h-4 w-4" />
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </div>
+                            </div>
+                          </td>
+                          <td className="whitespace-nowrap px-12 py-4">
+                            {/* <div className="text-base text-gray-900 ">{job.job.title}</div> */}
+                            <div className="text-base text-gray-700">{applicant.applicants.college}</div>
+                          </td>
+                          <td className="whitespace-nowrap px-4 py-4 text-base text-gray-700">
+                            {applicant.applicants.cgpa}
+                          </td>
+                          <td className="whitespace-nowrap px-4 py-4">
+                            <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+                              <button
+                                onClick={async () => {
+                                  downloadUsingLoginid(applicant.applicants.loginid);
+                                }}
+                              >
+                                Download Resume
+                              </button>
+                            </span>
+                          </td>
+                          <td className="whitespace-nowrap px-4 py-4 text-right text-base font-medium">
+                            <div className="text-gray-700">
+                              <button
+                                type="button" onClick={() => handleApplication(applicant.applicants.loginid)}
+                                className="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-base font-semibold text-white hover:bg-black/100"
+                              >
+                                Shortlist
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
                       ))}
                     </tbody>
                   </table>
