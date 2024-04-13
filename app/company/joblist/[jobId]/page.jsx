@@ -35,7 +35,6 @@ const TopBarComponent = ({ params }) => {
     <div>
       <div>
         <Sidebar jobId={params.jobId}>
-
           <div className="content">{renderSelectedComponent()}</div>
         </Sidebar>
       </div>
