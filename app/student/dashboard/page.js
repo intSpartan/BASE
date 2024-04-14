@@ -8,6 +8,7 @@ import ApplicantDetails from "@/app/components/ApplicantDetails";
 import { useGlobalContext } from "../../GlobalContext";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Jobcard from "../components/jobcard";
 import OA from "./OA/page";
 import Interview from "./Interview/page";
 import Sidebar from "../components/sidebar";
@@ -168,19 +169,14 @@ const Dashboard = () => {
       {!status && (
         <>
           <Header />
-          <Link href="/student/dashboard/resume">Upload Resume</Link>
-          <Link href="/student/dashboard/OA">
-            <button style={{ backgroundColor: "black", color: "white" }}>
-              OA
-            </button>
-          </Link>
-          <Link href="/student/dashboard/Interview">
-            <button style={{ backgroundColor: "red", color: "white" }}>
-              Interview
-            </button>
-          </Link>
-
+          <div className="flex">
+          <div class="flex-col float-left w-1/4 m-16">
           <Sidebar />
+          </div>
+          <div class="flex-col float-left m-16 w-1/2 justify-start">
+          <Jobcard/>
+          </div>
+          </div>
           <div>
             {jobs.map((t) => (
               <div key={t._id}>
@@ -237,9 +233,9 @@ const Dashboard = () => {
               </div>
             ))}
           </div>
-          <div>
+          {/* <div>
             <button onClick={signOut}>Sign Out</button>
-          </div>
+          </div> */}
           <Footer />
         </>
       )}

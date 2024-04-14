@@ -1,25 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
-    <div>
-          <div className="w-[302px] h-[190px] px-4 py-[15px] bg-white rounded-lg flex-col justify-start items-start gap-2.5 inline-flex">
-              <div className="flex-col justify-start items-start gap-1 flex">
-                  <div className="w-[270px] p-2.5 bg-white rounded-lg justify-start items-center gap-2.5 inline-flex">
-                      <div className="w-[41px] text-zinc-800 text-sm font-medium font-['Inter']">Home</div>
-                  </div>
-                  <div className="w-[270px] p-2.5 bg-white rounded-lg justify-start items-center gap-2.5 inline-flex">
-                      <div className="w-[41px] text-zinc-800 text-sm font-medium font-['Inter']">Blogs</div>
-                  </div>
-                  <div className="w-[270px] p-2.5 bg-gray-200 rounded-lg justify-start items-center gap-2 inline-flex">
-                      <div className="text-zinc-800 text-sm font-medium font-['Inter']">Services</div>
-                  </div>
-                  <div className="w-[270px] p-2.5 bg-white rounded-lg justify-start items-center gap-2.5 inline-flex">
-                      <div className="text-zinc-800 text-sm font-medium font-['Inter']">Support</div>
-                  </div>
-              </div>
-          </div>
-    </div>
+         <>
+        <h1 class="text-3xl font-bold py-6">Dashboard</h1>
+        <div class="bg-[#FFFFFF] border-2 rounded-lg w-3/4 px-[15px] py-[16px]">
+          <ul class="text-left font-medium px-2">
+            <li class="py-1 hover:bg-[#EBEBEB] hover:border-l-4 rounded-lg px-2 hover:border-black">
+              <a href="#">Jobs Applied</a>
+            </li>
+            <li class="py-1 hover:bg-[#EBEBEB] hover:border-l-4 rounded-lg px-2 hover:border-black">
+            <a href="#">Interviews</a>
+            </li>
+            <li class="py-1 hover:bg-[#EBEBEB] hover:border-l-4 rounded-lg px-2 hover:border-black">
+            <a href="#">OA</a>
+            </li>
+            <li class="py-1 hover:bg-[#EBEBEB] hover:border-l-4 rounded-lg px-2 hover:border-black">
+            <a href="#">Upload Resume</a>
+            </li>
+          </ul>
+        </div>
+        </>
+    
+    
   )
 }
 
