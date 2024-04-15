@@ -3,9 +3,9 @@ import connectMongoDB from "../../../libs/mongodb_jobs";
 import Job from "@/models/jobs";
 
 export async function POST(request) {
-  const { title, description, companyid, curr_state } = await request.json();
+  const { title, role, stipendSalary, locations, jobDescription, skillsRequired, eduQualifications, experienceRequired, startingDate, endingDate, graduationYear, companyid } = await request.json();
   await connectMongoDB();
-  await Job.create({ title, description, companyid, curr_state });
+  await Job.create({ title, role, stipendSalary, locations, jobDescription, skillsRequired, eduQualifications, experienceRequired, startingDate, endingDate, graduationYear, companyid });
   return NextResponse.json({ message: "Job Added" }, { status: 201 });
 }
 

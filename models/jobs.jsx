@@ -3,7 +3,16 @@ import mongoose, { Schema } from "mongoose";
 const jobsSchema = new Schema(
     {
         title: String,
-        description: String,
+        role: String,
+        stipendSalary: String,
+        locations: String,
+        jobDescription: String,
+        skillsRequired: String,
+        eduQualifications: String,
+        experienceRequired: String,
+        startingDate: String,
+        endingDate: String,
+        graduationYear: String,
         companyid: String,
         curr_state: String,
         applicantsApplied: { type: [String], default: [] },
