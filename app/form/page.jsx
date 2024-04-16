@@ -104,8 +104,8 @@ const FormPage = () => {
 
   if (!status) {
     return (
-      <div>
-        <div className='max-w-7xl mx-auto'>
+      <div className="bg-gray-300">
+        <div className='max-w-7xl mx-auto '>
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">

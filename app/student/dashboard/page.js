@@ -169,7 +169,7 @@ const Dashboard = () => {
       {!status && (
         <>
           <Header />
-          <div className="flex">
+          <div className="flex bg-gray-300">
           <div className="flex-col float-left m-16">
           <Sidebar/>
           </div>

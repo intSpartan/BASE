@@ -91,7 +91,7 @@ const OA = () => {
 
   return (
     <>
-      {(jobs) && (<div>
+      {(jobs) && (<div className="bg-gray-300">
         <>
           <Header />
           <section className="mx-auto w-full max-w-7xl px-4 py-4">

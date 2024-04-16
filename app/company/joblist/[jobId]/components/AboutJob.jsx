@@ -72,66 +72,68 @@ export default function AboutJob() {
   };
 
   return (
-    <div className="p-8 max-w-3xl mx-auto space-y-4">
-      {/* Title Card */}
-      <Card className="shadow-lg rounded-lg p-4 bg-white">
-        <Typography variant="h4" className="font-bold">
-          {jobDetail && jobDetail.job.title}
-        </Typography>
-      </Card>
+    <div className="bg-gray-300">
+      <div className="p-8 max-w-3xl mx-auto space-y-4 ">
+        {/* Title Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white">
+          <Typography variant="h4" className="font-bold">
+            {jobDetail && jobDetail.job.title}
+          </Typography>
+        </Card>
 
-      {/* Company and Location Card */}
-      <Card className="shadow-lg rounded-lg p-4 bg-white flex flex-row justify-between">
-        <Typography color="gray" className="font-semibold">
-          Company: {jobDetail && jobDetail.job.title}
-        </Typography>
-        <Typography color="gray" className="font-semibold">
-          Location: {jobDetails.location}
-        </Typography>
-      </Card>
+        {/* Company and Location Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white flex flex-row justify-between">
+          <Typography color="gray" className="font-semibold">
+            Company: {jobDetail && jobDetail.job.title}
+          </Typography>
+          <Typography color="gray" className="font-semibold">
+            Location: {jobDetails.location}
+          </Typography>
+        </Card>
 
-      {/* Salary Card */}
-      <Card className="shadow-lg rounded-lg p-4 bg-white">
-        <Typography color="blue-gray" className="font-semibold">
-          Salary: {jobDetails.salary}
-        </Typography>
-      </Card>
+        {/* Salary Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white">
+          <Typography color="blue-gray" className="font-semibold">
+            Salary: {jobDetails.salary}
+          </Typography>
+        </Card>
 
-      {/* Job Description Card */}
-      <Card className="shadow-lg rounded-lg p-4 bg-white">
-        <Typography variant="h5" className="font-bold mb-2">
-          Job Description
-        </Typography>
-        <Typography color="blue-gray">{jobDetails.description}</Typography>
-      </Card>
+        {/* Job Description Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white">
+          <Typography variant="h5" className="font-bold mb-2">
+            Job Description
+          </Typography>
+          <Typography color="blue-gray">{jobDetails.description}</Typography>
+        </Card>
 
-      {/* Responsibilities and Expectations Card */}
-      <Card className="shadow-lg rounded-lg p-4 bg-white">
-        <Typography variant="h5" className="font-bold mb-2">
-          Responsibilities and Expectations
-        </Typography>
-        <ul className="list-disc pl-5">
-          {jobDetails.responsibilities.map((item, index) => (
-            <li key={index} className="mb-2">
-              {item}
-            </li>
-          ))}
-        </ul>
-      </Card>
+        {/* Responsibilities and Expectations Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white">
+          <Typography variant="h5" className="font-bold mb-2">
+            Responsibilities and Expectations
+          </Typography>
+          <ul className="list-disc pl-5">
+            {jobDetails.responsibilities.map((item, index) => (
+              <li key={index} className="mb-2">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Card>
 
-      {/* Requirements Card */}
-      <Card className="shadow-lg rounded-lg p-4 bg-white">
-        <Typography variant="h5" className="font-bold mb-2">
-          Requirements
-        </Typography>
-        <ul className="list-disc pl-5">
-          {jobDetails.requirements.map((item, index) => (
-            <li key={index} className="mb-2">
-              {item}
-            </li>
-          ))}
-        </ul>
-      </Card>
+        {/* Requirements Card */}
+        <Card className="shadow-lg rounded-lg p-4 bg-white">
+          <Typography variant="h5" className="font-bold mb-2">
+            Requirements
+          </Typography>
+          <ul className="list-disc pl-5">
+            {jobDetails.requirements.map((item, index) => (
+              <li key={index} className="mb-2">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </div>
     </div>
   );
 }
