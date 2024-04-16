@@ -552,7 +552,7 @@ const RightIcon = ({ bgcolor }) => {
     );
 };
 const Sample5 = () => {
-    const [monthprice, setMonthPrice] = useState(true);
+
     return (
         <div className="bg-gray-300 min-h-[100vh] flex items-center justify-center">
             <div className="mx-5 pb-10">
@@ -597,18 +597,7 @@ const Sample5 = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td className="h-[50px]">
-                                        <div>
-                                            <span className="font-semibold text-5xl">
-                                                {monthprice ? data.price?.month : data.price?.year}
-                                            </span>
-                                            {data.price && (
-                                                <span className="text-[#475467] font-normal ml-1">
-                                                    {monthprice ? "per month" : "per year"}
-                                                </span>
-                                            )}
-                                        </div>
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td className="h-[50px] lg:h-[70px] xl:h-[50px]">
@@ -625,7 +614,7 @@ const Sample5 = () => {
                                             <button
                                                 className="w-full bg-[#365CCE] text-white rounded-lg py-3 font-semibold"
                                             >
-                                                Get Started
+                                               Add job
                                             </button>
                                         </td>
                                     )}
