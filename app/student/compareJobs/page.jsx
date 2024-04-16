@@ -49,22 +49,7 @@ const pricingData = [
         Analytics: "Advanced",
         "Export Reports": true,
         "Api Access": true,
-    },
-    {
-        mainTitle: "Enterprise",
-        price: {
-            month: "$4",
-            year: "$40",
-        },
-        infoNote: "Personalised service and enterprise security for large teams.",
-        "Basic Feature": true,
-        Users: "Unlimited",
-        "Individual data": "Unlimited",
-        Support: true,
-        Analytics: "Advanced",
-        "Export Reports": true,
-        "Api Access": true,
-    },
+    }
 ];
 const LineIcon = ({ bgcolor }) => {
     return (
@@ -137,20 +122,17 @@ const Sample5 = () => {
                                 }
                             >
                                 <tr>
-                                    <td className="h-[50px] w-[180px]"></td>
-                                    <td className="h-[50px] lg:h-[70px] xl:h-[50px]">
-                                        <button
-                                            className="w-full bg-[#365CCE] text-white rounded-lg py-3 font-semibold"
-                                        >
-                                            Add job
+                                    <td className="w-[180px]"></td>
+                                    <td className="h-[50px] w-[450px] lg:h-[70px] xl:h-[50px] relative">
+                                        <button className="w-full bg-[#365CCE] text-white rounded-lg py-3 font-semibold add-job1-button">
+                                            Add job1
                                         </button>
                                     </td>
-                                    <td className="h-[50px] w-[225px]"></td>
-                                    <td className="h-[50px] lg:h-[70px] xl:h-[50px]">
-                                        <button
-                                            className="w-full bg-[#365CCE] text-white rounded-lg py-3 font-semibold"
-                                        >
-                                            Add job
+
+                                    {/* <td className="w-[25px]"></td> */}
+                                    <td className="h-[50px] w-[450px] lg:h-[70px] xl:h-[50px] relative">
+                                        <button className="w-full bg-[#365CCE] text-white rounded-lg py-3 font-semibold add-job2-button">
+                                            Add job2
                                         </button>
                                     </td>
 
