@@ -11,7 +11,7 @@ import Footer from "../components/footer";
 import Jobcard from "../components/jobcard";
 import OA from "./OA/page";
 import Interview from "./Interview/page";
-import Sidebar from "../components/sidebar";
+import Sidebar from "../components/Sidebar";
 
 const getApplicant = async (id) => {
   try {
@@ -145,7 +145,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      {interviewLinks.length > 0 && (
+      {/* {interviewLinks.length > 0 && (
         <div className="m-5 top-16 right-5 md:right-10 lg:right-16 xl:right-20 2xl:right-24 w-72 bg-white shadow-xl rounded-lg z-50">
           <div className="bg-blue-600 text-white text-lg font-semibold p-3 rounded-t-lg">
             Interview Links
@@ -164,74 +164,76 @@ const Dashboard = () => {
             ))}
           </div>
         </div>
-      )}
-      {status && <ApplicantDetails />}
+      )} */}
+      {/* {status && <ApplicantDetails />} */}
       {!status && (
         <>
           <Header />
           <div className="flex">
-          <div class="flex-col float-left w-1/4 m-16">
-          <Sidebar />
+          <div className="flex-col float-left m-16">
+          <Sidebar/>
           </div>
-          <div class="flex-col float-left m-16 w-1/2 justify-start">
+          {/* <div className="flex-col float-left m-16 w-1/2 justify-start">
           <Jobcard/>
-          </div>
-          </div>
-          <div>
+          </div> */}
+          
+          <div className="flex-col float-left m-16 w-1/2 justify-start">
             {jobs.map((t) => (
-              <div key={t._id}>
-                <div className="w-[903px] h-[121px] py-0.5 justify-start items-start gap-4 inline-flex">
-                  <div className="justify-start items-start gap-[509px] flex">
-                    <div className="justify-start items-start gap-4 flex">
-                      <div className="w-[116px] h-[116px] relative">
-                        <div className="w-[116px] h-[116px] left-0 top-0 absolute bg-stone-50 rounded-lg" />
-                        <img
-                          className="w-[116px] h-[116px] left-0 top-0 absolute rounded-lg"
-                          src="https://via.placeholder.com/116x116"
-                        />
-                      </div>
-                      <div className="flex-col justify-start items-start  inline-flex">
-                        <div className="text-zinc-900 text-xl font-bold font-['Inter']">
-                          {t.title}
-                        </div>
-                        <div className="justify-start items-center gap-1 flex">
-                          <p className="text-neutral-500 text-base font-normal font-['Inter']">
-                            description
-                          </p>
+              <Jobcard key={t._id} props={t}/>
+              // <div key={t._id}>
+              //   <div className="w-[903px] h-[121px] py-0.5 justify-start items-start gap-4 inline-flex">
+              //     <div className="justify-start items-start gap-[509px] flex">
+              //       <div className="justify-start items-start gap-4 flex">
+              //         <div className="w-[116px] h-[116px] relative">
+              //           <div className="w-[116px] h-[116px] left-0 top-0 absolute bg-stone-50 rounded-lg" />
+              //           <img
+              //             className="w-[116px] h-[116px] left-0 top-0 absolute rounded-lg"
+              //             src="https://via.placeholder.com/116x116"
+              //           />
+              //         </div>
+              //         <div className="flex-col justify-start items-start  inline-flex">
+              //           <div className="text-zinc-900 text-xl font-bold font-['Inter']">
+              //             {t.title}
+              //           </div>
+              //           <div className="justify-start items-center gap-1 flex">
+              //             <p className="text-neutral-500 text-base font-normal font-['Inter']">
+              //               description
+              //             </p>
 
-                          <div className="w-1 h-1 bg-neutral-500 rounded-full" />
-                          <div className="text-neutral-500 text-base font-normal font-['Inter']">
-                            {t.description}
-                          </div>
-                          {/* <div className="w-1 h-1 bg-neutral-500 rounded-full" /> */}
-                        </div>
-                        <div className="justify-start items-center gap-1 flex">
-                          <p className="text-neutral-500 text-base font-normal font-['Inter']">
-                            companyid
-                          </p>
+              //             <div className="w-1 h-1 bg-neutral-500 rounded-full" />
+              //             <div className="text-neutral-500 text-base font-normal font-['Inter']">
+              //               {t.description}
+              //             </div>
+              //             {/* <div className="w-1 h-1 bg-neutral-500 rounded-full" /> */}
+              //           </div>
+              //           <div className="justify-start items-center gap-1 flex">
+              //             <p className="text-neutral-500 text-base font-normal font-['Inter']">
+              //               companyid
+              //             </p>
 
-                          <div className="w-1 h-1 bg-neutral-500 rounded-full" />
-                          <p className="text-neutral-500 text-base font-normal font-['Inter']">
-                            {t.companyid}
-                          </p>
-                          {/* <div className="w-1 h-1 bg-neutral-500 rounded-full" /> */}
-                        </div>
-                        <div className="justify-start items-center gap-1 flex">
-                          <div className="text-neutral-500 text-base font-normal font-['Inter']">
-                            {" "}
-                            <div className="text-neutral-500 text-base font-normal font-['Inter']">
-                              <button onClick={() => handleApplication(t._id)}>
-                                Apply Now
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              //             <div className="w-1 h-1 bg-neutral-500 rounded-full" />
+              //             <p className="text-neutral-500 text-base font-normal font-['Inter']">
+              //               {t.companyid}
+              //             </p>
+              //             {/* <div className="w-1 h-1 bg-neutral-500 rounded-full" /> */}
+              //           </div>
+              //           <div className="justify-start items-center gap-1 flex">
+              //             <div className="text-neutral-500 text-base font-normal font-['Inter']">
+              //               {" "}
+              //               <div className="text-neutral-500 text-base font-normal font-['Inter']">
+              //                 <button onClick={() => handleApplication(t._id)}>
+              //                   Apply Now
+              //                 </button>
+              //               </div>
+              //             </div>
+              //           </div>
+              //         </div>
+              //       </div>
+              //     </div>
+              //   </div>
+              // </div>
             ))}
+          </div>
           </div>
           {/* <div>
             <button onClick={signOut}>Sign Out</button>

@@ -1,23 +1,23 @@
 import React from 'react'
 
-const jobcard = () => {
+const jobcard = ({props}) => {
   return (
 
     <div class="flex-col border-2  bg-[#FFFFFF] rounded-lg shadow-lg my-4">
       <div class="flex m-3">
-        <img src="portfolio .png" class="w-12 border-2 rounded-full h-12" />
+        <img src="portfolio .png" class="w-10 border-2 rounded-full h-8" />
         <div class="flex-col px-4">
-          <h1 class="text-3xl font-semibold">Job Title</h1>
-          <h2 class="text-xl font-medium">Company Name</h2>
+          <h1 class="text-xl font-semibold">{props.title}</h1>
+          <h2 class="text-sm font-medium">{props.companyid}</h2>
         </div>
         <div class="flex justify-end w-3/4 text-white">
           <button
-            class="border-2 mx-2 p-4 rounded-lg bg-[#F36E54] shadow-xl"
+            class="border-2 text-sm h-12 mx-2 p-3 rounded-lg bg-green-600 shadow-xl"
           >
             View Details
           </button>
           <button
-            class="border-2 mx-2 p-4 rounded-lg bg-[#F36E54] shadow-xl"
+            class="border-2 text-sm h-12 mx-2 p-3 rounded-lg bg-green-600 shadow-xl"
           >
             Apply Now
           </button>
