@@ -1,6 +1,6 @@
-import React from "react";
-import { useRouter } from "next/navigation";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 const menuItems = [
   {
@@ -14,6 +14,10 @@ const menuItems = [
   {
     name: "Contact",
     href: "#",
+  },
+  {
+    name: "Blogs",
+    hred: "#",
   },
   {
     name: "Profile",
