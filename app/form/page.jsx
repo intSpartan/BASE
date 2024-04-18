@@ -39,6 +39,7 @@ const FormPage = () => {
   const [status, setStatus] = useState();
   const [loading, setLoading] = useState(true);
   const [companyid, setCompId] = useState(null);
+  const [companyName, setCompanyName] = useState();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -49,12 +50,41 @@ const FormPage = () => {
       } else {
         setCompId(user.id);
         const comp = await getCompany(user.id);
-        console.log(comp);
+        // console.log(comp);
+        setCompanyName(comp.company.companyName)
+        console.log(comp.company.companyName);
+        // console.log(companyName);
         setStatus(comp == null);
         setLoading(!loading);
       }
     };
     fetchUser();
+    console.log(companyid);
+
+    const fetchCompany = async () => {
+      if (companyid) {
+        console.log(companyid);
+        const res = await fetch(
+          `http://localhost:3000/api/company/${companyid}`,
+          {
+            method: "GET",
+            cache: "no-store",
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch topics");
+        }
+        else {
+          const companyData = await res.json();
+          console.log(companyData);
+          setCompanyName(companyData.companyName);
+        }
+      }
+
+    }
+    fetchCompany();
+
   }, []);
 
   const router = useRouter();
@@ -66,7 +96,7 @@ const FormPage = () => {
     //   alert("Maa Chuda");
     //   return;
     // }
-
+    // console.log(companyName);
     try {
       await fetch("http://localhost:3000/api/jobs", {
         method: "POST",
@@ -87,7 +117,8 @@ const FormPage = () => {
           startingDate,
           endingDate,
           graduationYear,
-          companyid
+          companyid,
+          companyName
         }),
       });
 
