@@ -6,8 +6,8 @@ import supabase from "../../authCompany";
 import { useRouter } from "next/navigation";
 import ApplicantDetails from "@/app/components/ApplicantDetails";
 import { useGlobalContext } from "../../GlobalContext";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "../../components/Header_Student";
+import Footer from "./../../components/Footer";
 import Jobcard from "../components/jobcard";
 import OA from "./OA/page";
 import Interview from "./Interview/page";
@@ -63,7 +63,6 @@ const getAllJobs = async () => {
 
 const Dashboard = () => {
   const state = useGlobalContext();
-  console.log(state);
   const [renderOA, setRenderOA] = useState(false);
   const handleClick = () => {
     setRenderOA(true);

@@ -14,7 +14,7 @@ const jobsSchema = new Schema(
         endingDate: String,
         graduationYear: String,
         companyid: String,
-        curr_state: String,
+        curr_state: Number,
         applicantsApplied: { type: [String], default: [] },
         applicantsResumeShortlist: { type: [String], default: [] },
         applicantsInterviewShortlist: { type: [String], default: [] },

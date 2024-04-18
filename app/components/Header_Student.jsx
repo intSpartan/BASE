@@ -1,11 +1,14 @@
+import { useGlobalContext } from "../GlobalContext";
+import supabase from "../authCompany";
+import { Avatar, Dropdown } from "@nextui-org/react";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const menuItems = [
   {
     name: "Home",
-    href: "#",
+    href: "/student/dashboard",
   },
   {
     name: "About",
@@ -14,10 +17,6 @@ const menuItems = [
   {
     name: "Contact",
     href: "#",
-  },
-  {
-    name: "Blogs",
-    hred: "#",
   },
   {
     name: "Profile",
@@ -29,15 +28,54 @@ const menuItems = [
   },
 ];
 
-export default function Header() {
+export default function Header_Student() {
+  const state = useGlobalContext();
+  const [applicantData, setApplicantData] = useState();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
-  const handleClick = () => {
-    router.push("/student/profile");
-  };
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  useEffect(() => {
+    if (state) {
+      const getApplicant = async () => {
+        try {
+          const res = await fetch(
+            `http://localhost:3000/api/applicants/${state.state.entity_id}`,
+            {
+              method: "GET",
+              cache: "no-store",
+            }
+          );
+
+          if (!res.ok) {
+            throw new Error("Failed to fetch the user details");
+          } else {
+            setApplicantData((await res.json()).applicants);
+          }
+        } catch (error) {
+          console.log("Error loading user details: ", error);
+        }
+      };
+
+      getApplicant();
+    }
+  }, [state]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Error signing out:", error);
+    } else {
+      router.push("/");
+    }
   };
 
   return (
@@ -85,13 +123,23 @@ export default function Header() {
           ></input>
         </div>
         <div className="ml-2 mt-2 hidden lg:block">
-          <span className="relative inline-block">
-            <img
-              className="h-10 w-10 rounded-full"
-              src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
-              alt="Dan_Abromov"
+        <span className="relative inline-block">
+            <Avatar
+              className="relative inline-block cursor-pointer"
+              onClick={toggleDropdown}
             />
-            <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-600 ring-2 ring-white"></span>
+            {isDropdownOpen && (
+              <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                <div className="p-2">
+                  <button
+                    className="w-full text-left p-2 hover:bg-gray-100"
+                    onClick={handleSignOut}
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            )}
           </span>
         </div>
         <div className="ml-2 lg:hidden">
