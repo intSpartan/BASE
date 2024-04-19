@@ -1,6 +1,6 @@
 "use client"
-import Header from "../../components/header";
-import Footer from "../../components/footer";
+import Header_Student from "@/app/components/Header_Student";
+import Footer from "@/app/components/Footer";
 
 import { useEffect, useState } from "react";
 const jobsData = [
@@ -95,7 +95,7 @@ const Sample5 = () => {
 
     return (
         <div>
-            <Header />
+            <Header_Student />
             <div className="bg-gray-300 min-h-[100vh] flex items-center justify-center">
 
                 <div className="mx-5 pb-10">
