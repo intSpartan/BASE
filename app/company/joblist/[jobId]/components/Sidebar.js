@@ -1,4 +1,10 @@
-import { React, useState } from "react";
+import AboutJob from "./AboutJob";
+import ApplicantApplied from "./ApplicantApplied";
+import Interview from "./Interview";
+import OA_Scores from "./OA_Scores";
+import OA_company from "./OA_company";
+import Footer from "@/app/components/Footer";
+import Header_Company from "@/app/components/Header_Company";
 import {
   BarChart,
   Wallet,
@@ -8,13 +14,7 @@ import {
   Brush,
   Wrench,
 } from "lucide-react";
-import AboutJob from "./AboutJob";
-import ApplicantApplied from "./ApplicantApplied";
-import OA_company from "./OA_company";
-import Interview from "./Interview";
-import OA_Scores from "./OA_Scores";
-import Header from "@/app/student/components/header";
-import Footer from "@/app/student/components/footer";
+import { React, useState } from "react";
 
 const Sidebar = (props) => {
   const [selectedOption, setSelectedOption] = useState("1");
@@ -40,7 +40,7 @@ const Sidebar = (props) => {
 
   return (
     <div>
-      <Header />
+      <Header_Company />
       <div className="flex">
         <aside className="flex h-screen w-64 flex-col overflow-y-auto border-r bg-white px-5 py-8">
           <a>
@@ -60,7 +60,6 @@ const Sidebar = (props) => {
           <div className="mt-6 flex flex-1 flex-col justify-between">
             <nav className="-mx-3 space-y-6 ">
               <div className="space-y-3 ">
-                {/* <label className="px-3 text-xs font-semibold uppercase text-gray-900">analytics</label> */}
                 <div
                   onClick={() => setSelectedOption("1")}
                   className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
@@ -106,26 +105,6 @@ const Sidebar = (props) => {
                   <span className="mx-2 text-sm font-medium">Selected</span>
                 </div>
               </div>
-
-              {/* <div className="space-y-3 ">
-                        <label className="px-3 text-xs font-semibold uppercase text-gray-900">
-                            Customization
-                        </label>
-                        <div
-                            className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
-
-                        >
-                            <Brush className="h-5 w-5" aria-hidden="true" />
-                            <span className="mx-2 text-sm font-medium">Themes</span>
-                        </div>
-                        <div
-                            className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
-
-                        >
-                            <Wrench className="h-5 w-5" aria-hidden="true" />
-                            <span className="mx-2 text-sm font-medium">Setting</span>
-                        </div>
-                    </div> */}
             </nav>
           </div>
         </aside>

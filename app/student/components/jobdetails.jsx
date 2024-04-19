@@ -1,3 +1,4 @@
+import { Progress } from "antd";
 import React from "react";
 
 const people = [
@@ -86,9 +87,10 @@ export default function TableOne({ jobs }) {
                           </div>
                         </td>
                         <td className="whitespace-nowrap px-4 py-4">
-                          <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
-                            {job.job.curr_state}
-                          </span>
+                          <Progress
+                            percent={job.job.curr_state * 25}
+                            showInfo={false}
+                          />
                         </td>
                         <td className="whitespace-nowrap px-4 py-4 text-right text-sm font-medium">
                           <a href="#" className="text-gray-700">
