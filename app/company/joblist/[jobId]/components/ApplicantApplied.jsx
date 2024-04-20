@@ -5,31 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-// const updateOAList = async (applicant_id, jobId) => {
-//   // console.log(applicant_id);
-//   const res_jobs = await fetch(
-//     `http://localhost:3000/api/jobs/${jobId}/OA_selection`,
-//     {
-//       method: "PUT",
-//       headers: {
-//         "Content-type": "application/json",
-//       },
-//       body: JSON.stringify({ candidate_id: applicant_id }),
-//     }
-//   );
-//   const res_applicant = await fetch(
-//     `http://localhost:3000/api/applicants/${applicant_id}/OA_List`,
-//     {
-//       method: "PUT",
-//       headers: {
-//         "Content-type": "application/json",
-//       },
-//       body: JSON.stringify({ jobId: jobId }),
-//     }
-//   );
-// };
 const updateShortlistList = async (applicant_id, jobId) => {
-  // console.log(applicant_id);
   const res_jobs = await fetch(
     `http://localhost:3000/api/jobs/${jobId}/ResumeShortlist`,
     {
@@ -108,7 +84,6 @@ const ApplicantApplied = ({ ...props }) => {
     };
     fetchResumes();
   }, []);
-  // console.log(resumes);
 
   const handleApplication = async (applicant_id) => {
     const res = await updateShortlistList(applicant_id, jobId);
@@ -221,23 +196,15 @@ const ApplicantApplied = ({ ...props }) => {
                         <tr key={applicant.applicants._id}>
                           <td className="whitespace-nowrap px-4 py-4">
                             <div className="flex items-center">
-                              <div className="h-10 w-10 flex-shrink-0">
-                                {/* <img
-                                                                        className="h-10 w-10 rounded-full object-cover"
-                                                                        src={person.image}
-                                                                        alt=""
-                                                                    /> */}
-                              </div>
+                              <div className="h-10 w-10 flex-shrink-0"></div>
                               <div className="ml-4">
                                 <div className="text-base font-medium text-gray-900">
                                   {applicant.applicants.name}
                                 </div>
-                                {/* <div className="text-base text-gray-700">{job.job.title}</div> */}
                               </div>
                             </div>
                           </td>
                           <td className="whitespace-nowrap px-12 py-4">
-                            {/* <div className="text-base text-gray-900 ">{job.job.title}</div> */}
                             <div className="text-base text-gray-700">
                               {applicant.applicants.college}
                             </div>
