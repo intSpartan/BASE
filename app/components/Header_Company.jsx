@@ -11,8 +11,8 @@ const menuItems = [
     href: "/company/dashboard",
   },
   {
-    name: "About",
-    href: "#",
+    name: "Blogs",
+    href: "/company/blogs",
   },
   {
     name: "Contact",

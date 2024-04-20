@@ -1,7 +1,7 @@
 // pages/blog.js
 "use client"
 import { useState } from 'react';
-import Header from '../components/header';
+import Header_Company from '@/app/components/Header_Company';
 import Blog from '../components/blog';
 // Sample blog data
 const blogs = [
@@ -19,7 +19,7 @@ export default function BlogPage() {
 
     return (
         <>
-            <Header />
+            <Header_Company />
             <div className="flex">
                 <div className="w-64 h-screen bg-gray-200 p-4 overflow-y-auto transition-all duration-300 transform">
                     <h2 className="text-2xl font-bold mb-4">LATEST STORIES</h2>
