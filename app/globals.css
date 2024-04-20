@@ -28,18 +28,24 @@ body {
     )
     rgb(var(--background-start-rgb));
 } */
-.font-inter{
+.font-inter {
   font-family: "Inter", sans-serif;
 }
-.slideimage{
+
+.slideimage {
   height: 1.5rem;
   transition: height 0.25s linear;
   background: #333;
   border-radius: 0.25rem
 }
-.secslideimage{
+
+.secslideimage {
   height: 5.5rem;
   transition: height 0.25s linear;
   background: #333;
   border-radius: 0.25rem
 }
+
+/* * {
+  border: 1px solid black;
+} */

@@ -123,7 +123,7 @@ export default function Header_Student() {
           ></input>
         </div>
         <div className="ml-2 mt-2 hidden lg:block">
-        <span className="relative inline-block">
+          <span className="relative inline-block">
             <Avatar
               className="relative inline-block cursor-pointer"
               onClick={toggleDropdown}
