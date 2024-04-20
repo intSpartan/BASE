@@ -4,9 +4,9 @@ import Header from "../../components/Header_Student";
 import TableOne from "../components/jobdetails";
 import { useGlobalContext } from "@/app/GlobalContext";
 import Footer from "@/app/components/Footer";
+import { UserOutlined } from "@ant-design/icons";
+import { Avatar, Space } from "antd";
 import React, { useState, useEffect } from "react";
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Space } from 'antd';
 
 const Profile = () => {
   const state = useGlobalContext();
@@ -88,16 +88,28 @@ const Profile = () => {
             <h2 className="text-lg font-semibold mb-4">About</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <p className="text-sm text-neutral-400 font-medium mb-1">Location</p>
-                <p className="text-sm text-black font-medium">{applicantData?.location || "Pune, India"}</p>
+                <p className="text-sm text-neutral-400 font-medium mb-1">
+                  Location
+                </p>
+                <p className="text-sm text-black font-medium">
+                  {applicantData?.location || "Pune, India"}
+                </p>
               </div>
               <div>
-                <p className="text-sm text-neutral-400 font-medium mb-1">Interests</p>
-                <p className="text-sm text-black font-medium">{applicantData?.interests || "Reading, Gaming"}</p>
+                <p className="text-sm text-neutral-400 font-medium mb-1">
+                  Interests
+                </p>
+                <p className="text-sm text-black font-medium">
+                  {applicantData?.interests || "Reading, Gaming"}
+                </p>
               </div>
               <div>
-                <p className="text-sm text-neutral-400 font-medium mb-1">Skills</p>
-                <p className="text-sm text-black font-medium">{applicantData?.skills || "Data science, Design"}</p>
+                <p className="text-sm text-neutral-400 font-medium mb-1">
+                  Skills
+                </p>
+                <p className="text-sm text-black font-medium">
+                  {applicantData?.skills || "Data science, Design"}
+                </p>
               </div>
             </div>
           </div>
@@ -107,23 +119,34 @@ const Profile = () => {
             <h2 className="text-lg font-semibold mb-4">Education</h2>
             <div>
               <div>
-                <p className="text-sm text-neutral-400 font-medium mb-1">School</p>
-                <p className="text-sm text-black font-medium">{applicantData?.school || "Spicer Public School"}</p>
+                <p className="text-sm text-neutral-400 font-medium mb-1">
+                  School
+                </p>
+                <p className="text-sm text-black font-medium">
+                  {applicantData?.school || "Spicer Public School"}
+                </p>
               </div>
               <div>
-                <p className="text-sm text-neutral-400 font-medium mb-1">Qualification</p>
-                <p className="text-sm text-black font-medium">{applicantData?.qualification || "12th HSC"}</p>
+                <p className="text-sm text-neutral-400 font-medium mb-1">
+                  Qualification
+                </p>
+                <p className="text-sm text-black font-medium">
+                  {applicantData?.qualification || "12th HSC"}
+                </p>
               </div>
               <div>
-                <p className="text-sm text-neutral-400 font-medium mb-1">College</p>
-                <p className="text-sm text-black font-medium">{applicantData?.college || "N/A"}</p>
+                <p className="text-sm text-neutral-400 font-medium mb-1">
+                  College
+                </p>
+                <p className="text-sm text-black font-medium">
+                  {applicantData?.college || "N/A"}
+                </p>
               </div>
             </div>
           </div>
 
           {/* Job Details Section */}
           <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-lg font-semibold mb-4">Job Details</h2>
             <TableOne jobs={jobDetails} />
           </div>
         </div>
