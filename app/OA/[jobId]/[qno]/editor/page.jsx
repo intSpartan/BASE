@@ -3,7 +3,7 @@
 import React from 'react'
 import Homepage from './Screens/Homepage';
 
-function App({ params }) {
+function Editor({ params }) {
 
   return (
     <>
@@ -12,4 +12,4 @@ function App({ params }) {
   )
 }
 
-export default App    
+export default Editor

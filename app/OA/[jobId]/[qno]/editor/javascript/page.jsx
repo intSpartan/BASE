@@ -5,50 +5,9 @@ import LangList from '../Editor/LangList';
 import copy_icon from '../assets/copy_icon.gif';
 import download_icon from '../assets/download_logo.png';
 import { useRouter } from 'next/navigation';
-const data = new Date()
-let DayName;
-if (data.getDay() === 1) {
-  DayName = "Monday";
-}
-else if (data.getDay() === 2) {
-  DayName = "Tuesday";
-}
-else if (data.getDay() === 3) {
-  DayName = "Wednesday";
-}
-else if (data.getDay() === 4) {
-  DayName = "Thursday";
-}
-else if (data.getDay() === 5) {
-  DayName = "Friday";
-}
 
-else if (data.getDay() === 6) {
-  DayName = "Saturday";
-}
-else if (data.getDay() === 0) {
-  DayName = "Sunday"
-}
-else {
-  DayName = "CodoFile";
-}
 const Javascript = ({ params }) => {
-
-  const CodingQuestionsPool = [
-    'Q: Find the sum of all elements in an array: arr.reduce((sum, num) => sum + num, 0);',
-
-    'Q: Find the maximum element in an array: Math.max(...arr);',
-
-    'Q: Check if an array contains a specific element: arr.includes(target);',
-
-    'Q: Reverse the elements of an array: arr.reverse();',
-
-    'Q: Filter even numbers from an array: arr.filter(num => num % 2 === 0);',
-  ];
-
-  shuffleArray(CodingQuestionsPool)
-
-  // const jobInfo = await fetchOA(params.jobId);
+  let DayName = "Monday"
 
   const router = useRouter();
 
@@ -59,8 +18,17 @@ const Javascript = ({ params }) => {
   const runCode = () => {
     try {
       alert("Code Execution Started")
-      let textCode = document.querySelector(".dartpython").value;
+      let textCode = document.querySelector("#javascript").value;
+      const originalLog = console.log;
+      console.log = function (...value) {
+        originalLog.apply(console, value); // Keep the original log functionality
+        output.push(value.join(" ")); // Push the stringified value to the output array
+      };
+
+      let output = [];
       eval(textCode);
+      console.log = originalLog;
+      document.getElementById("consoleOutput").innerText = output.join("\n");
     }
     catch (err) {
       alert("Please Enter Valid Code")
@@ -87,13 +55,13 @@ const Javascript = ({ params }) => {
       consoleOutput.innerHTML = "";
     });
 
-    console.log = consoleLoghandler;
+    // console.log = consoleLoghandler;
 
     return () => {
       btn.removeEventListener('click', () => {
         consoleOutput.innerHTML = "";
       });
-      console.log = originalConsoleLog;
+      // console.log = originalConsoleLog;
     };
   }, []);
 
@@ -134,8 +102,9 @@ const Javascript = ({ params }) => {
   // console.log(params);
 
   const codeSave = (e) => {
+    console.log(e.target.value)
     setcode(e.target.value)
-    localStorage.setItem(`savedCodeJs${params.qno}`, code);
+    localStorage.setItem(`savedCodeJs${params.qno}`, e.target.value);
   }
 
 
@@ -144,50 +113,42 @@ const Javascript = ({ params }) => {
   }
 
 
-  return (
+return (
     <>
-      <div>{CodingQuestionsPool[Math.floor(Math.random() * 5)]}</div>
-      <div className="jsContainer">
-        <div className="jsBody wholeeditorBody">
-          <div className="leftLang">
-          </div>
-          <div className="PlaygroundMain">
-            <div className='runHeaderJS'>
-              <div className='jsleftheaderfile jsfile'>
-                <div className='runbtn'>
-                  <button className='vbtn'>
-                    <img className='voicebtn' onClick={copyContent} src={copy_icon} alt='CopyClip' />
+      <div className="jsContainer mx-auto max-w-4xl">
+          <div className="flex">
+            <div className="flex-grow bg-white p-4 rounded-lg shadow-lg">
+              <div className='runHeaderJS flex justify-between items-center mb-4'>
+                <div className='flex space-x-2'>
+                  <button className='vbtn p-2 bg-blue-500 hover:bg-blue-700 rounded shadow text-white' onClick={copyContent}>
+                    <img className='voicebtn w-5 h-5' src={copy_icon} alt='Copy Clip' />
                   </button>
-                  <button className='vbtn'>
-                    <img className='voicebtn' onClick={codeToFile} src={download_icon} alt='DownLoadCode' />
+                  <button className='vbtn p-2 bg-green-500 hover:bg-green-700 rounded shadow text-white' onClick={codeToFile}>
+                    <img className='voicebtn w-5 h-5' src={download_icon} alt='Download Code' />
                   </button>
-                  <button className='btn btn1' onClick={runCode}>RUN</button>
+                  <button className='btn btn1 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow' onClick={runCode}>RUN</button>
+                </div>
+                <div className='flex items-center space-x-2'>
+                  <mark><p className="bg-yellow-100 p-1 rounded">OUTPUT</p></mark>
+                  <button className='clear bg-gray-300 hover:bg-gray-400 text-black py-2 px-4 rounded shadow' onClick={clear}>Clear</button>
                 </div>
               </div>
-              <div className='jsrightheaderfile jsfile'>
-                <mark><p>OUTPUT</p></mark>
-                <button className='clear' onClick={clear}>Clear</button>
-              </div>
-            </div>
-            <div className='jsplayground playground'>
-              <div className='leftplayground snippet'>
-                <textarea className='dartpython' data-testid="jsTextarea" name="javascript" id="javascript" value={code} onChange={(e) => codeSave(e)} placeholder='console.log("Hello CodoPlayer");'></textarea>
-              </div>
-              <h1 className="invisible">
-                <mark>Output</mark>
-              </h1>
-              <div className='rightplayground snippet' id='consoleOutput' data-testid="consoleOutput" >
-                {/* <p>{output}</p> */}
+              <div className='jsplayground flex gap-4 mb-4'>
+                <div className='leftplayground flex-1'>
+                  <textarea className='w-full h-60 p-2 border border-gray-300 rounded resize-none' data-testid="jsTextarea" name="javascript" id="javascript" value={code} onChange={(e) => codeSave(e)} placeholder='console.log("Hello CodoPlayer");'></textarea>
+                </div>
+                <div className='rightplayground flex-1 bg-gray-50 p-2 border border-gray-300 rounded' id='consoleOutput'>
+                  {/* Simulated console output */}
+                </div>
               </div>
               <div>
-                <button onClick={submitCode}>Submit</button>
+                <button className="p-2 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded shadow" onClick={submitCode}>Submit</button>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </>
-  )
+  );
 }
 
 export default Javascript

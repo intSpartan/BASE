@@ -19,18 +19,6 @@ function Python({ params }) {
   }
 
 
-  const CodingQuestionsPool = [
-    'Q: Find the sum of all elements in an array: arr.reduce((sum, num) => sum + num, 0);',
-
-    'Q: Find the maximum element in an array: Math.max(...arr);',
-
-    'Q: Check if an array contains a specific element: arr.includes(target);',
-
-    'Q: Reverse the elements of an array: arr.reverse();',
-
-    'Q: Filter even numbers from an array: arr.filter(num => num % 2 === 0);',
-  ];
-
   const router = useRouter();
 
   // shuffleArray(CodingQuestionsPool)
@@ -42,12 +30,13 @@ function Python({ params }) {
   const handleSubmit = async () => {
     alert('Please Wait while File is Execuing');
     const payload = {
-      language: "py",
-      code
+      language: "python",
+      code: code,
+      input: "",
     };
 
     try {
-      const response = await fetch("http://localhost:5000/runpy", {
+      const response = await fetch("http://localhost:5000/", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
@@ -95,8 +84,9 @@ function Python({ params }) {
 
 
   const codeSave = (e) => {
+    console.log(e.target.value)
     setcode(e.target.value)
-    localStorage.setItem(`savedCodePy${params.qno}`, code);
+    localStorage.setItem(`savedCodePy${params.qno}`, e.target.value);
   }
 
   const submitCode = () => {
@@ -105,49 +95,55 @@ function Python({ params }) {
 
 
   return (
-    <>
-      <div className="voiceContainer">
-        <div className="voiceBody wholeeditorBody">
-          <div className="leftLang">
-            {/* <LangList leftcolorpy="white" /> */}
+    <div className="bg-white shadow-md rounded-lg p-4 my-4 mx-auto max-w-4xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="order-2 md:order-1">
+          <textarea
+            className="w-full h-64 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            name="python"
+            id="python"
+            value={code}
+            onChange={codeSave}
+            placeholder='print("hello codoPlayers")'
+          ></textarea>
+          <button
+            className="mt-2 py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-lg shadow-md focus:outline-none"
+            onClick={handleSubmit}
+          >
+            RUN
+          </button>
+        </div>
+        <div className="order-1 md:order-2 bg-gray-100 p-3 rounded-lg">
+          <div className="flex justify-between items-center mb-2">
+            <button
+              className="p-2 bg-green-500 hover:bg-green-700 text-white rounded-lg"
+              onClick={copyContent}
+              aria-label="Copy code"
+            >
+              <img alt="Copy" className="h-6 w-6" />
+            </button>
+            <button
+              className="p-2 bg-blue-500 hover:bg-blue-700 text-white rounded-lg"
+              onClick={codeToFile}
+              aria-label="Download code"
+            >
+              <img alt="Download" className="h-6 w-6" />
+            </button>
+            <button
+              className="p-2 bg-red-500 hover:bg-red-700 text-white rounded-lg"
+              onClick={clear}
+              aria-label="Clear output"
+            >
+              Clear
+            </button>
           </div>
-          <div className="PlaygroundMain">
-            <div className='runHeaderJS'>
-              <div className='jsleftheaderfile jsfile'>
-                <div className='runbtn'>
-                  <button className='vbtn'>
-                    <img className='voicebtn' onClick={copyContent} src={copy_icon} alt='copy' />
-                  </button>
-                  <button className='vbtn'>
-                    <img className='voicebtn' onClick={codeToFile} src={download_icon} alt='download' />
-                  </button>
-                  <button className='btn' onClick={handleSubmit}>RUN</button>
-                </div>
-              </div>
-              <div className='jsrightheaderfile jsfile'>
-                <mark><p>OUTPUT</p></mark>
-                <button className='clear' onClick={clear}>Clear</button>
-              </div>
-            </div>
-            <div className='jsplayground playground'>
-              <div className='leftplayground snippet'>
-                <textarea className='dartpython' name="python" id="python" value={code} onChange={(e) => codeSave(e)} placeholder='print("hello codoPlayers")'></textarea>
-              </div>
-              <h1 className="invisible">
-                <mark>Output</mark>
-              </h1>
-              <div className='rightplayground snippet' id='consoleOutput' >
-                <p>{output}</p>
-              </div>
-              <div>
-                <button onClick={submitCode}>Submit</button>
-              </div>
-            </div>
+          <div className="h-64 overflow-auto bg-white p-2 rounded-lg" id="consoleOutput">
+            <p>{output}</p>
           </div>
         </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }
 
 export default Python

@@ -23,10 +23,11 @@ const fetchOA = async (jobId) => {
 const CodingQuestions = async ({ params }) => {
 
   const jobInfo = await fetchOA(params.jobId);
+  const qIndex = Math.floor(Math.random() * 5)
 
   return (
     <>
-      {jobInfo && <QuestionSelector jobInfo={jobInfo} jobId={params} />}
+      {jobInfo && <QuestionSelector jobInfo={jobInfo} jobId={params} qIndex={qIndex}/>}
       {!jobInfo && <div>Loading...</div>}
 
     </>
