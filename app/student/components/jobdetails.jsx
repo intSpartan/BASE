@@ -29,7 +29,7 @@ export default function TableOne({ jobs }) {
         <tbody className="divide-y divide-gray-200">
           {jobs.map((job, index) => (
             <tr key={index} className="hover:bg-gray-50">
-              <td className="py-4 px-4 text-gray-800">{job.job.companyid}</td>
+              <td className="py-4 px-4 text-gray-800">{job.job.companyName}</td>
               <td className="py-4 px-4">
                 <p className="font-semibold text-gray-800">{job.job.title}</p>
                 <p className="text-sm text-gray-600">{job.department}</p>
@@ -38,14 +38,14 @@ export default function TableOne({ jobs }) {
                 <Progress
                   percent={job.job.curr_state * 25}
                   showInfo={false}
-                  status="active" 
+                  status="active"
                 />
               </td>
               <td className="py-4 px-4 text-gray-600">{job.role}</td>
               <td className="py-4 px-4 text-right">
                 <button
                   className="flex items-center text-indigo-600 hover:text-indigo-800"
-                  onClick={() => router.push(`/company/joblist/${job.job._id}`)}
+                  onClick={() => router.push(`/student/joblist/${job.job._id}`)}
                 >
                   <FaEye className="mr-2" /> View Details
                 </button>
