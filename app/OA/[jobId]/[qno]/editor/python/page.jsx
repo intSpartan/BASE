@@ -1,10 +1,10 @@
 "use client"
 
 import React, { useState } from 'react';
-import LangList from '../Editor/LangList';
+// import LangList from '../Editor/LangList';
 // import axios from 'axios';
-import copy_icon from '../assets/copy_icon.gif';
-import download_icon from '../assets/download_logo.png';
+// import copy_icon from '../assets/copy_icon.gif';
+// import download_icon from '../assets/download_logo.png';
 import { useRouter } from 'next/navigation';
 
 function Python({ params }) {

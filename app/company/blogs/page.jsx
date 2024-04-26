@@ -2,7 +2,7 @@
 "use client"
 import { useState } from 'react';
 import Header_Company from '@/app/components/Header_Company';
-import Blog from '../components/blog';
+import Blog from './blog';
 // Sample blog data
 const blogs = [
     { id: 1, title: 'Blog 1', author: 'Author 1', content: 'Content for Blog 1' },

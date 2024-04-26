@@ -13,9 +13,11 @@ export async function PUT(req, { params, body }) {
   await connectMongoDB();
   try {
     const { updatedres } = await req.json();
+    console.log(updatedres.applicants);
+    console.log(params.supabaseId);
     await Applicant.findOneAndUpdate(
       { loginid: params.supabaseId },
-      { $set: updatedres },
+      { $set: updatedres.applicants },
       { new: true }
     );
     return NextResponse.json({ success: true });

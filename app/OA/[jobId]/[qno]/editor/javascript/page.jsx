@@ -1,12 +1,12 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import LangList from '../Editor/LangList';
-import copy_icon from '../assets/copy_icon.gif';
-import download_icon from '../assets/download_logo.png';
+// import LangList from '../Editor/LangList';
+// import copy_icon from '../assets/copy_icon.gif';
+// import download_icon from '../assets/download_logo.png';
 import { useRouter } from 'next/navigation';
 
-const Javascript = ({ params }) => {
+const Javascript = ({ props , params }) => {
   let DayName = "Monday"
 
   const router = useRouter();
@@ -36,6 +36,7 @@ const Javascript = ({ params }) => {
     }
   };
 
+  console.log(params);
 
 
   const originalConsoleLog = console.log;
@@ -113,40 +114,40 @@ const Javascript = ({ params }) => {
   }
 
 
-return (
+  return (
     <>
       <div className="jsContainer mx-auto max-w-4xl">
-          <div className="flex">
-            <div className="flex-grow bg-white p-4 rounded-lg shadow-lg">
-              <div className='runHeaderJS flex justify-between items-center mb-4'>
-                <div className='flex space-x-2'>
-                  <button className='vbtn p-2 bg-blue-500 hover:bg-blue-700 rounded shadow text-white' onClick={copyContent}>
-                    <img className='voicebtn w-5 h-5' src={copy_icon} alt='Copy Clip' />
-                  </button>
-                  <button className='vbtn p-2 bg-green-500 hover:bg-green-700 rounded shadow text-white' onClick={codeToFile}>
-                    <img className='voicebtn w-5 h-5' src={download_icon} alt='Download Code' />
-                  </button>
-                  <button className='btn btn1 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow' onClick={runCode}>RUN</button>
-                </div>
-                <div className='flex items-center space-x-2'>
-                  <mark><p className="bg-yellow-100 p-1 rounded">OUTPUT</p></mark>
-                  <button className='clear bg-gray-300 hover:bg-gray-400 text-black py-2 px-4 rounded shadow' onClick={clear}>Clear</button>
-                </div>
+        <div className="flex">
+          <div className="flex-grow bg-white p-4 rounded-lg shadow-lg">
+            <div className='runHeaderJS flex justify-between items-center mb-4'>
+              <div className='flex space-x-2'>
+                <button className='vbtn p-2 bg-blue-500 hover:bg-blue-700 rounded shadow text-white' onClick={copyContent}>
+                  {/* <img className='voicebtn w-5 h-5' src={copy_icon} alt='Copy Clip' /> */}
+                </button>
+                <button className='vbtn p-2 bg-green-500 hover:bg-green-700 rounded shadow text-white' onClick={codeToFile}>
+                  {/* <img className='voicebtn w-5 h-5' src={download_icon} alt='Download Code' /> */}
+                </button>
+                <button className='btn btn1 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow' onClick={runCode}>RUN</button>
               </div>
-              <div className='jsplayground flex gap-4 mb-4'>
-                <div className='leftplayground flex-1'>
-                  <textarea className='w-full h-60 p-2 border border-gray-300 rounded resize-none' data-testid="jsTextarea" name="javascript" id="javascript" value={code} onChange={(e) => codeSave(e)} placeholder='console.log("Hello CodoPlayer");'></textarea>
-                </div>
-                <div className='rightplayground flex-1 bg-gray-50 p-2 border border-gray-300 rounded' id='consoleOutput'>
-                  {/* Simulated console output */}
-                </div>
+              <div className='flex items-center space-x-2'>
+                <mark><p className="bg-yellow-100 p-1 rounded">OUTPUT</p></mark>
+                <button className='clear bg-gray-300 hover:bg-gray-400 text-black py-2 px-4 rounded shadow' onClick={clear}>Clear</button>
               </div>
-              <div>
-                <button className="p-2 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded shadow" onClick={submitCode}>Submit</button>
+            </div>
+            <div className='jsplayground flex gap-4 mb-4'>
+              <div className='leftplayground flex-1'>
+                <textarea className='w-full h-60 p-2 border border-gray-300 rounded resize-none' data-testid="jsTextarea" name="javascript" id="javascript" value={code} onChange={(e) => codeSave(e)} placeholder='console.log("Hello CodoPlayer");'></textarea>
               </div>
+              <div className='rightplayground flex-1 bg-gray-50 p-2 border border-gray-300 rounded' id='consoleOutput'>
+                {/* Simulated console output */}
+              </div>
+            </div>
+            <div>
+              <button className="p-2 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded shadow" onClick={submitCode}>Submit</button>
             </div>
           </div>
         </div>
+      </div>
     </>
   );
 }

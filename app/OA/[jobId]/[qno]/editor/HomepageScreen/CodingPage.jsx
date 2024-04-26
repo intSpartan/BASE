@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Javascript from '../javascript/page.jsx';
 import Python from '../python/page.jsx';
-import Dart from '../dart/page.jsx';
+// import Dart from '../dart/page.jsx';
 
 function CodingPage(props) {
   const [activeComponent, setActiveComponent] = useState(null);
@@ -30,11 +30,11 @@ return (
           </div>
         )}
 
-        {props.title === "Dart" && (
+        {/* {props.title === "Dart" && (
           <div className="p-4 bg-blue-100 rounded-lg shadow">
             <Dart params={props}/>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
