@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function Header() {
     return (
         <div>
@@ -30,7 +32,9 @@ export default function Header() {
                             <div className="text-center text-neutral-400 text-sm font-medium font-['Inter']">Support</div>
                         </div>
                         <div className="w-[155px] px-6 py-3 bg-slate-600 rounded justify-start items-center gap-2.5 flex">
-                            <div className="text-center text-white text-sm font-semibold font-['Inter']">Login / Register</div>
+                            <Link href="/auth">
+                                <div className="text-center text-white text-sm font-semibold font-['Inter']">Login / Register</div>
+                            </Link>
                         </div>
                     </div>
                 </div>

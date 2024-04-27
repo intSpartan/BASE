@@ -15,6 +15,10 @@ const menuItems = [
     href: "/company/blogs",
   },
   {
+    name: "Profile",
+    href: "/company/profile",
+  },
+  {
     name: "Contact",
     href: "#",
   },
