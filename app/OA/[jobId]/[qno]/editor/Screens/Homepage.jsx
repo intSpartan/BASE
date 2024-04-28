@@ -1,19 +1,18 @@
 import React from 'react'
 import CodingPage from '../HomepageScreen/CodingPage';
-// import ImageCod from '../assets/JavaScript frameworks-rafiki.svg'
+import ImageCod from '../assets/JavaScript frameworks-rafiki.svg'
 import { useState } from 'react';
-// import Pycod from '../assets/Man reading-pana.svg'
-// import SpeechCod from '../assets/Speech to text-bro.svg'
-// import CodJava from '../assets/Coding-bro.svg'
+import Pycod from '../assets/Man reading-pana.svg'
+import SpeechCod from '../assets/Speech to text-bro.svg'
+import CodJava from '../assets/Coding-bro.svg'
 
-function Homepage(props) {
-
+function Homepage() {
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const handleLanguageChange = (event) => {
     setSelectedLanguage(event.target.value);
   };
 
-  return (
+return (
     <>
       <div className="container py-6">
         <select
@@ -35,7 +34,7 @@ function Homepage(props) {
                 con="Run JavaScript"
                 info={<>All The <mark className="bg-yellow-200 rounded px-1">Logic</mark> That you need to Learn and Practice <mark className="bg-yellow-200 rounded px-1">JavaScript</mark> will be Accomplished by this <mark className="bg-yellow-200 rounded px-1">Js Text Editor</mark>.</>}
                 path='/javascript'
-                jobId={props.jobId}
+                image={ImageCod}
               />
             )}
 
