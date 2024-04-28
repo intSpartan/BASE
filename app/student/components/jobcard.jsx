@@ -53,14 +53,14 @@ const jobcard = ({ props, applicantWithID, jobs, supabaseId }) => {
     handleApplication(id, applicantWithID, jobs, supabaseId);
   };
   return (
-    <div className="flex-col border-2  bg-[#FFFFFF] rounded-lg shadow-lg my-4">
+    <div className="flex-col  border-2  bg-[#] rounded-lg shadow-lg my-4 py-2">
       <div className="flex m-3">
         <img src="portfolio .png" className="w-10 border-2 rounded-full h-8" />
-        <div className="flex-col px-4">
+        <div className="flex-col w-[370px] overflow-hidden ml-[10px] ">
           <h1 className="text-xl font-semibold">{props.title}</h1>
-          <h2 className="text-sm font-medium">{props.companyid}</h2>
+          <h2 className="text-[12px] font-medium">{props.companyid}</h2>
         </div>
-        <div className="flex justify-end w-3/4 text-white">
+        <div className="flex  justify-end w-1/2 text-white">
           <button
             className="border-2 text-sm h-12 mx-2 p-3 rounded-lg bg-green-600 shadow-xl"
             onClick={() => router.push(`/student/joblist/${props._id}`)}

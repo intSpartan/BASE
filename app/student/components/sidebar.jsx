@@ -7,7 +7,7 @@ import {
 const Sidebar = () => {
   return (
     <div className="flex">
-        <aside className="flex h-screen w-64 flex-col overflow-y-auto border-r bg-white px-5 py-8">
+        <aside className="flex h-screen w-64 flex-col overflow-y-auto border-r  px-5 py-8">
           <a>
             <svg
               width="40"

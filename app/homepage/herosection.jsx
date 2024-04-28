@@ -1,8 +1,9 @@
 export default function Herosection() {
     return (
+<div className="flex w-full justify-center items-center">
 
-        <div className="flex py-[100px] pt-[150px]">
-            <div className="w-[50%] flex flex-col justify-center relative left-[50px]">
+       <div className="flex max-w-[1700px] w-full  py-[100px] px-[100px] pt-[150px]">
+            <div className="w-[100%] flex flex-col justify-center relative ">
                 <p className="leading-[30px]">welcome to <br /> <span className="bg-gradient-to-r  capitalize from-[#F67036] to-[#AB3BD2] font-bold font-['Inter'] text-transparent bg-clip-text text-[50px] leading-[50px]">edmertion</span> <br />
                     where your future takes flight</p>
                 <div className="flex gap-2 mt-[10px]">
@@ -11,8 +12,8 @@ export default function Herosection() {
 
                 </div>
             </div>
-            <div className="w-[50%]">
-                <div class="w-[622px] h-[430px] flex-col justify-start items-start gap-[38px] inline-flex">
+            <div className="  w-[100%]">
+                <div class=" h-[430px] flex-col justify-start items-start gap-[38px] inline-flex">
                     <div class="justify-start items-center gap-6 inline-flex">
                         <div class="w-[296px] h-[196px] relative">
                             <img class="w-[296px] h-[196px] left-[-0px] top-0 absolute rounded" src="./pexels-ivan-samkov-4240507.png" />
@@ -42,6 +43,7 @@ export default function Herosection() {
                 </div>
             </div>
         </div>
+</div>
 
 
     )

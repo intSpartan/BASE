@@ -1,6 +1,8 @@
 export default function SecondSection() {
     return (
-        <div className=" py-[100px] h-[820px] flex justify-between px-[100px] bg-gray-200 ">
+        <div className="flex justify-center bg-gray-200 items-center w-full">
+
+        <div className=" max-w-[1700px] w-full py-[100px] h-[820px] flex justify-between px-[100px] bg-gray-200 ">
             <div className="">
                 <div className="w-[286px] h-[218px] flex-col justify-start items-start gap-4 inline-flex">
                     <div className="text-zinc-700 text-[32px] font-bold font-['Inter']">Look into the vast <br />services we <br />provide</div>
@@ -92,6 +94,7 @@ export default function SecondSection() {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

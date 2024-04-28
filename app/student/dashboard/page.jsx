@@ -164,14 +164,14 @@ const Dashboard = () => {
         <div>
 
             {!status && (
-                <>
+                <div className="flex justify-center items-center flex-col w-full ">
                     <Header_Student />
-                    <div className="flex">
+                    <div className="flex justify-center  max-w-[1700px]">
                         <div className="flex-col float-left m-16">
                             <Sidebar />
                         </div>
 
-                        <div className="flex-col float-left m-16 w-1/2 justify-start">
+                        <div className="flex-col float-left my-16 w-1/2 justify-start">
                             {jobs.map((t) => (
 
                                 <Jobcard key={t._id} props={t} applicantWithID={applicantWithID} jobs={jobs} supabaseId={supabaseid} />
@@ -184,7 +184,7 @@ const Dashboard = () => {
                     </div>
 
                     <Footer />
-                </>
+                </div>
             )}
         </div>
     );

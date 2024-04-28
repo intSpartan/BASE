@@ -2,9 +2,9 @@ import Link from "next/link"
 
 export default function Header() {
     return (
-        <div>
-            <div className="w-full fixed z-50 h-[72px] px-20 py-4 bg-white shadow flex-col justify-center items-start gap-2.5 inline-flex">
-                <div className="justify-between items-start gap-[670px] inline-flex">
+      
+            <div className="w-full fixed  z-50 h-[72px] px-20 py-4 bg-white shadow flex justify-center  ">
+                <div className="justify-between relative max-w-[1700px] w-full items-start flex">
                     <svg
                         width="40"
                         height="46"
@@ -18,7 +18,7 @@ export default function Header() {
                             fill="currentColor"
                         />
                     </svg>
-                    <div className="justify-start ml-[100px] items-start gap-4 flex">
+                    <div className="justify-between  ml-[100px]   absolute right-0 items-start gap-4 flex">
                         <div className="w-[83px] p-2.5 bg-white rounded justify-center items-center gap-2.5 flex">
                             <div className="text-center text-neutral-400 text-sm font-medium font-['Inter']">About Us</div>
                         </div>
@@ -39,6 +39,6 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-        </div>
+        
     )
 }
