@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Javascript from '../javascript/page.jsx';
 import Python from '../python/page.jsx';
-import Dart from '../dart/page.jsx';
 
 function CodingPage(props) {
   const [activeComponent, setActiveComponent] = useState(null);

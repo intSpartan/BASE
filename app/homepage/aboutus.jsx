@@ -22,12 +22,12 @@ export default function Aboutus() {
                             <div className="w-[282px] h-[282px] left-0 top-[62px] absolute bg-zinc-300 rounded-full" />
                             <img className="w-[230px] h-[325px] left-[5px] top-0 absolute" src="./withoutBg_2 (2).png" />
                         </div>
-                        <div className="flex-col justify-start items-center gap-4 flex">
+                        <div className="flex-col justify-start items-center  mt-[50px] flex">
                             <div className="flex-col justify-start items-center gap-1.5 flex">
-                                <div className="text-center text-zinc-800 text-xl font-bold font-['Inter']">Puneet Dang</div>
+                                <div className="text-center text-zinc-800 text-xl font-bold font-['Inter'] mt-[10px]">Puneet Dang</div>
                                 <div className="text-center text-black text-[10px] font-normal font-['Inter']">Founder</div>
                             </div>
-                            <div className="w-[519px] text-center text-neutral-500 text-sm font-medium font-['Inter']">Puneet Dang is our visionary founder whose passion and experience drive our operations. As a seasoned entrepreneur with a history of success in the education technology sector, he brings his relentless energy and innovative spirit to our team.  His strength lies in identifying opportunities in challenges and navigating our team through the complex landscape of the ed-tech industry. </div>
+                            <div className="w-[519px] relative top-[20px]  text-center text-neutral-500 text-sm font-medium font-['Inter']">Puneet Dang is our visionary founder whose passion and experience drive our operations. As a seasoned entrepreneur with a history of success in the education technology sector, he brings his relentless energy and innovative spirit to our team.  His strength lies in identifying opportunities in challenges and navigating our team through the complex landscape of the ed-tech industry. </div>
                         </div>
                     </div>
                     <div className="w-[628px] flex-col justify-start items-center gap-3 inline-flex">

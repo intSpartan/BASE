@@ -1,10 +1,10 @@
 import React from 'react'
 import CodingPage from '../HomepageScreen/CodingPage';
-import ImageCod from '../assets/JavaScript frameworks-rafiki.svg'
+// import ImageCod from '../assets/JavaScript frameworks-rafiki.svg'
 import { useState } from 'react';
-import Pycod from '../assets/Man reading-pana.svg'
-import SpeechCod from '../assets/Speech to text-bro.svg'
-import CodJava from '../assets/Coding-bro.svg'
+// import Pycod from '../assets/Man reading-pana.svg'
+// import SpeechCod from '../assets/Speech to text-bro.svg'
+// import CodJava from '../assets/Coding-bro.svg'
 
 function Homepage() {
   const [selectedLanguage, setSelectedLanguage] = useState('');
@@ -34,7 +34,6 @@ return (
                 con="Run JavaScript"
                 info={<>All The <mark className="bg-yellow-200 rounded px-1">Logic</mark> That you need to Learn and Practice <mark className="bg-yellow-200 rounded px-1">JavaScript</mark> will be Accomplished by this <mark className="bg-yellow-200 rounded px-1">Js Text Editor</mark>.</>}
                 path='/javascript'
-                image={ImageCod}
               />
             )}
 
@@ -44,7 +43,6 @@ return (
                 con="Run Python"
                 path="/python"
                 info={<>Leash out All your <mark className="bg-green-200 rounded px-1">Logic and Understanding</mark> with the Easiest Programming Language <mark className="bg-green-200 rounded px-1">Python</mark> in this Super Easy Web IDE</>}
-                image={Pycod}
                 uniId={"uni"}
               />
             )}
@@ -55,7 +53,6 @@ return (
                 path='/dart'
                 con="Run Dart"
                 info={<><mark className="bg-blue-200 rounded px-1">Dart</mark> is a Programming Language <mark className="bg-blue-200 rounded px-1">Developed by Google</mark> and it is used with <mark className="bg-blue-200 rounded px-1">Flutter</mark> to Create Mobile and Web Applications. Embrace your <mark className="bg-blue-200 rounded px-1">Knowledge</mark> with <mark className="bg-blue-200 rounded px-1">Dart Code Editor</mark></>}
-                image={CodJava}
               />
             )}
           </div>

@@ -34,7 +34,7 @@ const Interview = ({ jobId }) => {
           return response.json();
         }));
 
-        setApplicants(applicantsData.filter(applicant => applicant !== null));
+        setApplicants(applicantsData.filter(applicant => applicant.applicants !== null));
       } catch (error) {
         console.error("Error loading topics: ", error);
       }
@@ -128,7 +128,7 @@ const Interview = ({ jobId }) => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {applicants.map(applicant => (
+                    {applicants && applicants.map(applicant => (
                       <tr key={applicant.applicants._id}>
                         <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">{applicant.applicants.name}</td>
                         <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">{applicant.applicants._id}</td>
