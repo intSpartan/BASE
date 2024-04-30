@@ -13,21 +13,21 @@ import OA from "./OA/page";
 import Interview from "./Interview/page";
 import Sidebar from "../components/sidebar";
 import Blog from "../components/blog"
-const getApplicant = async (id) => {
-    try {
-        const res = await fetch(`http://localhost:3000/api/applicants/${id}`, {
-            // method: "GET",
-            cache: "no-store",
-        });
-
-        if (!res.ok) {
-            throw new Error("Failed to fetch topics");
-        }
-        return await res.json();
-    } catch (error) {
-        console.log("Error loading topics: ", error);
-    }
-};
+import { RefreshSharp } from "@mui/icons-material";
+// const getApplicant = async (id) => {
+//     try {
+//         const res = await fetch(`http://localhost:3000/api/applicants/${id}`, {
+//             // method: "GET",
+//             cache: "no-store",
+//         });
+//         // const result = await res.json().applicants;
+//         console.log(await res.json());
+//         setStatus(res.status === 404)
+//         return (await res.json())
+//     } catch (error) {
+//         console.log("Error loading topics: ", error);
+//     }
+// };
 
 const interviewLink = async (id) => {
     try {
@@ -63,13 +63,13 @@ const getAllJobs = async () => {
 
 const Dashboard = () => {
     const state = useGlobalContext();
-    console.log(state);
+    // console.log(state);
     const [renderOA, setRenderOA] = useState(false);
     const handleClick = () => {
         setRenderOA(true);
     };
     const router = useRouter();
-    const [status, setStatus] = useState();
+    const [status, setStatus] = useState(true);
     const [jobs, setJobs] = useState([]);
     const [supabaseid, setSupabaseid] = useState();
     const [applicantWithID, setApplicantWithID] = useState();
@@ -90,23 +90,45 @@ const Dashboard = () => {
                     }
                 })
                 setJobs(newJobs);
+
             }
         });
     }, [])
     useLayoutEffect(() => {
+        const getApplicant = async (id) => {
+            try {
+                const res = await fetch(`http://localhost:3000/api/applicants/${id}`, {
+                    // method: "GET",
+                    cache: "no-store",
+                });
+                const result = await res.json();
+                console.log(result);
+                // console.log(await res.json());
+                setStatus(result.applicants === null)
+                return (result)
+            } catch (error) {
+                console.log("Error loading topics: ", error);
+            }
+        };
         const fetchUser = async () => {
             const {
                 data: { user },
             } = await supabase.auth.getUser();
             if (user) {
                 setSupabaseid(user.id);
+                // console.log(user.id);
+
                 const obj = await getApplicant(user.id);
-                console.log("object", obj);
-                setApplicantWithID(obj ? obj.applicants._id : null);
-                setStatus(!obj || obj.applicants === null);
-                const links = await interviewLink(obj.applicants._id);
-                // Ensure interviewLinks is always an array
-                setInterviewLinks(Array.isArray(links) ? links : []); // Update state with fetched interview links or an empty array
+                // setStatus(obj)
+                // console.log("object", obj);
+                if (!status) {
+                    setApplicantWithID(obj ? obj.applicants._id : null);
+                    setStatus(!obj || obj.applicants === null);
+                    const links = await interviewLink(obj.applicants._id);
+                    // Ensure interviewLinks is always an array
+                    setInterviewLinks(Array.isArray(links) ? links : []); // Update state with fetched interview links or an empty array
+
+                }
             }
         };
         fetchUser();
@@ -162,7 +184,7 @@ const Dashboard = () => {
 
     return (
         <div>
-
+            {status && <ApplicantDetails />}
             {!status && (
                 <div className="flex justify-center items-center flex-col w-full ">
                     <Header_Student />
