@@ -51,8 +51,10 @@ const FormPage = () => {
         setCompId(user.id);
         const comp = await getCompany(user.id);
         // console.log(comp);
-        setCompanyName(comp.company.companyName)
-        console.log(comp.company.companyName);
+        if (comp != undefined) {
+          setCompanyName(comp.company.companyName)
+          console.log(comp.company.companyName);
+        }
         // console.log(companyName);
         setStatus(comp == null);
         setLoading(!loading);
@@ -132,8 +134,6 @@ const FormPage = () => {
   if (loading) {
     return <Preloader />;
   }
-
-  if (!status) {
     return (
       <div className="bg-gray-300">
         <div className='max-w-7xl mx-auto '>
@@ -402,9 +402,6 @@ const FormPage = () => {
 
       </div >
     );
-  } else {
-    return <CompanyForm companyId={companyid} />;
-  }
 };
 
 export default FormPage;

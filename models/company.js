@@ -11,15 +11,15 @@ const companySchema = new Schema({
     },
     linkedin: {
         type: String,
-        required: true,
+        // required: true,
     },
     website: {
         type: String,
-        required: true,
+        // required: true,
     },
     description: {
         type: String,
-        required: true,
+        // required: true,
     },
     logo: {
         type: String,

@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import supabase from "../authCompany";
 import { useRouter } from "next/navigation";
+import CompanyForm from "../components/CompanyForm";
 
 const NextPage = () => {
   const router = useRouter();
@@ -12,7 +13,7 @@ const NextPage = () => {
         data: { user },
       } = await supabase.auth.getUser();
       if (!user) {
-        router.push("/");
+        router.push("/auth");
       } else {
         router.push("/company/dashboard");
       }

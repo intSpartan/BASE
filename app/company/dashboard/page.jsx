@@ -1,5 +1,6 @@
 "use client";
 
+import CompanyForm from "@/app/components/CompanyForm";
 import supabase from "../../authCompany";
 import ClosedJobsList from "../closedjobs/page";
 import JobList from "../joblist/page";
@@ -10,6 +11,24 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
 
+
+
+const getCompany = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/company/${id}`, {
+      // method: "GET",
+      cache: "no-store",
+    });
+
+    console.log(await res.json());
+
+    return (res.status == 404);
+  } catch (error) {
+    console.log("Error loading topics: ", error);
+  }
+};
+
+
 const Dashboard = () => {
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -18,9 +37,10 @@ const Dashboard = () => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const companyID = searchParams.get("id");
 
-  const [selectedOption, setSelectedOption] = useState("2");
+  const [selectedOption, setSelectedOption] = useState("1");
+  const [status, setStatus] = useState();
+  const [object, setObject] = useState();
 
   const renderSelectedComponent = () => {
     switch (selectedOption) {
@@ -35,35 +55,57 @@ const Dashboard = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) {
+        router.push("/auth");
+      } else {
+
+        const obj = await getCompany(user.id);
+        setStatus(obj)
+
+      }
+    };
+    fetchUser();
+  }, []);
+
+  useEffect(() => {
+    
+  }, [status])
+
   return (
     <div>
-      <Header_Company />
-      <nav class="bg-neutral-200 p-4">
-        <div class="flex justify-between items-center">
-          <div class="flex w-full space-x-4">
-            <button
-              class="w-full text-black focus:outline-none border-r-4 border-black"
-              onClick={() => setSelectedOption("1")}
-            >
-              Add a Job
-            </button>
-            <button
-              class="w-full text-black focus:outline-none border-r-4 border-black"
-              onClick={() => setSelectedOption("2")}
-            >
-              Active Jobs
-            </button>
-            <button
-              class="w-full text-black focus:outline-none"
-              onClick={() => setSelectedOption("3")}
-            >
-              Closed Jobs
-            </button>
+      {status && <CompanyForm />}
+      {!status && <div> <Header_Company />
+        <nav class="bg-neutral-200 p-4">
+          <div class="flex justify-between items-center">
+            <div class="flex w-full space-x-4">
+              <button
+                class="w-full text-black focus:outline-none border-r-4 border-black"
+                onClick={() => setSelectedOption("1")}
+              >
+                Add a Job
+              </button>
+              <button
+                class="w-full text-black focus:outline-none border-r-4 border-black"
+                onClick={() => setSelectedOption("2")}
+              >
+                Active Jobs
+              </button>
+              <button
+                class="w-full text-black focus:outline-none"
+                onClick={() => setSelectedOption("3")}
+              >
+                Closed Jobs
+              </button>
+            </div>
           </div>
-        </div>
-      </nav>
-      <div>{renderSelectedComponent()}</div>
-      <Footer />
+        </nav>
+        <div>{renderSelectedComponent()}</div>
+        <Footer /> </div>}
     </div>
   );
 };

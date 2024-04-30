@@ -1,9 +1,32 @@
 import React from "react";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import Footer from "./Footer";
+import Header from "../homepage/header";
+import { useGlobalContext } from "@/app/GlobalContext";
 
 const CompanyForm = (companyId) => {
+
+  const [linkedin, setLinkedin] = useState("");
+  const [description, setDescription] = useState("");
+  const [jobType, setJobType] = useState("");
+  const [role, setRole] = useState("");
+  const [stipendSalary, setStipendSalary] = useState("");
+  const [locations, setLocations] = useState("");
+  const [jobDescription, setJobDescription] = useState("");
+  const [skillsRequired, setSkillsRequired] = useState("");
+  const [eduQualifications, setEduQualifications] = useState("");
+  const [experienceRequired, setExperienceRequired] = useState("");
+  const [startingDate, setStartingDate] = useState("");
+  const [endingDate, setEndingDate] = useState("");
+  const [graduationYear, setGraduationYear] = useState("");
+  const [status, setStatus] = useState();
+  const [loading, setLoading] = useState(true);
+  const [companyid, setCompId] = useState(null);
+  const [companyName, setCompanyName] = useState();
   const router = useRouter();
 
+  const state = useGlobalContext();
   const [formData, setFormData] = React.useState({
     CompanyName: "",
     linkedin: "",
@@ -33,12 +56,14 @@ const CompanyForm = (companyId) => {
 
     try {
       const obj2 = {
-        companyId: companyId.companyId,
+        companyId: state.state.entity_id,
         companyName: formData.CompanyName,
-        description: formData.description,
+        description: jobDescription,
         linkedin: formData.linkedin,
         website: formData.website,
       };
+
+      // console.log(obj2);
 
       await fetch("http://localhost:3000/api/company", {
         method: "POST",
@@ -48,81 +73,84 @@ const CompanyForm = (companyId) => {
         body: JSON.stringify(obj2),
       });
       alert("Details added");
-      router.push("/company/dashboard");
+      location.reload();
     } catch (e) {
       console.log(e);
     }
   };
 
+
+
+
   return (
     <div>
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="CompanyName">
-        Company name:
-        <input
-          type="text"
-          onChange={handleChange}
-          name="CompanyName"
-          required
-        />
-      </label>
-      <br />
-      <label>
-        LinkedIn Link:
-        <input type="text" onChange={handleChange} name="linkedin" required />
-      </label>
-      <br />
-      <label>
-        Website Link:
-        <input type="text" onChange={handleChange} name="website" required />
-      </label>
-      <br />
-      <label>
-        Description:
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Logo Image:
-        <input type="file" accept="image/*" onChange={handlelogoChange} />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-      </form>
+      <Header />
+      {/* <form onSubmit={handleSubmit}>
+        <label htmlFor="CompanyName">
+          Company name:
+          <input
+            type="text"
+            onChange={handleChange}
+            name="CompanyName"
+            required
+          />
+        </label>
+        <br />
+        <label>
+          LinkedIn Link:
+          <input type="text" onChange={handleChange} name="linkedin" required />
+        </label>
+        <br />
+        <label>
+          Website Link:
+          <input type="text" onChange={handleChange} name="website" required />
+        </label>
+        <br />
+        <label>
+          Description:
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Logo Image:
+          <input type="file" accept="image/*" onChange={handlelogoChange} />
+        </label>
+        <br />
+        <button type="submit">Submit</button>
+      </form> */}
+
+
+
       <div className="bg-gray-300">
-        <div className='max-w-7xl mx-auto '>
+        <div className='max-w-7xl mx-auto'>
           <div className="md:grid md:grid-cols-3 md:gap-6">
-            <div className="md:col-span-1">
+            <div className="md:col-span-1 mt-[100px]">
               <div className="px-4 sm:px-0">
-                <h3 className="text-lg mx-7 mt-7 font-medium leading-6 text-gray-900">Job Profile</h3>
+                <h3 className="text-lg mx-7 mt-7 font-medium leading-6 text-gray-900">Company Profile</h3>
                 <p className="mt-1 mx-7 text-sm text-gray-600">
                   This information will be displayed publicly to all the applicants
                 </p>
               </div>
             </div>
-            <div className="mt-5 mr-5 md:col-span-2">
+            <div className="mt-5 mr-5 md:col-span-2 mt-[100px]">
               <form onSubmit={handleSubmit}>
                 <div className="shadow-md rounded-t-md sm:overflow-hidden">
                   <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 
                     <div>
                       <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
-                        Title
+                        Company name
                       </label>
                       <div className='mt-1 grid grid-cols-2 gap-6'>
-                        <input
+                        <input className="inline-flex items-center px-3 rounded-md border border-gray-300 text-gray-500 text-sm w-full"
                           type="text"
-                          id='firstName'
-                          name="firstName"
-                          placeholder='First Name'
-                          className="inline-flex items-center px-3 rounded-md border border-gray-300 text-gray-500 text-sm w-full"
-                          value={title}
-                          onChange={(e) => setTitle(e.target.value)}
+                          onChange={handleChange}
+                          name="CompanyName"
                           required
                         />
                       </div>
@@ -131,7 +159,7 @@ const CompanyForm = (companyId) => {
                     <div className="mt-1 grid grid-cols-2 gap-6">
                       <div className='mb-2 max-w-full sm:col-span-1'>
                         <label htmlFor="jobType" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
-                          Job Type
+                          Company Type
                         </label>
                         <select
                           id="jobType"
@@ -142,13 +170,13 @@ const CompanyForm = (companyId) => {
                           required
                         >
                           <option value="" selected disabled hidden>Choose here</option>
-                          <option>Intern</option>
-                          <option>Full Time</option>
+                          <option>Indian</option>
+                          <option>International</option>
                         </select>
                       </div>
                       <div className='mb-2 max-w-full sm:col-span-1'>
                         <label htmlFor="role" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
-                          Role
+                          job Roles Offered
                         </label>
                         <select
                           id="role"
@@ -167,21 +195,7 @@ const CompanyForm = (companyId) => {
                         </select>
                       </div>
 
-                      <div className='mb-2 max-w-full sm:col-span-1'>
-                        <label htmlFor="stipendSalary" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
-                          Stipend / Salary
-                        </label>
-                        <input
-                          type="text"
-                          id="stipendSalary"
-                          name="stipendSalary"
-                          placeholder="100000 rupees"
-                          className="mt-1 inline-flex items-center px-3 rounded-md border border-gray-300 text-gray-500 text-sm w-full"
-                          value={stipendSalary}
-                          onChange={(e) => setStipendSalary(e.target.value)}
-                          required
-                        />
-                      </div>
+
                     </div>
 
                     <div className="grid grid-cols-3 gap-6">
@@ -206,7 +220,7 @@ const CompanyForm = (companyId) => {
 
                     <div>
                       <label htmlFor="jobDescription" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
-                        Job Description
+                        Description
                       </label>
                       <div className="mt-1">
                         <textarea
@@ -219,41 +233,18 @@ const CompanyForm = (companyId) => {
                           required
                         />
                       </div>
-                      <p className="mt-2 text-sm text-gray-500">
-                        Brief description for your profile. Do list your achievements here.
-                      </p>
                     </div>
-
                     <div>
-                      <label htmlFor="skillsRequired" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
-                        Skills Required
+                      <label htmlFor="jobDescription" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
+                        Goals and Ambitions
                       </label>
                       <div className="mt-1">
                         <textarea
-                          id="skillsRequired"
-                          name="skillsRequired"
-                          rows={4}
+                          id="jobDescription"
+                          name="jobDescription"
+                          rows={5}
                           className="placeholder-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                          placeholder={`Javascript\nAWS\nLinux\n...`}
-                          value={skillsRequired}
-                          onChange={(e) => setSkillsRequired(e.target.value)}
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="eduQualifications" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
-                        Educational Qualifications Required
-                      </label>
-                      <div className="mt-1">
-                        <textarea
-                          id="eduQualifications"
-                          name="eduQualifications"
-                          rows={4}
-                          className="placeholder-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                          placeholder={`Javascript\nAWS\nLinux\n...`}
-                          value={eduQualifications}
-                          onChange={(e) => setEduQualifications(e.target.value)}
+                          onChange={handleChange}
                           required
                         />
                       </div>
@@ -262,59 +253,44 @@ const CompanyForm = (companyId) => {
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-3 sm:col-span-2">
                         <label htmlFor="experienceRequired" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
-                          Experience Required ( in years )
+                          Linkedin Profile
+                        </label>
+                        <div className='mt-1 grid grid-cols-2 gap-6'>
+                          <input
+                            type="text"
+                            id='firstName'
+                            name="firstName"
+                            className="inline-flex items-center px-3 rounded-md border border-gray-300 text-gray-500 text-sm w-full"
+                            value={linkedin}
+                            onChange={(e) => setLinkedin(e.target.value)}
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-6">
+                      <div className="col-span-3 sm:col-span-2">
+                        <label htmlFor="experienceRequired" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
+                          Company Website
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
                           <input
                             name="experienceRequired"
                             id="experienceRequired"
-                            className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-1 rounded-none rounded-r-md sm:text-sm border-gray-700"
-                            value={experienceRequired}
-                            onChange={(e) => setExperienceRequired(e.target.value)}
+                            className="inline-flex items-center px-3 rounded-md border border-gray-300 text-gray-500 text-sm w-full"
+                            // value={experienceRequired}
+                            onChange={handleChange}
                             required
                           />
                         </div>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-6">
-                      <div className="col-span-3 sm:col-span-2">
-                        <label htmlFor="startingDate" className="block text-sm font-medium text-gray-700">
-                          Starting Date
-                        </label>
-                        <div className="mt-1 flex rounded-md shadow-sm">
-                          <input
-                            type="date"
-                            name="startingDate"
-                            id="startingDate"
-                            className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300"
-                            value={startingDate}
-                            onChange={(e) => setStartingDate(e.target.value)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-3 gap-6">
-                      <div className="col-span-3 sm:col-span-2">
-                        <label htmlFor="endingDate" className="block text-sm font-medium text-gray-700">
-                          Ending Date
-                        </label>
-                        <div className="mt-1 flex rounded-md shadow-sm">
-                          <input
-                            type="date"
-                            name="endingDate"
-                            id="endingDate"
-                            className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 rounded-md sm:text-sm border-gray-300"
-                            value={endingDate}
-                            onChange={(e) => setEndingDate(e.target.value)}
-                          />
-                        </div>
-                      </div>
-                    </div>
+
 
                     <div className='col-span-6 mt-5 mx-1 mb-2 max-w-full sm:col-span-3'>
                       <label htmlFor="graduationYear" className="block text-sm font-medium text-gray-700">
-                        Year of Graduation Required
+                        Foundation Year
                       </label>
                       <select
                         id="graduationYear"
@@ -335,14 +311,29 @@ const CompanyForm = (companyId) => {
                         <option>2013</option>
                       </select>
                     </div>
+
+                    <div className="grid grid-cols-3 gap-6">
+                      <div className="col-span-3 sm:col-span-2">
+                        <label htmlFor="experienceRequired" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
+
+                          <label>
+                            Logo Image:
+                            <input type="file" accept="image/*" onChange={handlelogoChange} />
+                          </label>
+                        </label>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
+
+
                 <div className="px-4 py-5 bg-gray-50 border rounded-b-xl text-right sm:px-6">
                   {<button
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
-                    Save
+                    Submit
                   </button>}
 
                 </div>
@@ -360,6 +351,8 @@ const CompanyForm = (companyId) => {
         {/* <Toaster /> */}
 
       </div >
+      <Footer />
+
     </div>
   );
 };

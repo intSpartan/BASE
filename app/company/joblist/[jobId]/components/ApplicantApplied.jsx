@@ -40,7 +40,7 @@ const ApplicantApplied = ({ ...props }) => {
         }
 
         const job = await res.json();
-        const applicantsData = [];
+        let applicantsData = [];
 
         for (const id of job.job.applicantsApplied) {
           const response = await fetch(
@@ -56,6 +56,7 @@ const ApplicantApplied = ({ ...props }) => {
           const applicant = await response.json();
           applicantsData.push(applicant);
         }
+        applicantsData = applicantsData.filter((applicant) => applicant.applicants != null);
         setApplicants(applicantsData);
         console.log(applicantsData);
       } catch (error) {

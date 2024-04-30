@@ -17,12 +17,12 @@ export async function POST(request) {
       logo
     );
 
-    if (!companyName || !description || !linkedin || !website) {
-      return NextResponse.json(
-        { message: "Missing required fields in the request" },
-        { status: 400 }
-      );
-    }
+    // if (!companyName || !description || !linkedin || !website) {
+    //   return NextResponse.json(
+    //     { message: "Missing required fields in the request" },
+    //     { status: 400 }
+    //   );
+    // }
 
     await connectMongoDBI();
 
