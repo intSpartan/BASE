@@ -22,7 +22,7 @@ const getCompany = async (id) => {
 
     console.log(await res.json());
 
-    return (res.status == 404);
+    return (res.status === 404);
   } catch (error) {
     console.log("Error loading topics: ", error);
   }
@@ -63,18 +63,18 @@ const Dashboard = () => {
       if (!user) {
         router.push("/auth");
       } else {
-
         const obj = await getCompany(user.id);
         setStatus(obj)
 
       }
     };
     fetchUser();
+    console.log(status);
   }, []);
 
-  useEffect(() => {
-    
+  useEffect(() => {    
   }, [status])
+
 
   return (
     <div>

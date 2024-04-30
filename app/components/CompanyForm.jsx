@@ -1,12 +1,12 @@
-import React from "react";
-import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import Footer from "./Footer";
+import supabase from "../authCompany";
 import Header from "../homepage/header";
+import Footer from "./Footer";
 import { useGlobalContext } from "@/app/GlobalContext";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { useState, useEffect } from "react";
 
 const CompanyForm = (companyId) => {
-
   const [linkedin, setLinkedin] = useState("");
   const [description, setDescription] = useState("");
   const [jobType, setJobType] = useState("");
@@ -55,15 +55,16 @@ const CompanyForm = (companyId) => {
     e.preventDefault();
 
     try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       const obj2 = {
-        companyId: state.state.entity_id,
+        companyId: user.id,
         companyName: formData.CompanyName,
         description: jobDescription,
         linkedin: formData.linkedin,
         website: formData.website,
       };
-
-      // console.log(obj2);
 
       await fetch("http://localhost:3000/api/company", {
         method: "POST",
@@ -79,61 +80,20 @@ const CompanyForm = (companyId) => {
     }
   };
 
-
-
-
   return (
     <div>
       <Header />
-      {/* <form onSubmit={handleSubmit}>
-        <label htmlFor="CompanyName">
-          Company name:
-          <input
-            type="text"
-            onChange={handleChange}
-            name="CompanyName"
-            required
-          />
-        </label>
-        <br />
-        <label>
-          LinkedIn Link:
-          <input type="text" onChange={handleChange} name="linkedin" required />
-        </label>
-        <br />
-        <label>
-          Website Link:
-          <input type="text" onChange={handleChange} name="website" required />
-        </label>
-        <br />
-        <label>
-          Description:
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Logo Image:
-          <input type="file" accept="image/*" onChange={handlelogoChange} />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form> */}
-
-
-
       <div className="bg-gray-300">
-        <div className='max-w-7xl mx-auto'>
+        <div className="max-w-7xl mx-auto">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1 mt-[100px]">
               <div className="px-4 sm:px-0">
-                <h3 className="text-lg mx-7 mt-7 font-medium leading-6 text-gray-900">Company Profile</h3>
+                <h3 className="text-lg mx-7 mt-7 font-medium leading-6 text-gray-900">
+                  Company Profile
+                </h3>
                 <p className="mt-1 mx-7 text-sm text-gray-600">
-                  This information will be displayed publicly to all the applicants
+                  This information will be displayed publicly to all the
+                  applicants
                 </p>
               </div>
             </div>
@@ -141,13 +101,16 @@ const CompanyForm = (companyId) => {
               <form onSubmit={handleSubmit}>
                 <div className="shadow-md rounded-t-md sm:overflow-hidden">
                   <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
+                      <label
+                        htmlFor="firstName"
+                        className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500"
+                      >
                         Company name
                       </label>
-                      <div className='mt-1 grid grid-cols-2 gap-6'>
-                        <input className="inline-flex items-center px-3 rounded-md border border-gray-300 text-gray-500 text-sm w-full"
+                      <div className="mt-1 grid grid-cols-2 gap-6">
+                        <input
+                          className="inline-flex items-center px-3 rounded-md border border-gray-300 text-gray-500 text-sm w-full"
                           type="text"
                           onChange={handleChange}
                           name="CompanyName"
@@ -157,8 +120,11 @@ const CompanyForm = (companyId) => {
                     </div>
 
                     <div className="mt-1 grid grid-cols-2 gap-6">
-                      <div className='mb-2 max-w-full sm:col-span-1'>
-                        <label htmlFor="jobType" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
+                      <div className="mb-2 max-w-full sm:col-span-1">
+                        <label
+                          htmlFor="jobType"
+                          className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500"
+                        >
                           Company Type
                         </label>
                         <select
@@ -169,13 +135,18 @@ const CompanyForm = (companyId) => {
                           onChange={(e) => setJobType(e.target.value)}
                           required
                         >
-                          <option value="" selected disabled hidden>Choose here</option>
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
                           <option>Indian</option>
                           <option>International</option>
                         </select>
                       </div>
-                      <div className='mb-2 max-w-full sm:col-span-1'>
-                        <label htmlFor="role" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
+                      <div className="mb-2 max-w-full sm:col-span-1">
+                        <label
+                          htmlFor="role"
+                          className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500"
+                        >
                           job Roles Offered
                         </label>
                         <select
@@ -186,7 +157,9 @@ const CompanyForm = (companyId) => {
                           onChange={(e) => setRole(e.target.value)}
                           required
                         >
-                          <option value="" selected disabled hidden>Choose here</option>
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
                           <option>SDE</option>
                           <option>Data Scientist</option>
                           <option>Security Engineer</option>
@@ -194,13 +167,14 @@ const CompanyForm = (companyId) => {
                           <option>Cloud Engineer</option>
                         </select>
                       </div>
-
-
                     </div>
 
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-3 sm:col-span-2 w-full">
-                        <label htmlFor="locations" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
+                        <label
+                          htmlFor="locations"
+                          className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500"
+                        >
                           Locations
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -219,7 +193,10 @@ const CompanyForm = (companyId) => {
                     </div>
 
                     <div>
-                      <label htmlFor="jobDescription" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
+                      <label
+                        htmlFor="jobDescription"
+                        className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500"
+                      >
                         Description
                       </label>
                       <div className="mt-1">
@@ -235,7 +212,10 @@ const CompanyForm = (companyId) => {
                       </div>
                     </div>
                     <div>
-                      <label htmlFor="jobDescription" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
+                      <label
+                        htmlFor="jobDescription"
+                        className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500"
+                      >
                         Goals and Ambitions
                       </label>
                       <div className="mt-1">
@@ -252,13 +232,16 @@ const CompanyForm = (companyId) => {
 
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-3 sm:col-span-2">
-                        <label htmlFor="experienceRequired" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
+                        <label
+                          htmlFor="experienceRequired"
+                          className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500"
+                        >
                           Linkedin Profile
                         </label>
-                        <div className='mt-1 grid grid-cols-2 gap-6'>
+                        <div className="mt-1 grid grid-cols-2 gap-6">
                           <input
                             type="text"
-                            id='firstName'
+                            id="firstName"
                             name="firstName"
                             className="inline-flex items-center px-3 rounded-md border border-gray-300 text-gray-500 text-sm w-full"
                             value={linkedin}
@@ -270,7 +253,10 @@ const CompanyForm = (companyId) => {
                     </div>
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-3 sm:col-span-2">
-                        <label htmlFor="experienceRequired" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
+                        <label
+                          htmlFor="experienceRequired"
+                          className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500"
+                        >
                           Company Website
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -286,10 +272,11 @@ const CompanyForm = (companyId) => {
                       </div>
                     </div>
 
-
-
-                    <div className='col-span-6 mt-5 mx-1 mb-2 max-w-full sm:col-span-3'>
-                      <label htmlFor="graduationYear" className="block text-sm font-medium text-gray-700">
+                    <div className="col-span-6 mt-5 mx-1 mb-2 max-w-full sm:col-span-3">
+                      <label
+                        htmlFor="graduationYear"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         Foundation Year
                       </label>
                       <select
@@ -314,34 +301,38 @@ const CompanyForm = (companyId) => {
 
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-3 sm:col-span-2">
-                        <label htmlFor="experienceRequired" className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500">
-
+                        <label
+                          htmlFor="experienceRequired"
+                          className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500"
+                        >
                           <label>
                             Logo Image:
-                            <input type="file" accept="image/*" onChange={handlelogoChange} />
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={handlelogoChange}
+                            />
                           </label>
                         </label>
                       </div>
                     </div>
-
                   </div>
                 </div>
 
-
                 <div className="px-4 py-5 bg-gray-50 border rounded-b-xl text-right sm:px-6">
-                  {<button
-                    type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Submit
-                  </button>}
-
+                  {
+                    <button
+                      type="submit"
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Submit
+                    </button>
+                  }
                 </div>
-
               </form>
             </div>
           </div>
-        </div >
+        </div>
 
         <div className="hidden sm:block" aria-hidden="true">
           <div className="py-5">
@@ -349,10 +340,8 @@ const CompanyForm = (companyId) => {
           </div>
         </div>
         {/* <Toaster /> */}
-
-      </div >
+      </div>
       <Footer />
-
     </div>
   );
 };
