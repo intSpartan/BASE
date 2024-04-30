@@ -5,12 +5,31 @@ import { useTable, useSortBy } from 'react-table';
 import { v1 as uuid } from "uuid";
 import { ArrowRight } from 'lucide-react';
 
+
+const updateFinalSelects = async (applicant_id, jobId) => {
+  const res_jobs = await fetch(
+    `http://localhost:3000/api/jobs/${jobId}/FinalSelects`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ candidate_id: applicant_id }),
+    }
+  );
+};
 const Interview = ({ jobId }) => {
   const router = useRouter();
   const [applicants, setApplicants] = useState([]);
   const [interviewLinks, setInterviewLinks] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [sortDirection, setSortDirection] = useState('asc');
+
+
+  const handleApplication = async (applicant_id) => {
+    const res = await updateFinalSelects(applicant_id, jobId);
+    alert("Candidate Shortlisted");
+  };
 
   useEffect(() => {
     const getApplicant = async () => {
@@ -158,6 +177,16 @@ const Interview = ({ jobId }) => {
                               <ArrowRight className="ml-2 h-4 w-4" />
                             </button>
                           )}
+                        </td>
+                        <td>
+                          <button onClick={() =>
+                            handleApplication(
+                              applicant.applicants.loginid
+                            )
+                          } className="m-1 inline-flex items-center rounded-md bg-blue-500 hover:bg-blue-600 px-3 py-2 text-sm font-semibold text-white">
+                            Final Select
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </button>
                         </td>
                       </tr>
                     ))}

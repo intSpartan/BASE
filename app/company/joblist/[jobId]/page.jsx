@@ -6,6 +6,7 @@ import Interview from "./components/Interview";
 import OA_Scores from "./components/OA_Scores";
 import OA_company from "./components/OA_company";
 import Sidebar from "./components/Sidebar";
+import FinalSelects from "./components/FinalSelects"
 import { cache, useEffect, useState } from "react";
 
 const TopBarComponent = ({ params }) => {
@@ -23,6 +24,8 @@ const TopBarComponent = ({ params }) => {
         return <Interview jobId={params.jobId} />;
       case "5":
         return <OA_Scores jobId={params.jobId} />;
+      case "6":
+        return <FinalSelects jobId={params.jobId} />;
       default:
         return null;
     }

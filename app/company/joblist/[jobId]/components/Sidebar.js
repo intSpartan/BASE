@@ -5,6 +5,7 @@ import OA_Scores from "./OA_Scores";
 import OA_company from "./OA_company";
 import Footer from "@/app/components/Footer";
 import Header_Company from "@/app/components/Header_Company";
+import FinalSelects from "./FinalSelects"
 import {
   BarChart,
   Wallet,
@@ -33,6 +34,8 @@ const Sidebar = (props) => {
         return <Interview jobId={props.jobId} />;
       case "5":
         return <OA_Scores jobId={props.jobId} />;
+      case "6":
+        return <FinalSelects jobId={props.jobId} />;
       default:
         return null;
     }

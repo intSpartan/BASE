@@ -26,6 +26,7 @@ const jobsSchema = new Schema(
         mcqs: Number,
         coding_questions: Number,
         OA_candidates: { type: [String], default: [] },
+        Final_Selects: { type: [String], default: [] },
         OA_scores: [
             {
                 candidate_id: {
