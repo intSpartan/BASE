@@ -25,6 +25,7 @@ const Interview = ({ jobId }) => {
         const interviewData = await interviewRes.json();
         setInterviewLinks(interviewData || {});
 
+        console.log(job.job.applicantsInterviewShortlist)
         const applicantsData = await Promise.all(job.job.applicantsInterviewShortlist.map(async id => {
           const response = await fetch(`http://localhost:3000/api/applicants/${id}`, { cache: "no-store" });
           if (!response.ok) {
@@ -46,6 +47,7 @@ const Interview = ({ jobId }) => {
 
   const handleSendInterview = async (applicantId) => {
     const meetingLink = `/room/${uuid()}`;
+    const docLink = `/editor/${uuid()}`;
     try {
       const res = await fetch(`/api/interview/job/${jobId}`, {
         method: "PUT",
@@ -54,7 +56,7 @@ const Interview = ({ jobId }) => {
         },
         body: JSON.stringify({
           applicantID: applicantId,
-          link: meetingLink,
+          link: [meetingLink, docLink],
         }),
       });
 
@@ -137,8 +139,12 @@ const Interview = ({ jobId }) => {
                         <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
                           {interviewLinks[applicant.applicants._id] ? (
                             <>
-                              <button onClick={() => window.open(interviewLinks[applicant.applicants._id])} className="m-1 inline-flex items-center rounded-md bg-blue-500 hover:bg-blue-600 px-3 py-2 text-sm font-semibold text-white">
+                              <button onClick={() => window.open(interviewLinks[applicant.applicants._id][0])} className="m-1 inline-flex items-center rounded-md bg-blue-500 hover:bg-blue-600 px-3 py-2 text-sm font-semibold text-white">
                                 Attend Interview
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                              </button>
+                              <button onClick={() => window.open(interviewLinks[applicant.applicants._id][1])} className="m-1 inline-flex items-center rounded-md bg-blue-500 hover:bg-blue-600 px-3 py-2 text-sm font-semibold text-white">
+                                Open doc link
                                 <ArrowRight className="ml-2 h-4 w-4" />
                               </button>
                               <button onClick={() => { handleUnsendInterview(applicant.applicants._id) }} className="m-1 inline-flex items-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-white">
