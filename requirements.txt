@@ -4,7 +4,7 @@ MarkupSafe==1.1.1
 Jinja2==2.11.2
 itsdangerous==1.1.0
 Werkzeug==1.0.1
-fitz==0.0.1.dev2
+fitz
 frontend==0.0.3
 pymupdf
 tools

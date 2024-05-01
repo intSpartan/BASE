@@ -77,7 +77,7 @@ def score_resume():
         text = extract_text_from_pdf(url)
 
         headers = {
-            'Authorization': f'Bearer sk-proj-NHjsnqqqxfA65dCAF4hyT3BlbkFJ7RfpuQIyI04sVCLkwgkL',
+            'Authorization': f'Bearer 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',
             'Content-Type': 'application/json'
         }
 

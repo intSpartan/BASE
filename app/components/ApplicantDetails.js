@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
 import supabase from "../authCompany";
-import { useRouter } from "next/navigation";
 import Header from "../homepage/header";
 import Footer from "./Footer";
+import FileUpload from "./resume/page";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function ApplicantDetails() {
   const [name, setName] = useState("");
@@ -39,7 +40,7 @@ export default function ApplicantDetails() {
         },
         body: JSON.stringify({ name, college, company, cgpa, loginid }),
       });
-      alert("Profile Created")
+      alert("Profile Created");
       window.location.reload();
     } catch (e) {
       console.log(e);
@@ -64,7 +65,7 @@ export default function ApplicantDetails() {
                 </p>
               </div>
             </div>
-            <div className="mt-5 mr-5 md:col-span-2 mt-[100px]">
+            <div className="mr-5 md:col-span-2 mt-[100px]">
               <form onSubmit={handleSubmit}>
                 <div className="shadow-md rounded-t-md sm:overflow-hidden">
                   <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
@@ -167,7 +168,7 @@ export default function ApplicantDetails() {
                           name="jobDescription"
                           rows={5}
                           className="placeholder-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                          // onChange={handleChange}
+                          // onChange={handleChange}magnet:?xt=urn:btih:E598BCB5FE3D2C096085E0C066AE01AA75893DF3&dn=The.Night.Manager.India.S01.Complete.1080p.10Bit.WEBRip.DDP5.1.x265-HODL&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Fpublic.popcorn-tracker.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce
                           required
                         />
                       </div>
@@ -216,24 +217,7 @@ export default function ApplicantDetails() {
                       </div>
                     </div>
                     <div className="grid grid-cols-3 gap-6">
-                      <div className="col-span-3 sm:col-span-2">
-                        <label
-                          htmlFor="experienceRequired"
-                          className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-1 after:text-pink-500"
-                        >
-                          CGPA
-                        </label>
-                        <div className="mt-1 flex rounded-md shadow-sm">
-                          <input
-                            name="experienceRequired"
-                            id="experienceRequired"
-                            className="inline-flex items-center px-3 rounded-md border border-gray-300 text-gray-500 text-sm w-full"
-                            value={cgpa}
-                            onChange={(e) => setCGPA(e.target.value)}
-                            required
-                          />
-                        </div>
-                      </div>
+                      <FileUpload />
                     </div>
 
                     <div className="col-span-6 mt-5 mx-1 mb-2 max-w-full sm:col-span-3">
@@ -248,8 +232,8 @@ export default function ApplicantDetails() {
                         name="graduationYear"
                         autoComplete="year-name"
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                      // value={graduationYear}
-                      // onChange={(e) => setGraduationYear(e.target.value)}
+                        // value={graduationYear}
+                        // onChange={(e) => setGraduationYear(e.target.value)}
                       >
                         <option>2021</option>
                         <option>2020</option>
