@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TimePickerModal from "../components/TimePickerModal";
 
 import {
   Card,
@@ -9,10 +10,18 @@ import {
 } from "@material-tailwind/react";
 
 
-
 const OA_creater = (props) => {
   const [mcq, setMcq] = useState(5);
   const [codingquestions, setCodingQuestions] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   const handlemcq = (e) => {
     setMcq(parseInt(e.target.value, 10));
@@ -22,7 +31,7 @@ const OA_creater = (props) => {
     setCodingQuestions(parseInt(e.target.value, 10));
   };
 
-  const handleOA = async () => {
+  const handleOA = async (time) => {
     const res = await fetch(
       `http://localhost:3000/api/jobs/${props.jobId}/OA`,
       {
@@ -30,7 +39,7 @@ const OA_creater = (props) => {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ mcqs: mcq, coding_questions: codingquestions }),
+        body: JSON.stringify({ mcqs: mcq, coding_questions: codingquestions,time: new Date(time).getTime()}),
       }
     );
     alert("OA Created");
@@ -94,15 +103,20 @@ const OA_creater = (props) => {
                   className="flex items-center font-normal"
                 >
                   I confirm the questions
-  
+
                 </Typography>
               }
               containerProps={{ className: "-ml-2.5" }}
             />
-            <Button className="mt-6 bg-neutral-950" fullWidth onClick={handleOA}>
+            <Button className="mt-6 bg-neutral-950" fullWidth onClick={handleOpenModal}>
               Submit
             </Button>
           </form>
+          <TimePickerModal
+            isOpen={isModalOpen}
+            onRequestClose={handleCloseModal}
+            onSubmit={handleOA}
+          />
         </Card>
       </div>
     </div>

@@ -17,7 +17,7 @@ export async function PUT(req, { params, body }) {
     const data = await req.json();
     await Job.findOneAndUpdate(
       { _id: params.id },
-      { $set: { mcqs: data.mcqs, coding_questions: data.coding_questions } },
+      { $set: { mcqs: data.mcqs, coding_questions: data.coding_questions, time: data.time } },
       { new: true }
     );
     return NextResponse.json({ data });
