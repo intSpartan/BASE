@@ -18,7 +18,7 @@ const CompanyProfile = () => {
     const router = useRouter();
 
     const company = {
-        name: "ABC Technologies",
+        name: "AbhiTech",
         industry: "Technology",
         description:
             "Welcome to our IT company, where innovation meets expertise to redefine the boundaries of technology. Founded on a passion for excellence and a drive for continuous improvement, we have emerged as a trusted leader in the ever-evolving landscape of digital solutions. Our journey is fueled by a team of dedicated professionals who bring together diverse skills and perspectives to deliver cutting-edge products and services tailored to meet the unique needs of our clients. With a relentless focus on quality, integrity, and customer satisfaction, we have earned a reputation for excellence and reliability in everything we do. At our core, we are more than just a technology company; we are partners in your success, committed to empowering businesses to thrive in the digital age and beyond. Join us as we embark on this exciting journey of innovation and transformation.",

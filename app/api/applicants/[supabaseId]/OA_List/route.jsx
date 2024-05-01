@@ -7,10 +7,10 @@ export async function PUT(req, { params, body }) {
     await connectMongoDB();
     try {
         const data = await req.json();
-        // console.log(data.jobId);
-        // console.log(params.supabaseId);
+        console.log(data.jobId);
+        console.log(params.supabaseId);
         await Applicant.findOneAndUpdate(
-            { loginid: params.supabaseId },
+            { _id: params.supabaseId },
             { $push: { OA_list: data.jobId } },
             { new: true }
         );
