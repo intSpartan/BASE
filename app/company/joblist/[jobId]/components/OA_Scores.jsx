@@ -15,6 +15,13 @@ const OA_Scores = (props) => {
     const { jobId } = params;
     const [applicants, setApplicants] = useState([]);
     const [resumes, setResumes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const Preloader = () => {
+    return <div class="flex justify-center items-center my-auto h-[550px]">
+      <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+    </div>;
+  };
 
     const updateInterviewList = async (applicant_id, jobId) => {
         // console.log(applicant_id);
@@ -48,6 +55,7 @@ const OA_Scores = (props) => {
                     setOAResult(job.job.OA_scores);
                     // console.log(OAResult);
                 }
+                setLoading(false);
 
             } catch (error) {
                 console.log("Error loading topics: ", error);
@@ -168,6 +176,9 @@ const OA_Scores = (props) => {
     }
 
 
+  if(loading){
+    return <Preloader />
+  }
 
     return (
         <div>

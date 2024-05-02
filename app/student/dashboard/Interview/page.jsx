@@ -85,7 +85,12 @@ const OA = () => {
 
   const handleOA = (jobId) => {
     const interview = OA_List.find((job) => job.jobId === jobId);
-    window.open(interview.applicantInterviewLink);
+    window.open(interview.applicantInterviewLink[0]);
+  };
+
+  const handleDoc = (jobId) => {
+    const interview = OA_List.find((job) => job.jobId === jobId);
+    window.open(interview.applicantInterviewLink[1]);
   };
 
   return (
@@ -188,9 +193,17 @@ const OA = () => {
                                   <button
                                     type="button"
                                     onClick={() => handleOA(job.job._id)}
-                                    className="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white hover:bg-black/100"
+                                    className="inline-flex items-center rounded-md bg-green-600 mx-1 px-3 py-2 text-sm font-semibold text-white hover:bg-black/100"
                                   >
                                     Attempt Now
+                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleDoc(job.job._id)}
+                                    className="inline-flex items-center rounded-md bg-green-600 mx-1 px-3 py-2 text-sm font-semibold text-white hover:bg-black/100"
+                                  >
+                                   Open doc
                                     <ArrowRight className="ml-2 h-4 w-4" />
                                   </button>
                                 </div>

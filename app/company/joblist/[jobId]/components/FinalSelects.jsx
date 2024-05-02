@@ -23,6 +23,13 @@ const ApplicantApplied = ({ ...props }) => {
     const { jobId } = params;
     const [applicants, setApplicants] = useState([]);
     const [resumes, setResumes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const Preloader = () => {
+    return <div class="flex justify-center items-center my-auto h-[550px]">
+      <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+    </div>;
+  };
 
     useEffect(() => {
         const getApplicant = async () => {
@@ -60,6 +67,7 @@ const ApplicantApplied = ({ ...props }) => {
                 }
                 applicantsData = applicantsData.filter((applicant) => applicant.applicants != null);
                 setApplicants(applicantsData);
+                setLoading(false);
                 console.log(applicantsData);
             } catch (error) {
                 console.log("Error loading topics: ", error);
@@ -177,6 +185,9 @@ const ApplicantApplied = ({ ...props }) => {
         link.click();
     };
 
+    if(loading){
+    return <Preloader />
+  }
     return (
         <div className="bg-gray-300">
             <>
