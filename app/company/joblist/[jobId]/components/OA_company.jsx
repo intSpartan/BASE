@@ -168,9 +168,9 @@ const OA_company = (props) => {
     link.download = `${loginid}.pdf`;
     link.click();
   }
-  
+
   return (
-    <div className="bg-gray-300">
+    <div className="p-4">
       <section className="mx-auto w-full max-w-7xl px-4 py-4 flex-col justify-between space-y-32">
         <OA_creater jobId={props.jobId} />
         <div>

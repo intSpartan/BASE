@@ -19,7 +19,6 @@ const QuestionSelector = (props) => {
     const handlesubmit = () => {
         alert("Test Finished")
         router.push(`/student/dashboard`)
-        localStorage.clear();
     }
 
     const CodingQuestionsPool = [

@@ -20,15 +20,28 @@ const getJobs = async () => {
   }
 };
 
+const Preloader = () => {
+  return <div class="flex h-[550px] justify-center items-center">
+    <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+  </div>;
+};
+
 export default function ClosedJobsList() {
   const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getJobs().then((jobs) => setJobs(jobs.jobs));
+    setLoading(false);
   }, []);
 
   const filteredJobs = jobs.filter((job) => job.curr_state === "4");
 
+  if (loading){
+    return (
+      <Preloader />
+    )
+  }
   return (
     <div className="bg-gray-100 py-10">
       <div className="container mx-auto">

@@ -73,7 +73,7 @@ export default function AboutJob() {
 
   return (
     <div className="bg-gray-300">
-      <div className="p-8 max-w-3xl mx-auto space-y-4 ">
+      <div className="p-8 max-w-3xl mx-auto space-y-4">
         {/* Title Card */}
         <Card className="shadow-lg rounded-lg p-4 bg-white">
           <Typography variant="h4" className="font-bold">

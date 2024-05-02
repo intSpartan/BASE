@@ -27,10 +27,16 @@ const getJobs = async () => {
   }
 };
 
+const Preloader = () => {
+  return <div class="flex h-[550px] justify-center items-center">
+    <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+  </div>;
+};
+
 export default function JobList() {
   const [compId, setCompId] = useState([]);
   const [jobs, setJobs] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -41,6 +47,7 @@ export default function JobList() {
       if (!user) {
       } else {
         setCompId(user.id);
+        setLoading(!loading);
       }
     };
     fetchUser();
@@ -58,6 +65,11 @@ export default function JobList() {
     router.push(`joblist/${jobId}`);
   };
 
+
+  if (loading) {
+    return <Preloader />;
+  }
+
   return (
     <div className="bg-gray-100 py-10">
       <div className="container mx-auto">
@@ -66,30 +78,30 @@ export default function JobList() {
           {filteredJobs.map((job) => (
             <div
               key={job._id}
-              className="bg-white p-6 border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
+              className="bg-white p-6 border border-gray-300 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
             >
               <div className="flex justify-between items-start mb-4">
                 <h2
-                  className="text-xl font-bold text-blue-600 cursor-pointer hover:underline"
+                  className="text-xl font-semibold text-blue-600 cursor-pointer hover:underline"
                   onClick={() => handleJob(job._id)}
                 >
                   {job.title}
                 </h2>
                 <HiPencilAlt
                   id={job._id}
-                  className="text-gray-500 hover:text-gray-700 cursor-pointer"
+                  className="text-gray-600 hover:text-gray-800 cursor-pointer"
                 />
               </div>
-              <div className="flex items-center text-gray-500 mb-2">
-                <HiLocationMarker className="mr-2" />
+              <div className="flex items-center text-gray-700 mb-2">
+                <HiLocationMarker className="mr-2 text-blue-500" />
                 <span>{job.locations}</span>
               </div>
-              <div className="flex items-center text-gray-500 mb-2">
-                <HiCurrencyDollar className="mr-2" />
+              <div className="flex items-center text-gray-700 mb-2">
+                <HiCurrencyDollar className="mr-2 text-blue-500" />
                 <span>${job.stipendSalary}</span>
               </div>
-              <div className="flex items-center text-gray-500 mb-2">
-                <HiBriefcase className="mr-2" />
+              <div className="flex items-center text-gray-700 mb-2">
+                <HiBriefcase className="mr-2 text-blue-500" />
                 <span>{job.type ? job.type : "Intern"}</span>
               </div>
             </div>

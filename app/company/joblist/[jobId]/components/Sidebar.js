@@ -1,11 +1,11 @@
 import AboutJob from "./AboutJob";
 import ApplicantApplied from "./ApplicantApplied";
+import FinalSelects from "./FinalSelects";
 import Interview from "./Interview";
 import OA_Scores from "./OA_Scores";
 import OA_company from "./OA_company";
 import Footer from "@/app/components/Footer";
 import Header_Company from "@/app/components/Header_Company";
-import FinalSelects from "./FinalSelects"
 import {
   BarChart,
   Wallet,
@@ -42,10 +42,10 @@ const Sidebar = (props) => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col justify-between">
       <Header_Company />
       <div className="flex">
-        <aside className="flex h-screen w-64 flex-col overflow-y-auto border-r bg-white px-5 py-8">
+        <aside className="flex h-[600px] w-64 flex-col overflow-y-auto border-r bg-white px-5 py-8">
           <a>
             <svg
               width="40"

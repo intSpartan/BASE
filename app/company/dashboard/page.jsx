@@ -72,12 +72,12 @@ const Dashboard = () => {
     console.log(status);
   }, []);
 
-  useEffect(() => {    
+  useEffect(() => {
   }, [status])
 
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col justify-between bg-[#F3F4F6]">
       {status && <CompanyForm />}
       {!status && <div> <Header_Company />
         <nav class="bg-neutral-200 p-4">
@@ -105,7 +105,8 @@ const Dashboard = () => {
           </div>
         </nav>
         <div>{renderSelectedComponent()}</div>
-        <Footer /> </div>}
+      </div>}
+      <Footer />
     </div>
   );
 };

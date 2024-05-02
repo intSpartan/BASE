@@ -4,7 +4,9 @@ import { useRouter } from "next/navigation";
 import CompanyForm from "../components/CompanyForm";
 
 const Preloader = () => {
-  return <div>Loading....</div>;
+  return <div class="flex justify-center items-center my-auto h-[550px]">
+    <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+  </div>;
 };
 
 const getCompany = async (id) => {
@@ -135,7 +137,7 @@ const FormPage = () => {
     return <Preloader />;
   }
     return (
-      <div className="bg-gray-300">
+      <div className="">
         <div className='max-w-7xl mx-auto '>
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
@@ -399,7 +401,6 @@ const FormPage = () => {
           </div>
         </div>
         {/* <Toaster /> */}
-
       </div >
     );
 };

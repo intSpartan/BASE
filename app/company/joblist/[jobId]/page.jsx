@@ -35,7 +35,7 @@ const TopBarComponent = ({ params }) => {
     <div>
       <div>
         <Sidebar jobId={params.jobId}>
-          <div className="content">{renderSelectedComponent()}</div>
+          <div className="content h-screen">{renderSelectedComponent()}</div>
         </Sidebar>
       </div>
     </div>
