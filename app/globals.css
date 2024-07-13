@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+/*
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -24,4 +27,25 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} */
+.font-inter {
+  font-family: "Inter", sans-serif;
 }
+
+.slideimage {
+  height: 1.5rem;
+  transition: height 0.25s linear;
+  background: #333;
+  border-radius: 0.25rem
+}
+
+.secslideimage {
+  height: 5.5rem;
+  transition: height 0.25s linear;
+  background: #333;
+  border-radius: 0.25rem
+}
+
+/* * {
+  border: 1px solid black;
+} */
