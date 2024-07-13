@@ -29,7 +29,6 @@ const OA = () => {
           if (!res.ok) {
             throw new Error("Failed to fetch topics");
           } else {
-            // console.log((await res.json()).applicant.cgpa);
             setOA_List((await res.json()).applicant.OA_list);
           }
         } catch (error) {
@@ -78,7 +77,7 @@ const OA = () => {
   console.log(jobs);
 
   const isDisabled = (time) => {
-    console.log("time:",time)
+    console.log("time:", time);
     const currentTime = Date.now();
     return currentTime < time;
   };
@@ -154,23 +153,15 @@ const OA = () => {
                             <tr key={job.job.title}>
                               <td className="whitespace-nowrap px-4 py-4">
                                 <div className="flex items-center">
-                                  <div className="h-10 w-10 flex-shrink-0">
-                                    {/* <img
-                                                                        className="h-10 w-10 rounded-full object-cover"
-                                                                        src={person.image}
-                                                                        alt=""
-                                                                    /> */}
-                                  </div>
+                                  <div className="h-10 w-10 flex-shrink-0"></div>
                                   <div className="ml-4">
                                     <div className="text-sm font-medium text-gray-900">
                                       {job.job.title}
                                     </div>
-                                    {/* <div className="text-sm text-gray-700">{job.job.title}</div> */}
                                   </div>
                                 </div>
                               </td>
                               <td className="whitespace-nowrap px-12 py-4">
-                                {/* <div className="text-sm text-gray-900 ">{job.job.title}</div> */}
                                 <div className="text-sm text-gray-700">
                                   {job.job.description}
                                 </div>
@@ -185,29 +176,33 @@ const OA = () => {
                               </td>
                               <td className="whitespace-nowrap px-4 py-4 text-right text-sm font-medium">
                                 <div className="text-gray-700">
-                                  {isDisabled(job.job.time) ? <button
-                                    type="button"
-                                    // disabled={isDisabled(job.job.time)}
-                                    className="inline-flex items-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white relative"
-                                    onMouseEnter={() => setShowMessage(true)}
-                                    onMouseLeave={() => setShowMessage(false)}
-                                  >
-                                    Attempt Now
-                                    <ArrowRight className="ml-2 h-4 w-4" />
-                                    {showMessage && (
-                                      <span className="absolute bottom-full z-50 right-0 mb-2 bg-gray-800 text-white px-3 py-2 rounded-md">
-                                        The OA will start at {' '}
-      {new Date(parseInt(job.job.time)).toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })}
-                                      </span>
-                                    )}
-                                  </button> : <button
+                                  {isDisabled(job.job.time) ? (
+                                    <button
+                                      type="button"
+                                      className="inline-flex items-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white relative"
+                                      onMouseEnter={() => setShowMessage(true)}
+                                      onMouseLeave={() => setShowMessage(false)}
+                                    >
+                                      Attempt Now
+                                      <ArrowRight className="ml-2 h-4 w-4" />
+                                      {showMessage && (
+                                        <span className="absolute bottom-full z-50 right-0 mb-2 bg-gray-800 text-white px-3 py-2 rounded-md">
+                                          The OA will start at{" "}
+                                          {new Date(
+                                            parseInt(job.job.time)
+                                          ).toLocaleString("en-US", {
+                                            month: "short",
+                                            day: "numeric",
+                                            year: "numeric",
+                                            hour: "numeric",
+                                            minute: "numeric",
+                                            hour12: true,
+                                          })}
+                                        </span>
+                                      )}
+                                    </button>
+                                  ) : (
+                                    <button
                                       type="button"
                                       onClick={() => handleOA(job.job._id)}
                                       disabled={isDisabled(job.job.time)}
@@ -216,8 +211,8 @@ const OA = () => {
                                       Attempt Now
                                       <ArrowRight className="ml-2 h-4 w-4" />
                                     </button>
-
-                                  }                                </div>
+                                  )}{" "}
+                                </div>
                               </td>
                             </tr>
                           ))}

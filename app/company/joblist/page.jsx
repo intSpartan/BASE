@@ -1,5 +1,3 @@
-"use client";
-
 import supabase from "@/app/authCompany";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -13,7 +11,7 @@ import {
 
 const getJobs = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/jobs", {
+    const res = await fetch("/api/jobs", {
       cache: "no-store",
     });
 
@@ -28,9 +26,11 @@ const getJobs = async () => {
 };
 
 const Preloader = () => {
-  return <div class="flex h-[550px] justify-center items-center">
-    <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
-  </div>;
+  return (
+    <div class="flex h-[550px] justify-center items-center">
+      <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+    </div>
+  );
 };
 
 export default function JobList() {
@@ -64,7 +64,6 @@ export default function JobList() {
   const handleJob = (jobId) => {
     router.push(`joblist/${jobId}`);
   };
-
 
   if (loading) {
     return <Preloader />;

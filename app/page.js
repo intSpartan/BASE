@@ -4,9 +4,9 @@ import Blogs from "./homepage/blog";
 import Header from "./homepage/header";
 import Herosection from "./homepage/herosection";
 import SecondSection from "./homepage/secondsection";
+
 export default function Homepage() {
   return (
-
     <>
       <Header />
       <Herosection />
@@ -15,6 +15,5 @@ export default function Homepage() {
       <Blogs />
       <Footer />
     </>
-
-  )
+  );
 }
