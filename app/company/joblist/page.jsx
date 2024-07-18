@@ -1,3 +1,5 @@
+"use client";
+
 import supabase from "@/app/authCompany";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
