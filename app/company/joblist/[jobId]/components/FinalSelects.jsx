@@ -26,8 +26,8 @@ const ApplicantApplied = ({ ...props }) => {
   const [loading, setLoading] = useState(true);
 
   const Preloader = () => {
-    return <div class="flex justify-center items-center my-auto h-[550px]">
-      <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+    return <div className="flex justify-center items-center my-auto h-[550px]">
+      <div className="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
     </div>;
   };
 

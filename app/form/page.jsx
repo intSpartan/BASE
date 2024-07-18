@@ -6,8 +6,8 @@ import { useState, useEffect } from "react";
 
 const Preloader = () => {
   return (
-    <div class="flex justify-center items-center my-auto h-[550px]">
-      <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+    <div className="flex justify-center items-center my-auto h-[550px]">
+      <div className="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
     </div>
   );
 };
@@ -182,9 +182,7 @@ const FormPage = () => {
                         onChange={(e) => setJobType(e.target.value)}
                         required
                       >
-                        <option value="" selected disabled hidden>
-                          Choose here
-                        </option>
+                        <option value="">Choose here</option>
                         <option>Intern</option>
                         <option>Full Time</option>
                       </select>
@@ -204,9 +202,7 @@ const FormPage = () => {
                         onChange={(e) => setRole(e.target.value)}
                         required
                       >
-                        <option value="" selected disabled hidden>
-                          Choose here
-                        </option>
+                        <option value="">Choose here</option>
                         <option>SDE</option>
                         <option>Data Scientist</option>
                         <option>Security Engineer</option>

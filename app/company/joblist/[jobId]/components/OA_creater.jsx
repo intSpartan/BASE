@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import TimePickerModal from "../components/TimePickerModal";
-
 import {
   Card,
   Input,
@@ -8,7 +6,7 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-
+import React, { useState } from "react";
 
 const OA_creater = (props) => {
   const [mcq, setMcq] = useState(5);
@@ -39,7 +37,11 @@ const OA_creater = (props) => {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ mcqs: mcq, coding_questions: codingquestions,time: new Date(time).getTime()}),
+        body: JSON.stringify({
+          mcqs: mcq,
+          coding_questions: codingquestions,
+          time: new Date(time).getTime(),
+        }),
       }
     );
     alert("OA Created");
@@ -72,7 +74,10 @@ const OA_creater = (props) => {
               <Typography variant="h6" color="blue-gray" className="-mb-3">
                 <label>
                   Coding Questions :
-                  <select value={codingquestions} onChange={handlecodingquestions}>
+                  <select
+                    value={codingquestions}
+                    onChange={handlecodingquestions}
+                  >
                     {[1, 2].map((value) => (
                       <option key={value} value={value}>
                         {value}
@@ -103,12 +108,15 @@ const OA_creater = (props) => {
                   className="flex items-center font-normal"
                 >
                   I confirm the questions
-
                 </Typography>
               }
               containerProps={{ className: "-ml-2.5" }}
             />
-            <Button className="mt-6 bg-neutral-950" fullWidth onClick={handleOpenModal}>
+            <Button
+              className="mt-6 bg-neutral-950"
+              fullWidth
+              onClick={handleOpenModal}
+            >
               Submit
             </Button>
           </form>

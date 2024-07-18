@@ -127,8 +127,8 @@ const Interview = ({ jobId }) => {
   return (
     <div>
       {isLoading ? (
-        <div class="flex justify-center items-center my-auto h-[550px]">
-          <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+        <div className="flex justify-center items-center my-auto h-[550px]">
+          <div className="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
         </div>
       ) : (
         <div className="flex flex-col p-8">

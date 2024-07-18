@@ -2,15 +2,15 @@
 
 import AboutJob from "./components/AboutJob";
 import ApplicantApplied from "./components/ApplicantApplied";
+import FinalSelects from "./components/FinalSelects";
 import Interview from "./components/Interview";
 import OA_Scores from "./components/OA_Scores";
 import OA_company from "./components/OA_company";
 import Sidebar from "./components/Sidebar";
-import FinalSelects from "./components/FinalSelects"
 import { cache, useEffect, useState } from "react";
 
 const TopBarComponent = ({ params }) => {
-  const [selectedOption, setSelectedOption] = useState("1");
+  const [selectedOption, setSelectedOption] = useState();
 
   const renderSelectedComponent = () => {
     switch (selectedOption) {
@@ -27,7 +27,7 @@ const TopBarComponent = ({ params }) => {
       case "6":
         return <FinalSelects jobId={params.jobId} />;
       default:
-        return null;
+        return <AboutJob />;
     }
   };
 

@@ -18,7 +18,7 @@ import {
 import { React, useState } from "react";
 
 const Sidebar = (props) => {
-  const [selectedOption, setSelectedOption] = useState("1");
+  const [selectedOption, setSelectedOption] = useState();
 
   const renderSelectedComponent = () => {
     switch (selectedOption) {
@@ -37,7 +37,7 @@ const Sidebar = (props) => {
       case "6":
         return <FinalSelects jobId={props.jobId} />;
       default:
-        return null;
+        return <AboutJob />;
     }
   };
 

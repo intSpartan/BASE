@@ -2,10 +2,10 @@
 
 import ApplicantApplied from "./ApplicantApplied";
 import OA_creater from "./OA_creater";
-import React, { useEffect, useState } from "react";
 import supabase from "@/app/authCompany";
+import { ArrowRight } from "lucide-react";
 import { useParams } from "next/navigation";
-import { ArrowRight } from 'lucide-react'
+import React, { useEffect, useState } from "react";
 
 const updateOAList = async (applicant_id, jobId) => {
   // console.log(applicant_id);
@@ -45,7 +45,6 @@ const updateOAList = async (applicant_id, jobId) => {
 // };
 
 const OA_company = (props) => {
-
   console.log(props);
 
   const params = useParams();
@@ -55,9 +54,11 @@ const OA_company = (props) => {
   const [loading, setLoading] = useState(true);
 
   const Preloader = () => {
-    return <div class="flex justify-center items-center my-auto h-[550px]">
-      <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
-    </div>;
+    return (
+      <div className="flex justify-center items-center my-auto h-[550px]">
+        <div className="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+      </div>
+    );
   };
 
   useEffect(() => {
@@ -77,8 +78,6 @@ const OA_company = (props) => {
 
         const job = await res.json();
         const applicantsData = [];
-
-        // console.log(job.job.applicantsResumeShortlist);
 
         for (const id of job.job.applicantsResumeShortlist) {
           const response = await fetch(
@@ -128,11 +127,8 @@ const OA_company = (props) => {
   // console.log(resumes);
 
   const handleOA = async (applicant_id) => {
-
     const res = await updateOAList(applicant_id, jobId);
-    alert("OA sent")
-
-
+    alert("OA sent");
   };
 
   const downloadAllResumes = async () => {
@@ -175,10 +171,10 @@ const OA_company = (props) => {
     link.href = URL.createObjectURL(blob);
     link.download = `${loginid}.pdf`;
     link.click();
-  }
+  };
 
-  if(loading){
-    return <Preloader />
+  if (loading) {
+    return <Preloader />;
   }
 
   return (
@@ -188,13 +184,17 @@ const OA_company = (props) => {
         <div>
           <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
             <div>
-              <h2 className="text-2xl font-semibold">Candidates shortlisted for Online Assessment (OA)</h2>
+              <h2 className="text-2xl font-semibold">
+                Candidates shortlisted for Online Assessment (OA)
+              </h2>
               <p className="mt-1 text-base text-gray-700">
-                This is a list of all the candidates who are shortlisted for Online Assessment
+                This is a list of all the candidates who are shortlisted for
+                Online Assessment
               </p>
             </div>
             <div>
-              <button onClick={downloadAllResumes}
+              <button
+                onClick={downloadAllResumes}
                 type="button"
                 className="rounded-md bg-black px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
               >
@@ -254,14 +254,18 @@ const OA_company = (props) => {
                                                                     /> */}
                               </div>
                               <div className="ml-4">
-                                <div className="text-base font-medium text-gray-900">{applicant.applicants.name}</div>
+                                <div className="text-base font-medium text-gray-900">
+                                  {applicant.applicants.name}
+                                </div>
                                 {/* <div className="text-base text-gray-700">{job.job.title}</div> */}
                               </div>
                             </div>
                           </td>
                           <td className="whitespace-nowrap px-12 py-4">
                             {/* <div className="text-base text-gray-900 ">{job.job.title}</div> */}
-                            <div className="text-base text-gray-700">{applicant.applicants.college}</div>
+                            <div className="text-base text-gray-700">
+                              {applicant.applicants.college}
+                            </div>
                           </td>
                           <td className="whitespace-nowrap px-4 py-4 text-base text-gray-700">
                             {applicant.applicants.cgpa}
@@ -270,7 +274,9 @@ const OA_company = (props) => {
                             <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
                               <button
                                 onClick={async () => {
-                                  downloadUsingLoginid(applicant.applicants.loginid);
+                                  downloadUsingLoginid(
+                                    applicant.applicants.loginid
+                                  );
                                 }}
                               >
                                 Download Resume
@@ -280,7 +286,10 @@ const OA_company = (props) => {
                           <td className="whitespace-nowrap px-4 py-4 text-right text-base font-medium">
                             <div className="text-gray-700">
                               <button
-                                type="button" onClick={() => handleOA(applicant.applicants._id)}
+                                type="button"
+                                onClick={() =>
+                                  handleOA(applicant.applicants._id)
+                                }
                                 className="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-base font-semibold text-white hover:bg-black/100"
                               >
                                 Send OA
@@ -291,7 +300,6 @@ const OA_company = (props) => {
                         </tr>
                       ))}
                     </tbody>
-
                   </table>
                 </div>
               </div>

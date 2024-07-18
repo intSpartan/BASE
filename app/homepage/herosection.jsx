@@ -21,23 +21,23 @@ export default function Herosection() {
           </div>
         </div>
         <div className="  w-[100%]">
-          <div class=" h-[430px] flex-col justify-start items-start gap-[38px] inline-flex">
-            <div class="justify-start items-center gap-6 inline-flex">
-              <div class="w-[296px] h-[196px] relative">
+          <div className=" h-[430px] flex-col justify-start items-start gap-[38px] inline-flex">
+            <div className="justify-start items-center gap-6 inline-flex">
+              <div className="w-[296px] h-[196px] relative">
                 <img
-                  class="w-[296px] h-[196px] left-[-0px] top-0 absolute rounded"
+                  className="w-[296px] h-[196px] left-[-0px] top-0 absolute rounded"
                   src="./pexels-ivan-samkov-4240507.png"
                 />
-                <div class="w-[296px] h-[196px] left-0 top-0 absolute">
-                  <div class="w-[296px] h-[196px] left-0 top-0 absolute bg-neutral-700 bg-opacity-50 rounded"></div>
-                  <div class="w-[51.85px] h-12 left-[122.07px] top-[74px] absolute"></div>
+                <div className="w-[296px] h-[196px] left-0 top-0 absolute">
+                  <div className="w-[296px] h-[196px] left-0 top-0 absolute bg-neutral-700 bg-opacity-50 rounded"></div>
+                  <div className="w-[51.85px] h-12 left-[122.07px] top-[74px] absolute"></div>
                 </div>
               </div>
-              <div class="flex-col justify-start items-start gap-3 inline-flex">
-                <div class="text-center text-zinc-800 text-xl font-semibold font-['Inter'] leading-snug">
+              <div className="flex-col justify-start items-start gap-3 inline-flex">
+                <div className="text-center text-zinc-800 text-xl font-semibold font-['Inter'] leading-snug">
                   For Applicants
                 </div>
-                <p class="w-[302px] text-neutral-600 text-base font-medium font-['Inter']">
+                <p className="w-[302px] text-neutral-600 text-base font-medium font-['Inter']">
                   "Launch your career with tailored job matches, seamless
                   assessments, and interview opportunities. Your future starts
                   here."
@@ -45,26 +45,26 @@ export default function Herosection() {
                 </p>
               </div>
             </div>
-            <div class="justify-start items-center gap-6 inline-flex">
-              <div class="flex-col justify-start items-start gap-3 inline-flex">
-                <p class="text-center text-zinc-800 text-xl font-semibold font-['Inter'] leading-snug">
+            <div className="justify-start items-center gap-6 inline-flex">
+              <div className="flex-col justify-start items-start gap-3 inline-flex">
+                <p className="text-center text-zinc-800 text-xl font-semibold font-['Inter'] leading-snug">
                   For Companies
                 </p>
-                <p class="w-[302px] text-neutral-600 text-base font-medium font-['Inter']">
+                <p className="w-[302px] text-neutral-600 text-base font-medium font-['Inter']">
                   “Simplify recruitment with streamlined processes, connect with
                   top talent effortlessly, and build your dream team
                   efficiently. Elevate your hiring experience today.”
                   <br />
                 </p>
               </div>
-              <div class="w-[296px] h-[196px] relative">
+              <div className="w-[296px] h-[196px] relative">
                 <img
-                  class="w-[295.79px] h-[196px] left-0 top-0 absolute rounded-lg"
+                  className="w-[295.79px] h-[196px] left-0 top-0 absolute rounded-lg"
                   src="./pexels-ivan-samkov-4240507.png"
                 />
-                <div class="w-[296px] h-[196px] left-0 top-0 absolute">
-                  <div class="w-[296px] h-[196px] left-0 top-0 absolute bg-neutral-700 bg-opacity-50 rounded"></div>
-                  <div class="w-[51.85px] h-12 left-[122.07px] top-[74px] absolute"></div>
+                <div className="w-[296px] h-[196px] left-0 top-0 absolute">
+                  <div className="w-[296px] h-[196px] left-0 top-0 absolute bg-neutral-700 bg-opacity-50 rounded"></div>
+                  <div className="w-[51.85px] h-12 left-[122.07px] top-[74px] absolute"></div>
                 </div>
               </div>
             </div>

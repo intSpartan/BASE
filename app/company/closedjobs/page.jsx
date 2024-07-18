@@ -22,8 +22,8 @@ const getJobs = async () => {
 
 const Preloader = () => {
   return (
-    <div class="flex h-[550px] justify-center items-center">
-      <div class="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+    <div className="flex h-[550px] justify-center items-center">
+      <div className="border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
     </div>
   );
 };

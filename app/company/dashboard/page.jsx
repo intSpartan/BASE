@@ -51,7 +51,6 @@ const Dashboard = () => {
       }
     };
     fetchUser();
-    console.log(status);
   }, []);
 
   useEffect(() => {}, [status]);
@@ -62,23 +61,23 @@ const Dashboard = () => {
       {!status && (
         <div>
           <Header_Company />
-          <nav class="bg-neutral-200 p-4">
-            <div class="flex justify-between items-center">
-              <div class="flex w-full space-x-4">
+          <nav className="bg-neutral-200 p-4">
+            <div className="flex justify-between items-center">
+              <div className="flex w-full space-x-4">
                 <button
-                  class="w-full text-black focus:outline-none border-r-4 border-black"
+                  className="w-full text-black focus:outline-none border-r-4 border-black"
                   onClick={() => setSelectedOption("1")}
                 >
                   Add a Job
                 </button>
                 <button
-                  class="w-full text-black focus:outline-none border-r-4 border-black"
+                  className="w-full text-black focus:outline-none border-r-4 border-black"
                   onClick={() => setSelectedOption("2")}
                 >
                   Active Jobs
                 </button>
                 <button
-                  class="w-full text-black focus:outline-none"
+                  className="w-full text-black focus:outline-none"
                   onClick={() => setSelectedOption("3")}
                 >
                   Closed Jobs
