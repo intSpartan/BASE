@@ -68,11 +68,17 @@ export default function Home() {
         automaticLayout: true,
     };
 
+    function wait(ms: number): Promise<void> {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
     const getQuestionText = async (id: string) => {
         const response = await fetch(`http://localhost:8000/getQuestion/${id}`);
         const data = await response.json();
+        await wait(3000); 
         setQuestion(data.question_content);
     }
+
+    
 
     useEffect(() => {
         let conversation = [
@@ -84,6 +90,8 @@ export default function Home() {
 
         const urlPathParams = window.location.pathname.split("/");
         const id = urlPathParams[urlPathParams.length - 1];
+
+        // console.log(id);
 
         const whenSentenceSpoken = (sentence: string, id: string, code: string, recognition: any) => {
             const stateEntry = {
@@ -142,6 +150,10 @@ export default function Home() {
             getQuestionText(id as string);
         }
     }, [id]);
+
+
+    
+    
 
     // useEffect(() => {
     //     whenSentenceSpoken(newSentence, id as string, code);

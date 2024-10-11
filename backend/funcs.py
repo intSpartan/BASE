@@ -7,7 +7,7 @@ import json
 
 load_dotenv(find_dotenv())
 
-genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+genai.configure(api_key="AIzaSyCRl0UrO2preZWlNWcDJ9pI9KdorCD-1YY")
 
 def convert_data_to_transcript(data):
     transcript = ""
