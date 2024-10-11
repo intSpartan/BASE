@@ -19,9 +19,9 @@ const App = () => {
             <div>
                 <FeaturesSection/>
             </div>
-            <div>
+            {/* <div>
                 <TestimonialSection/>
-            </div>
+            </div> */}
             <div>
                 <FaqSection/>
             </div>
