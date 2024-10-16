@@ -7,29 +7,35 @@ import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const OA = () => {
+const Normal_Interview = () => {
   const state = useGlobalContext();
   const router = useRouter();
   const [OA_List, setOA_List] = useState([]);
-  const [showMessage, setShowMessage] = useState(false);
+
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
     if (state != undefined) {
       const getApplicant = async () => {
         try {
-          const res = await fetch(
-            `http://localhost:3000/api/applicants/${state.state.entity_id}/OA_List`,
+          const res1 = await fetch(
+            `http://localhost:3000/api/applicants/${state.state.entity_id}`,
             {
               method: "GET",
               cache: "no-store",
             }
           );
 
+          const data = await res1.json();
+
+          const res = await fetch(
+            `http://localhost:3000/api/interview/applicant/${data.applicants._id}`
+          );
+
           if (!res.ok) {
             throw new Error("Failed to fetch topics");
           } else {
-            setOA_List((await res.json()).applicant.OA_list);
+            setOA_List(await res.json());
           }
         } catch (error) {
           console.log("Error loading topics: ", error);
@@ -43,7 +49,7 @@ const OA = () => {
   useEffect(() => {
     const getJob = async (jobId) => {
       try {
-        const res = await fetch(`http://localhost:3000/api/jobs/${jobId}/OA`, {
+        const res = await fetch(`http://localhost:3000/api/jobs/${jobId}`, {
           method: "GET",
           cache: "no-store",
         });
@@ -62,10 +68,11 @@ const OA = () => {
     if (OA_List.length > 0) {
       Promise.all(
         OA_List.map(async (t) => {
-          return getJob(t);
+          return getJob(t.jobId);
         })
       )
         .then((jobsData) => {
+          console.log(jobsData);
           setJobs(jobsData);
         })
         .catch((error) => {
@@ -76,14 +83,14 @@ const OA = () => {
 
   console.log(jobs);
 
-  const isDisabled = (time) => {
-    console.log("time:", time);
-    const currentTime = Date.now();
-    return currentTime < time;
+  const handleOA = (jobId) => {
+    const interview = OA_List.find((job) => job.jobId === jobId);
+    window.open(interview.applicantInterviewLink[0]);
   };
 
-  const handleOA = (jobId) => {
-    router.push(`/OA/${jobId}`);
+  const handleDoc = (jobId) => {
+    const interview = OA_List.find((job) => job.jobId === jobId);
+    window.open(interview.applicantInterviewLink[1]);
   };
 
   return (
@@ -91,14 +98,13 @@ const OA = () => {
       {jobs && (
         <div className="bg-gray-300">
           <>
-            <Header_Student />
+            {/* <Header_Student /> */}
             <section className="mx-auto w-full max-w-7xl px-4 py-4">
               <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
                 <div>
-                  <h2 className="text-lg font-semibold">Online Assessments</h2>
+                  <h2 className="text-lg font-semibold">Interview</h2>
                   <p className="mt-1 text-sm text-gray-700">
-                    This is a list of all the Online Assessments recieved by the
-                    you.
+                    This is a list of all the Interviewers recieved.
                   </p>
                 </div>
                 {/* <div>
@@ -153,15 +159,23 @@ const OA = () => {
                             <tr key={job.job.title}>
                               <td className="whitespace-nowrap px-4 py-4">
                                 <div className="flex items-center">
-                                  <div className="h-10 w-10 flex-shrink-0"></div>
+                                  <div className="h-10 w-10 flex-shrink-0">
+                                    {/* <img
+                                                                        className="h-10 w-10 rounded-full object-cover"
+                                                                        src={person.image}
+                                                                        alt=""
+                                                                    /> */}
+                                  </div>
                                   <div className="ml-4">
                                     <div className="text-sm font-medium text-gray-900">
                                       {job.job.title}
                                     </div>
+                                    {/* <div className="text-sm text-gray-700">{job.job.title}</div> */}
                                   </div>
                                 </div>
                               </td>
                               <td className="whitespace-nowrap px-12 py-4">
+                                {/* <div className="text-sm text-gray-900 ">{job.job.title}</div> */}
                                 <div className="text-sm text-gray-700">
                                   {job.job.description}
                                 </div>
@@ -176,42 +190,22 @@ const OA = () => {
                               </td>
                               <td className="whitespace-nowrap px-4 py-4 text-right text-sm font-medium">
                                 <div className="text-gray-700">
-                                  {isDisabled(job.job.time) ? (
-                                    <button
-                                      type="button"
-                                      className="inline-flex items-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white relative"
-                                      onMouseEnter={() => setShowMessage(true)}
-                                      onMouseLeave={() => setShowMessage(false)}
-                                    >
-                                      Attempt Now
-                                      <ArrowRight className="ml-2 h-4 w-4" />
-                                      {showMessage && (
-                                        <span className="absolute bottom-full z-50 right-0 mb-2 bg-gray-800 text-white px-3 py-2 rounded-md">
-                                          The OA will start at{" "}
-                                          {new Date(
-                                            parseInt(job.job.time)
-                                          ).toLocaleString("en-US", {
-                                            month: "short",
-                                            day: "numeric",
-                                            year: "numeric",
-                                            hour: "numeric",
-                                            minute: "numeric",
-                                            hour12: true,
-                                          })}
-                                        </span>
-                                      )}
-                                    </button>
-                                  ) : (
-                                    <button
-                                      type="button"
-                                      onClick={() => handleOA(job.job._id)}
-                                      disabled={isDisabled(job.job.time)}
-                                      className="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white hover:bg-black/100"
-                                    >
-                                      Attempt Now
-                                      <ArrowRight className="ml-2 h-4 w-4" />
-                                    </button>
-                                  )}{" "}
+                                  <button
+                                    type="button"
+                                    onClick={() => handleOA(job.job._id)}
+                                    className="inline-flex items-center rounded-md bg-green-600 mx-1 px-3 py-2 text-sm font-semibold text-white hover:bg-black/100"
+                                  >
+                                    Attempt Now
+                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleDoc(job.job._id)}
+                                    className="inline-flex items-center rounded-md bg-green-600 mx-1 px-3 py-2 text-sm font-semibold text-white hover:bg-black/100"
+                                  >
+                                   Open doc
+                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                  </button>
                                 </div>
                               </td>
                             </tr>
@@ -223,7 +217,7 @@ const OA = () => {
                 </div>
               </div>
             </section>
-            <Footer />
+            {/* <Footer /> */}
           </>
         </div>
       )}
@@ -232,4 +226,4 @@ const OA = () => {
   );
 };
 
-export default OA;
+export default Normal_Interview;

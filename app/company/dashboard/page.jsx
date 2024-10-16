@@ -3,10 +3,10 @@
 import supabase from "../../authCompany";
 import ClosedJobsList from "../closedjobs/page";
 import JobList from "../joblist/page";
-import CompanyForm from "@/app/components/CompanyForm";
-import Footer from "@/app/components/Footer";
-import Header_Company from "@/app/components/Header_Company";
-import FormPage from "@/app/form/page";
+import CompanyForm from "../../components/CompanyForm";
+import Footer from "../../components/Footer";
+import Header_Company from "../../components/Header_Company";
+import FormPage from "../../form/page";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
 

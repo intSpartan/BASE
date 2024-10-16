@@ -2,8 +2,8 @@
 
 import Header from "../../components/Header_Student";
 import TableOne from "../components/jobdetails";
-import { useGlobalContext } from "@/app/GlobalContext";
-import Footer from "@/app/components/Footer";
+import { useGlobalContext } from "../../GlobalContext";
+import Footer from "../../components/Footer";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Space } from "antd";
 import React, { useState, useEffect } from "react";

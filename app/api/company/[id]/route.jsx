@@ -1,5 +1,5 @@
-import connectMongoDBI from "@/libs/mongodb";
-import Company from "@/models/company";
+import connectMongoDBI from "../../../../libs/mongodb";
+import Company from "../../../../models/company";
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {

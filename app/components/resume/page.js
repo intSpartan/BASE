@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
-import supabase from "@/app/authCompany";
+import supabase from "../../authCompany";
 import { useRouter } from "next/navigation";
 
 const FileUpload = () => {

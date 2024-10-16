@@ -1,7 +1,7 @@
 import supabase from "../authCompany";
 import Header from "../homepage/header";
 import Footer from "./Footer";
-import { useGlobalContext } from "@/app/GlobalContext";
+import { useGlobalContext } from "../GlobalContext";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useState, useEffect } from "react";

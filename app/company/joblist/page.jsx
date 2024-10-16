@@ -1,6 +1,6 @@
 "use client";
 
-import supabase from "@/app/authCompany";
+import supabase from "../../authCompany";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
