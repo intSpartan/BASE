@@ -1,6 +1,7 @@
 "use client";
 
-import supabase from "@/app/authCompany";
+
+import supabase from "../../../../authCompany";
 import { ArrowRight } from "lucide-react";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";

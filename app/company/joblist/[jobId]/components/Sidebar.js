@@ -4,8 +4,8 @@ import FinalSelects from "./FinalSelects";
 import Interview from "./Interview";
 import OA_Scores from "./OA_Scores";
 import OA_company from "./OA_company";
-import Footer from "@/app/components/Footer";
-import Header_Company from "@/app/components/Header_Company";
+import Footer from "../../../../components/Footer";
+import Header_Company from "../../../../components/Header_Company";
 import {
   BarChart,
   Wallet,

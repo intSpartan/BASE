@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/student/dashboard/Interview/AI Interview/src/AI_Interview.jsx", "app/student/dashboard/Interview/AI/src/question/[id].tsx"  ],
+, "app/student/dashboard/Interview/AI Interview/src/AI_Interview.jsx", "app/student/dashboard/Interview/AI/src/question/[id].tsx", "app/company/dashboard/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]
