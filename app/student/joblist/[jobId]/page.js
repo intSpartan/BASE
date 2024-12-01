@@ -1,16 +1,15 @@
 "use client";
 
-import Footer from "@/app/components/Footer";
-import Header_Student from "@/app/components/Header_Student";
-import { Card, Typography } from "@material-tailwind/react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Header_Student from "../../../components/Header_Student";
+import Footer from "../../../components/Footer";
 
 export default function AboutJob() {
   const params = useParams();
   const { jobId } = params;
-  const [jobDetail, setJobDetail] = useState();
-  const [companyDetails, setCompanyDetails] = useState();
+  const [jobDetail, setJobDetail] = useState(null);
+  const [companyDetails, setCompanyDetails] = useState(null);
 
   useEffect(() => {
     const getJobDetail = async () => {
@@ -19,8 +18,7 @@ export default function AboutJob() {
           method: "GET",
           cache: "no-store",
         });
-        if (!res.ok) {
-        } else {
+        if (res.ok) {
           const data = await res.json();
           setJobDetail(data);
           return data;
@@ -43,8 +41,7 @@ export default function AboutJob() {
               cache: "no-cache",
             }
           );
-          if (!res.ok) {
-          } else {
+          if (res.ok) {
             const ans = await res.json();
             setCompanyDetails(ans);
           }
@@ -76,72 +73,59 @@ export default function AboutJob() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-white text-black">
       <Header_Student />
-      <div className="bg-gray-300">
-        <div className="p-8 max-w-3xl mx-auto space-y-4 ">
-          {/* Title Card */}
-          <Card className="shadow-lg rounded-lg p-4 bg-white">
-            <Typography variant="h4" className="font-bold">
-              {jobDetail && jobDetail.job.title}
-            </Typography>
-          </Card>
+      <main className="container mx-auto px-4 py-8">
+        <div className="max-w-3xl mx-auto space-y-8">
+          <section className="bg-gray-50 border border-gray-200 rounded-lg p-6 shadow-sm">
+            <h1 className="text-3xl font-bold mb-2">
+              {jobDetail ? jobDetail.job.title : jobDetails.title}
+            </h1>
+            <p className="text-xl text-gray-600">
+              {jobDetail ? jobDetail.job.companyName : jobDetails.company}
+            </p>
+          </section>
 
-          {/* Company and Location Card */}
-          <Card className="shadow-lg rounded-lg p-4 bg-white flex flex-row justify-between">
-            <Typography color="gray" className="font-semibold">
-              Company: {jobDetail && jobDetail.job.title}
-            </Typography>
-            <Typography color="gray" className="font-semibold">
-              Location: {jobDetails.location}
-            </Typography>
-          </Card>
+          <section className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+            <h2 className="text-2xl font-semibold mb-4">Job Details</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <h3 className="text-lg font-medium mb-2">Location</h3>
+                <p className="text-gray-600">{jobDetails.location}</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium mb-2">Salary</h3>
+                <p className="text-gray-600">{jobDetails.salary}</p>
+              </div>
+            </div>
+          </section>
 
-          {/* Salary Card */}
-          <Card className="shadow-lg rounded-lg p-4 bg-white">
-            <Typography color="blue-gray" className="font-semibold">
-              Salary: {jobDetails.salary}
-            </Typography>
-          </Card>
+          <section className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+            <h2 className="text-2xl font-semibold mb-4">Job Description</h2>
+            <p className="text-gray-600">{jobDetails.description}</p>
+          </section>
 
-          {/* Job Description Card */}
-          <Card className="shadow-lg rounded-lg p-4 bg-white">
-            <Typography variant="h5" className="font-bold mb-2">
-              Job Description
-            </Typography>
-            <Typography color="blue-gray">{jobDetails.description}</Typography>
-          </Card>
-
-          {/* Responsibilities and Expectations Card */}
-          <Card className="shadow-lg rounded-lg p-4 bg-white">
-            <Typography variant="h5" className="font-bold mb-2">
-              Responsibilities and Expectations
-            </Typography>
-            <ul className="list-disc pl-5">
+          <section className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+            <h2 className="text-2xl font-semibold mb-4">Responsibilities</h2>
+            <ul className="list-disc pl-5 space-y-2">
               {jobDetails.responsibilities.map((item, index) => (
-                <li key={index} className="mb-2">
-                  {item}
-                </li>
+                <li key={index} className="text-gray-600">{item}</li>
               ))}
             </ul>
-          </Card>
+          </section>
 
-          {/* Requirements Card */}
-          <Card className="shadow-lg rounded-lg p-4 bg-white">
-            <Typography variant="h5" className="font-bold mb-2">
-              Requirements
-            </Typography>
-            <ul className="list-disc pl-5">
+          <section className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+            <h2 className="text-2xl font-semibold mb-4">Requirements</h2>
+            <ul className="list-disc pl-5 space-y-2">
               {jobDetails.requirements.map((item, index) => (
-                <li key={index} className="mb-2">
-                  {item}
-                </li>
+                <li key={index} className="text-gray-600">{item}</li>
               ))}
             </ul>
-          </Card>
+          </section>
         </div>
-      </div>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
+

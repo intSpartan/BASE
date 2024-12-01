@@ -1,9 +1,7 @@
-// pages/blog.js
 "use client"
 import { useState } from 'react';
-import Header_Student from '@/app/components/Header_Student';
-import Blog from '../components/blog';
-// Sample blog data
+import Header_Student from '../../components/Header_Student';
+
 const blogs = [
     { id: 1, title: 'Google Interview Experience', author: 'Abhishek', content: "I'm thrilled to share my experience of interviewing with Google, one of the most renowned tech companies in the world! From the application process to the final interview rounds, it has been an incredible journey filled with challenges, learnings, and personal growth.The journey began with the initial application, where I had the opportunity to showcase my skills and experiences through my resume and cover letter. The process was smooth and well-organized, thanks to the clear communication and guidance from the Google recruitment team.As I progressed to the interview rounds, I was greeted with a series of technical assessments and coding challenges that pushed me to think critically and creatively. Each interview round provided me with valuable feedback and insights, allowing me to refine my skills and approach for the next round.One of the most memorable aspects of the interview process was the opportunity to engage with some of the brightest minds in the industry. The interviewers were not only experts in their respective fields but also genuinely passionate about helping candidates succeed. Their guidance and mentorship throughout the process were invaluable, and I'm incredibly grateful for the opportunity to learn from them.Finally, after several rounds of interviews, I received the news that I had been selected to join Google! The feeling of excitement and accomplishment was indescribable, knowing that I would soon be a part of a company that is at the forefront of innovation and technology." },
     { id: 2, title: 'Service Now Interview Experience', author: 'Sparsh & Abhishek', content: "I'm excited to share my experience of interviewing with ServiceNow, a leading company in the world of digital workflows and cloud computing. From the initial application to the final interview rounds, it has been an enlightening journey filled with valuable insights and personal development.The journey began with the initial application process, where I had the opportunity to showcase my skills, experiences, and passion for technology. ServiceNow's recruitment team provided clear communication and guidance throughout, making the process seamless and efficient.As I progressed to the interview rounds, I was presented with a series of technical assessments and discussions that challenged me to think critically and demonstrate my problem-solving abilities. Each interview round provided me with new perspectives and opportunities to showcase my expertise in areas such as cloud computing, IT service management, and software development.One of the most rewarding aspects of the interview process was the chance to engage with ServiceNow's talented and dedicated team members. From the interviewers to the hiring managers, everyone I interacted with demonstrated a genuine passion for their work and a commitment to fostering a culture of innovation and collaboration." },
@@ -23,36 +21,44 @@ export default function BlogPage() {
     };
 
     return (
-        <>
+        <div className="min-h-screen bg-white text-black">
             <Header_Student />
-            <div className="flex">
-                <div className="w-64 h-screen bg-gray-200 p-4 overflow-y-auto transition-all duration-300 transform">
-                    <h2 className="text-2xl font-bold mb-4">LATEST STORIES</h2>
-                    {blogs.map((blog) => (
-                        <div
-                            key={blog.id}
-                            className="bg-white rounded-lg shadow-md p-4 mb-4 cursor-pointer transition-all duration-300 hover:shadow-lg hover:bg-blue-100 transform hover:scale-105"
-                            onClick={() => handleBlogClick(blog)}
-                        >
-                            <h3 className="text-lg font-semibold">{blog.title}</h3>
-                            <p className="text-gray-600">{blog.author}</p>
+            <main className="container mx-auto px-4 py-8">
+                <h1 className="text-4xl font-bold mb-8 text-center">Blog Posts</h1>
+                <div className="flex flex-col lg:flex-row gap-8">
+                    <aside className="w-full lg:w-1/3">
+                        <h2 className="text-2xl font-semibold mb-4 pb-2 border-b-2 border-gray-200">Latest Stories</h2>
+                        <div className="space-y-4">
+                            {blogs.map((blog) => (
+                                <div
+                                    key={blog.id}
+                                    className="p-4 border border-gray-200 rounded-lg cursor-pointer transition-all hover:shadow-md"
+                                    onClick={() => handleBlogClick(blog)}
+                                >
+                                    <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
+                                    <p className="text-sm text-gray-600">By {blog.author}</p>
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    </aside>
+                    <section className="w-full lg:w-2/3">
+                        {selectedBlog ? (
+                            <article className="border border-gray-200 rounded-lg p-6 shadow-sm">
+                                <h2 className="text-3xl font-bold mb-4">{selectedBlog.title}</h2>
+                                <p className="text-lg text-gray-600 mb-6">By {selectedBlog.author}</p>
+                                <div className="prose max-w-none">
+                                    <p>{selectedBlog.content}</p>
+                                </div>
+                            </article>
+                        ) : (
+                            <div className="flex items-center justify-center h-64 border border-gray-200 rounded-lg">
+                                <p className="text-xl text-gray-500">Select a blog post to read</p>
+                            </div>
+                        )}
+                    </section>
                 </div>
-                <div className="w-[1200px] h-screen bg-gray-100 p-8 overflow-y-auto transition-all duration-300">
-                    {selectedBlog ? (
-                        <div className="bg-white rounded-lg shadow-md p-8">
-                            <h2 className="text-2xl font-bold mb-4">{selectedBlog.title}</h2>
-                            <p className="text-lg text-gray-700 mb-4">{selectedBlog.author}</p>
-                            <p className="text-gray-600">{selectedBlog.content}</p>
-                        </div>
-                    ) : (
-                        <p className="text-center transition-all duration-300 transform hover:scale-105">Click on a blog to read</p>
-                    )}
-                </div>
-                <div className="w-16"></div>
-                <Blog />
-            </div>
-        </>
+            </main>
+        </div>
     );
 }
+
