@@ -11,15 +11,15 @@ const Sidebar = () => {
         </svg>
       </div>
       <nav className="space-y-4">
-        <Link href="/dashboard/OA" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+        <Link href="/student/dashboard/OA" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
           <Wallet className="h-5 w-5 mr-3" />
           <span className="text-sm font-medium">OA</span>
         </Link>
-        <Link href="/dashboard/Interview" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+        <Link href="/student/dashboard/Interview" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
           <BellRing className="h-5 w-5 mr-3" />
           <span className="text-sm font-medium">Interview</span>
         </Link>
-        <Link href="/dashboard/compareJobs" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+        <Link href="/student/dashboard/compareJobs" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
           <GitCompareArrows className="h-5 w-5 mr-3" />
           <span className="text-sm font-medium">Compare Jobs</span>
         </Link>

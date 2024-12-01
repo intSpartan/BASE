@@ -1,6 +1,6 @@
-import connectMongoDB from "@/libs/mongodb_jobs";
+import connectMongoDB from "../../../../../libs/mongodb_jobs";
 import { NextResponse } from "next/server";
-import Job from "@/models/jobs";
+import Job from "../../../../../models/jobs";
 
 export async function GET(request, { params }) {
     await connectMongoDB();

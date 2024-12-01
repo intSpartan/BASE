@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import connectMongoDB from "../../../libs/mongodb_jobs";
-import Applicant from "@/models/applicant";
+import Applicant from "../../../models/applicant";
 
 export async function POST(request) {
   const { name, college, company, cgpa, loginid } = await request.json();
