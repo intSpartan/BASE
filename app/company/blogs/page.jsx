@@ -1,7 +1,7 @@
 "use client";
 
 import Blog from "./blog";
-import Header_Company from "@/app/components/Header_Company";
+import Header_Company from "../../components/Header_Company";
 import { useState } from "react";
 
 const blogs = [

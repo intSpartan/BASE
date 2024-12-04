@@ -1,80 +1,66 @@
-export default function Blogs() {
+const blogPosts = [
+    {
+      title: "Mastering the Job Interview",
+      excerpt: "Learn essential tips and tricks to ace your next job interview and land your dream position.",
+      author: "Md Faizan",
+      readTime: "5 min read",
+      image: "https://career-intelligence.com/wp-content/uploads/2014/02/mastering-job-interview.jpg",
+      avatar: "https://media.licdn.com/dms/image/v2/D5635AQGVs7QJSrWwEQ/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1727288810592?e=1733936400&v=beta&t=ssWDKQDM-M9PmcFKNaAOncWU3wRwGpiyUumjvXoFOxc"
+    },
+    {
+      title: "The Future of Remote Work",
+      excerpt: "Explore how remote work is shaping the future of employment and what it means for job seekers.",
+      author: "Mayank Agarwal",
+      readTime: "4 min read",
+      image: "https://www.mckinsey.com/~/media/mckinsey/featured%20insights/future%20of%20organizations/whats%20next%20for%20remote%20work%20an%20analysis%20of%202000%20tasks%20800%20jobs%20and%20nine%20countries/mgi-remotework-hero-homepage-1536x1536-option1.png",
+      avatar : "https://media.licdn.com/dms/image/v2/D4D03AQEm9oi1TdB8Kw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1727618474390?e=1738800000&v=beta&t=g0O6lGjv2v0r_9LiTLoVOd8tliXteGukf3IhjwzktOs"
+    },
+    {
+      title: "Building a Standout Resume",
+      excerpt: "Discover key strategies to create a resume that catches the eye of recruiters and hiring managers.",
+      author: "Rahul Jain",
+      readTime: "6 min read",
+      image: "https://motorcycleindustryjobs.ca/wp-content/uploads/2024/07/job-applicant-giving-his-resume-job-interview-office-Motorcycle-career-1118x471.jpg",
+      avatar : "https://media.cnn.com/api/v1/images/stellar/prod/2024-11-19t112000z-427445120-rc2f4bazdq7j-rtrmadp-3-usa-trump-federal-workers.JPG?c=16x9&q=h_833,w_1480,c_fill"
+    },
+  ];
+  
+  export default function BlogSection() {
     return (
-        <div className="w-min-screen mt-[50px] py-[100px] bg-gray-100 flex flex-col justify-center items-center">
-            <div className="w-[1280px]  h-[89px] justify-start items-center gap-[762px] inline-flex">
-                <div className="flex-col justify-start items-start gap-4 inline-flex">
-                    <div className="w-[328px] text-zinc-700 text-[32px] font-bold font-['Inter']">Blogs</div>
-                    <div className="w-[404px] text-black text-sm font-medium font-['Inter']">Explore the section of education, career choices and more through our insightful blogs.</div>
-                </div>
-                <div className="px-5 py-2 bg-white rounded flex-col justify-center items-end gap-4 inline-flex">
-                    <div className="justify-center items-center gap-1 inline-flex">
-                        <div className="text-center text-neutral-700 text-sm font-medium font-['Inter'] leading-snug">View All</div>
-                        <div className="w-4 h-4 relative" />
-                    </div>
-                </div>
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <h2 className="text-3xl font-bold mb-2">Blogs</h2>
+              <p className="text-xl text-gray-600">
+                Explore education, career choices, and more through our insightful blogs.
+              </p>
             </div>
-            <div className="w-[1281px] h-[560px] mt-[56px] justify-start items-start gap-6 inline-flex">
-                <div className="shadow flex-col justify-start items-start inline-flex">
-                    <div className="w-[411px] h-[220px] relative">
-                        <div className="w-[411px] h-[220px] left-0 top-0 absolute bg-zinc-300 rounded-tl-lg rounded-tr-lg" />
-                        <img className="w-[411px] h-[220px] left-0 top-0 absolute rounded-tl-lg rounded-tr-lg" src="./pexels-ivan-samkov-4240507.png" />
+            <button className="px-6 py-2 bg-slate-600 text-white rounded-md hover:bg-slate-700 transition-colors">
+              View All
+            </button>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogPosts.map((post, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src={post.image} alt={post.title} className="w-full h-80 object-cover" />
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
+                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <img src={post.avatar} alt={post.author} className="w-8 h-8 rounded-full mr-2" />
+                      <span className="text-sm text-gray-600">{post.author}</span>
                     </div>
-                    <div className="px-4 pt-[30px] pb-14 bg-white rounded-bl-lg rounded-br-lg flex-col justify-start items-end gap-2.5 flex">
-                        <div className="flex-col justify-start items-start gap-6 flex">
-                            <div className="justify-start items-center gap-1 inline-flex">
-                                <div className="text-center text-black text-base font-bold font-['Inter']">Dummy Title Here</div>
-                            </div>
-                            <div className="flex-col justify-start items-start flex">
-                                <div className="w-[379px] text-slate-600 text-sm font-normal font-['Inter'] leading-normal">Description Lorem ipsum dolor sit amet, consectetur <br />adipiscing elit, sed do eiusmod tempor incididunt ut <br />labore et dolore magna aliqua. et dolore magna ali</div>
-                                <div className="w-[379px] text-slate-600 text-sm font-normal font-['Inter'] leading-normal">Description Lorem ipsum dolor sit amet, consectetur <br />adipiscing elit, sed do eiusmod tempor incididunt ut </div>
-                            </div>
-                            <div className="justify-start items-center gap-1 inline-flex">
-                                <img className="w-10 h-10 rounded-full border" src="https://via.placeholder.com/40x40" />
-                                <div className="text-center text-black text-sm font-semibold font-['Inter']">Anirudh Verma</div>
-                            </div>
-                        </div>
-                        <div className="text-stone-400 text-sm font-bold font-['Inter']">2 min read</div>
-                    </div>
+                    <span className="text-sm text-gray-500">{post.readTime}</span>
+                  </div>
                 </div>
-                <div className="shadow flex-col justify-start items-start inline-flex">
-                    <img className="w-[411px] h-[220px] rounded-tl-lg rounded-tr-lg" src="./pexels-ivan-samkov-4240507.png" />
-                    <div className="px-4 pt-[30px] pb-14 bg-white rounded-bl-lg rounded-br-lg flex-col justify-start items-end gap-2.5 flex">
-                        <div className="flex-col justify-start items-start gap-6 flex">
-                            <div className="justify-start items-center gap-1 inline-flex">
-                                <div className="text-center text-black text-base font-bold font-['Inter']">Dummy Title Here</div>
-                            </div>
-                            <div className="flex-col justify-start items-start flex">
-                                <div className="w-[379px] text-slate-600 text-sm font-normal font-['Inter'] leading-normal">Description Lorem ipsum dolor sit amet, consectetur <br />adipiscing elit, sed do eiusmod tempor incididunt ut <br />labore et dolore magna aliqua. et dolore magna ali</div>
-                                <div className="w-[379px] text-slate-600 text-sm font-normal font-['Inter'] leading-normal">Description Lorem ipsum dolor sit amet, consectetur <br />adipiscing elit, sed do eiusmod tempor incididunt ut </div>
-                            </div>
-                            <div className="justify-start items-center gap-1 inline-flex">
-                                <img className="w-10 h-10 rounded-full border" src="https://via.placeholder.com/40x40" />
-                                <div className="text-center text-black text-sm font-semibold font-['Inter']">Anirudh Verma</div>
-                            </div>
-                        </div>
-                        <div className="text-stone-400 text-sm font-bold font-['Inter']">2 min read</div>
-                    </div>
-                </div>
-                <div className="shadow flex-col justify-start items-start inline-flex">
-                    <img className="w-[411px] h-[220px] rounded-tl-lg rounded-tr-lg" src="./pexels-ivan-samkov-4240507.png" />
-                    <div className="px-4 pt-[30px] pb-14 bg-white rounded-bl-lg rounded-br-lg flex-col justify-start items-end gap-2.5 flex">
-                        <div className="flex-col justify-start items-start gap-6 flex">
-                            <div className="justify-start items-center gap-1 inline-flex">
-                                <div className="text-center text-black text-base font-bold font-['Inter']">Dummy Title Here</div>
-                            </div>
-                            <div className="flex-col justify-start items-start flex">
-                                <div className="w-[379px] text-slate-600 text-sm font-normal font-['Inter'] leading-normal">Description Lorem ipsum dolor sit amet, consectetur <br />adipiscing elit, sed do eiusmod tempor incididunt ut <br />labore et dolore magna aliqua. et dolore magna ali</div>
-                                <div className="w-[379px] text-slate-600 text-sm font-normal font-['Inter'] leading-normal">Description Lorem ipsum dolor sit amet, consectetur <br />adipiscing elit, sed do eiusmod tempor incididunt ut </div>
-                            </div>
-                            <div className="justify-start items-center gap-1 inline-flex">
-                                <img className="w-10 h-10 rounded-full border" src="https://via.placeholder.com/40x40" />
-                                <div className="text-center text-black text-sm font-semibold font-['Inter']">Anirudh Verma</div>
-                            </div>
-                        </div>
-                        <div className="text-stone-400 text-sm font-bold font-['Inter']">2 min read</div>
-                    </div>
-                </div>
-            </div>
+              </div>
+            ))}
+          </div>
         </div>
-    )
-}
+      </section>
+    );
+  }
+  
+  

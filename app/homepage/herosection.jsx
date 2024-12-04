@@ -1,76 +1,40 @@
-export default function Herosection() {
+export default function HeroSection() {
   return (
-    <div className="flex w-full justify-center items-center">
-      <div className="flex max-w-[1700px] w-full  py-[100px] px-[100px] pt-[150px]">
-        <div className="w-[100%] flex flex-col justify-center relative ">
-          <p className="leading-[30px]">
-            welcome to <br />{" "}
-            <span className="bg-gradient-to-r  capitalize from-[#F67036] to-[#AB3BD2] font-bold font-['Inter'] text-transparent bg-clip-text text-[50px] leading-[50px]">
+    <section className="bg-gray-50 py-20 mt-16">
+      <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center">
+        <div className="lg:w-1/2 mb-10 lg:mb-0">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-6">
+            Welcome to{" "}
+            <span className="bg-gradient-to-r from-[#F67036] to-[#AB3BD2] text-transparent bg-clip-text">
               JoBro
-            </span>{" "}
-            <br />
-            where your future takes flight
-          </p>
-          <div className="flex gap-2 mt-[10px]">
-            <button className="px-4 py-2 border-2 border-[#F67036] text-[#F67036] font-medium rounded-md">
+            </span>
+          </h1>
+          <p className="text-xl mb-8">Where your future takes flight</p>
+          <div className="flex space-x-4">
+            <button className="px-6 py-3 border-2 border-[#F67036] text-[#F67036] font-medium rounded-md hover:bg-[#F67036] hover:text-white transition-colors">
               Applicants
             </button>
-            <button className="px-4 py-2 border-2 border-[#AB3BD2] text-[#5d276f] font-medium rounded-md">
+            <button className="px-6 py-3 border-2 border-[#AB3BD2] text-[#5d276f] font-medium rounded-md hover:bg-[#AB3BD2] hover:text-white transition-colors">
               Companies
             </button>
           </div>
         </div>
-        <div className="  w-[100%]">
-          <div className=" h-[430px] flex-col justify-start items-start gap-[38px] inline-flex">
-            <div className="justify-start items-center gap-6 inline-flex">
-              <div className="w-[296px] h-[196px] relative">
-                <img
-                  className="w-[296px] h-[196px] left-[-0px] top-0 absolute rounded"
-                  src="./pexels-ivan-samkov-4240507.png"
-                />
-                <div className="w-[296px] h-[196px] left-0 top-0 absolute">
-                  <div className="w-[296px] h-[196px] left-0 top-0 absolute bg-neutral-700 bg-opacity-50 rounded"></div>
-                  <div className="w-[51.85px] h-12 left-[122.07px] top-[74px] absolute"></div>
-                </div>
-              </div>
-              <div className="flex-col justify-start items-start gap-3 inline-flex">
-                <div className="text-center text-zinc-800 text-xl font-semibold font-['Inter'] leading-snug">
-                  For Applicants
-                </div>
-                <p className="w-[302px] text-neutral-600 text-base font-medium font-['Inter']">
-                  "Launch your career with tailored job matches, seamless
-                  assessments, and interview opportunities. Your future starts
-                  here."
-                  <br />
-                </p>
-              </div>
-            </div>
-            <div className="justify-start items-center gap-6 inline-flex">
-              <div className="flex-col justify-start items-start gap-3 inline-flex">
-                <p className="text-center text-zinc-800 text-xl font-semibold font-['Inter'] leading-snug">
-                  For Companies
-                </p>
-                <p className="w-[302px] text-neutral-600 text-base font-medium font-['Inter']">
-                  “Simplify recruitment with streamlined processes, connect with
-                  top talent effortlessly, and build your dream team
-                  efficiently. Elevate your hiring experience today.”
-                  <br />
-                </p>
-              </div>
-              <div className="w-[296px] h-[196px] relative">
-                <img
-                  className="w-[295.79px] h-[196px] left-0 top-0 absolute rounded-lg"
-                  src="./pexels-ivan-samkov-4240507.png"
-                />
-                <div className="w-[296px] h-[196px] left-0 top-0 absolute">
-                  <div className="w-[296px] h-[196px] left-0 top-0 absolute bg-neutral-700 bg-opacity-50 rounded"></div>
-                  <div className="w-[51.85px] h-12 left-[122.07px] top-[74px] absolute"></div>
-                </div>
-              </div>
-            </div>
+        <div className="lg:w-1/2 space-y-8">
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-2xl font-semibold mb-4">For Applicants</h2>
+            <p className="text-gray-600">
+              Launch your career with tailored job matches, seamless assessments, and interview opportunities. Your future starts here.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-2xl font-semibold mb-4">For Companies</h2>
+            <p className="text-gray-600">
+              Simplify recruitment with streamlined processes, connect with top talent effortlessly, and build your dream team efficiently. Elevate your hiring experience today.
+            </p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
+
