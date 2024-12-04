@@ -206,17 +206,17 @@ export default function OA_company({ jobId }) {
               </TableHeader>
               <TableBody>
                 {applicants.map((applicant) => (
-                  <TableRow key={applicant.applicants._id}>
-                    <TableCell className="font-medium">{applicant.applicants.name}</TableCell>
-                    <TableCell>{applicant.applicants.college}</TableCell>
-                    <TableCell>{applicant.applicants.cgpa}</TableCell>
+                  <TableRow key={applicant.applicants?._id}>
+                    <TableCell className="font-medium">{applicant.applicants?.name}</TableCell>
+                    <TableCell>{applicant.applicants?.college}</TableCell>
+                    <TableCell>{applicant.applicants?.cgpa}</TableCell>
                     <TableCell>
-                      <Button variant="outline" size="sm" onClick={() => downloadUsingLoginid(applicant.applicants.loginid)}>
+                      <Button variant="outline" size="sm" onClick={() => downloadUsingLoginid(applicant.applicants?.loginid)}>
                         <FileText className="mr-2 h-4 w-4" /> Download
                       </Button>
                     </TableCell>
                     <TableCell>
-                      <Button onClick={() => handleOA(applicant.applicants._id)}>
+                      <Button onClick={() => handleOA(applicant.applicants?._id)}>
                         <Send className="mr-2 h-4 w-4" /> Send OA
                       </Button>
                     </TableCell>

@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import Header_Student from "@/app/components/Header_Student";
-import Footer from "@/app/components/Footer";
+import Header_Student from "../../../components/Header_Student";
+import Footer from "../../../components/Footer";
 
 const Sample5 = () => {
     const [isOpen1, setIsOpen1] = useState(false);

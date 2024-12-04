@@ -45,6 +45,8 @@ const OA_creator = ({ jobId }) => {
         description: "Online Assessment has been created successfully.",
         duration: 3000,
       });
+
+      alert("Online Assessment has been created successfully.");
     } catch (error) {
       console.error("Error creating OA:", error);
       toast({

@@ -40,10 +40,10 @@ const staticApplicants = [
   {
     applicants: {
       _id: "1",
-      name: "John Doe",
-      college: "Stanford University",
-      cgpa: "3.9",
-      loginid: "john_doe",
+      name: "sparsh",
+      college: "tandon",
+      cgpa: "9.9",
+      loginid: "7bcfaad7-8e36-4232-b8d1-9adc3822893d",
     },
   },
   {
@@ -107,6 +107,7 @@ export default function ApplicantApplied({ jobId }) {
         title: "Candidate Shortlisted",
         description: "The candidate has been successfully shortlisted.",
       })
+      alert("Candidate Shortlisted")
     } else {
       toast({
         title: "Error",
