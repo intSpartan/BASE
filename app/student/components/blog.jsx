@@ -1,20 +1,32 @@
-import React from 'react'
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
 
 const Blog = () => {
-    return (
-      <div className="w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4">Create a New Blog Post</h2>
-        <textarea 
-          className="w-full p-4 border-2 border-gray-300 rounded-md resize-none focus:border-gray-500 focus:ring focus:ring-gray-200 focus:ring-opacity-50 transition-all" 
-          placeholder="Write your story here..."
-          rows="10"
-        ></textarea>
-        <button className="mt-4 w-full bg-black text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
-          Create Blog
-        </button>
-      </div>
-    );
-  };  
+  const recentPosts = [
+    { id: 1, title: "How to ace your technical interview", date: "2023-06-01" },
+    { id: 2, title: "Top 5 programming languages to learn in 2023", date: "2023-05-28" },
+    { id: 3, title: "Building a strong portfolio for software engineers", date: "2023-05-25" },
+  ];
 
-export default Blog
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Recent Blog Posts</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <ul className="space-y-4">
+          {recentPosts.map((post) => (
+            <li key={post.id} className="border-b pb-2 last:border-b-0">
+              <h3 className="font-medium">{post.title}</h3>
+              <p className="text-sm text-gray-500">{post.date}</p>
+            </li>
+          ))}
+        </ul>
+        <Button className="w-full mt-4">Create New Post</Button>
+      </CardContent>
+    </Card>
+  );
+};
 
+export default Blog;

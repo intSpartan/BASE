@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { useRouter } from 'next/navigation';
-import { useGlobalContext } from '@/app/GlobalContext';
+import { useGlobalContext } from '../../GlobalContext';
 
 const updateOAScoreList = async (applicant_id, jobId, score) => {
   // console.log(applicant_id);

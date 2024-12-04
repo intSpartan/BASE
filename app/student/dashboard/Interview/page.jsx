@@ -1,55 +1,68 @@
-"use client";
+"use client"
 
-import Footer from "../../../components/Footer";
-import Header_Student from "../../../components/Header_Student";
-import AI_Interview from "./AI/src/AI_Interview";
-import Normal_Interview from "./normal_interviews";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react"
+import { motion } from "framer-motion"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui/tabs"
+import { Card, CardContent } from "../../../components/ui/card"
+import Header_Student from "../../../components/Header_Student"
+import Footer from "../../../components/Footer"
+import Normal_Interview from "./normal_interviews"
+import AI_Interview from "./AI/src/AI_Interview"
+import GlobalContext from "../../../GlobalContext"
 
-const OA = () => {
-  const [selectedOption, setSelectedOption] = useState("1");
+const InterviewPage = () => {
+  const [selectedOption, setSelectedOption] = useState("normal")
 
   const renderSelectedComponent = () => {
     switch (selectedOption) {
-      case "1":
-        return <Normal_Interview />;
-      case "2":
-        return <AI_Interview />;
+      case "normal":
+        return <Normal_Interview />
+      case "ai":
+        return <AI_Interview />
       default:
-        return <Normal_Interview />;
+        return <Normal_Interview />
     }
-  };
+  }
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col bg-background">
       <Header_Student />
-
-      <div className="min-h-screen flex flex-col justify-between bg-[#F3F4F6]">
-        <div>
-          <nav className="bg-neutral-200 p-4">
-            <div className="flex justify-between items-center">
-              <div className="flex w-full space-x-4">
-                <button
-                  className="w-full text-black focus:outline-none border-r-4 border-black"
-                  onClick={() => setSelectedOption("1")}
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <Card className="w-full">
+          <CardContent className="p-6">
+            <Tabs value={selectedOption} onValueChange={setSelectedOption} className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="normal">Normal Interview</TabsTrigger>
+                <TabsTrigger value="ai">AI Interview</TabsTrigger>
+              </TabsList>
+              <TabsContent value="normal">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  Normal Interview
-                </button>
-                <button
-                  className="w-full text-black focus:outline-none border-r-4 border-black"
-                  onClick={() => setSelectedOption("2")}
+                  <Normal_Interview />
+                </motion.div>
+              </TabsContent>
+              <TabsContent value="ai">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  AI Interview
-                </button>
-              </div>
-            </div>
-          </nav>
-          <div>{renderSelectedComponent()}</div>
-        </div>
-      </div>
-      <Footer />
+                  <AI_Interview />
+                </motion.div>
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+      </main>
+      {/* <Footer /> */}
     </div>
-  );
-};
+  )
+}
 
-export default OA;
+export default InterviewPage
+

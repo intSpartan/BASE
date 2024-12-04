@@ -10,25 +10,25 @@ import TestimonialSection from "./components/testimonials.jsx"
 const App = () => {
     return ( 
         <div className='flex flex-col justify-between h-screen'>
-            <div className="sticky top-0 z-50">
+            {/* <div className="sticky top-0 z-50">
                 <Header/>
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
                 <HeroSection/>
-            </div>
+            </div> */}
             <div>
                 <FeaturesSection/>
             </div>
             {/* <div>
                 <TestimonialSection/>
             </div> */}
-            <div>
+            {/* <div>
                 <FaqSection/>
             </div>
-            
-            <div>
+             */}
+            {/* <div>
                 <Footer/>
-            </div>           
+            </div>            */}
         </div>
         
     )

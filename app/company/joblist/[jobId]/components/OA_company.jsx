@@ -95,12 +95,14 @@ export default function OA_company({ jobId }) {
   const handleOA = async (applicant_id) => {
     const success = await updateOAList(applicant_id, jobId)
     if (success) {
+      alert("OA Sent");
       toast({
         title: "OA Sent",
         description: "Online Assessment has been sent to the candidate.",
         duration: 3000,
       })
     } else {
+      alert("Error");
       toast({
         title: "Error",
         description: "Failed to send Online Assessment. Please try again.",

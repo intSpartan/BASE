@@ -1,31 +1,27 @@
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
+import { Badge } from "../../components/ui/badge";
+import { Briefcase, MapPin, Calendar, DollarSign, ChevronRight } from "lucide-react";
 
-const handleApplication = async (jobId, applicantWithID, jobs, supabaseid) => {
+const handleApplication = async (jobId, applicantWithID, jobs, supabaseId) => {
   try {
-    const updatedres = await (
-      await fetch(`http://localhost:3000/api/applicants/${supabaseid}`)
-    ).json();
-    console.log("update:", updatedres);
+    const updatedres = await (await fetch(`/api/applicants/${supabaseId}`)).json();
     updatedres.applicants.jobsApplied.push(jobId);
-    console.log(jobId);
 
     const currJobs = jobs.filter((t) => t._id === jobId);
-    currJobs[0].applicantsApplied.push(supabaseid);
-    console.log(currJobs[0].applicantsApplied);
+    currJobs[0].applicantsApplied.push(supabaseId);
 
-    const res = await fetch(
-      `http://localhost:3000/api/applicants/${supabaseid}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ updatedres }),
-      }
-    );
+    const res = await fetch(`/api/applicants/${supabaseId}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ updatedres }),
+    });
 
-    const res_jobs = await fetch(`http://localhost:3000/api/jobs/${jobId}`, {
+    const res_jobs = await fetch(`/api/jobs/${jobId}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -42,6 +38,7 @@ const handleApplication = async (jobId, applicantWithID, jobs, supabaseid) => {
     console.log(error);
   }
 };
+
 const JobCard = ({ props, applicantWithID, jobs, supabaseId }) => {
   const router = useRouter();
   const [apply, setApply] = useState("Apply Now");
@@ -54,42 +51,49 @@ const JobCard = ({ props, applicantWithID, jobs, supabaseId }) => {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 mb-4 transition-all hover:shadow-md">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center">
-          {/* <img src="/placeholder.svg" alt="Company Logo" className="w-12 h-12 rounded-full mr-4" /> */}
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900">{props.title}</h2>
-            <p className="text-sm text-gray-600">{props.companyName}</p>
+    <Card className="w-full transition-all hover:shadow-md">
+      <CardHeader>
+        <CardTitle className="text-xl font-bold">{props.title}</CardTitle>
+        <p className="text-sm text-muted-foreground">{props.companyName}</p>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex items-center">
+            <MapPin className="w-4 h-4 mr-2 text-muted-foreground" />
+            <span className="text-sm">{props.locations}</span>
+          </div>
+          <div className="flex items-center">
+            <DollarSign className="w-4 h-4 mr-2 text-muted-foreground" />
+            <span className="text-sm">{props.stipendSalary}</span>
+          </div>
+          <div className="flex items-center">
+            <Briefcase className="w-4 h-4 mr-2 text-muted-foreground" />
+            <span className="text-sm">{props.type}</span>
+          </div>
+          <div className="flex items-center">
+            <Calendar className="w-4 h-4 mr-2 text-muted-foreground" />
+            <span className="text-sm">Deadline: {props.deadline}</span>
           </div>
         </div>
-        <div className="flex space-x-2">
-          <button
-            className="px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition-colors"
-            onClick={() => router.push(`/student/joblist/${props._id}`)}
-          >
-            View Details
-          </button>
-          <button
-            className={`px-4 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition-colors ${
-              isButtonDisabled
-                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                : "bg-gray-800 text-white hover:bg-gray-700"
-            }`}
-            onClick={() => handleApply(props._id, applicantWithID, jobs, supabaseId)}
-            disabled={isButtonDisabled}
-          >
-            {apply}
-          </button>
+        <div className="flex flex-wrap gap-2 mt-4">
+          <Badge variant="secondary">React.js</Badge>
+          <Badge variant="secondary">Node.js</Badge>
         </div>
-      </div>
-      <div className="flex flex-wrap gap-2">
-        <span className="px-3 py-1 bg-gray-100 text-gray-800 text-xs font-medium rounded-full">React.js</span>
-        <span className="px-3 py-1 bg-gray-100 text-gray-800 text-xs font-medium rounded-full">NodeJS</span>
-      </div>
-    </div>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button variant="outline" onClick={() => router.push(`/student/joblist/${props._id}`)}>
+          View Details
+          <ChevronRight className="w-4 h-4 ml-2" />
+        </Button>
+        <Button 
+          onClick={() => handleApply(props._id, applicantWithID, jobs, supabaseId)}
+          disabled={isButtonDisabled}
+        >
+          {apply}
+        </Button>
+      </CardFooter>
+    </Card>
   );
 };
 
 export default JobCard;
-
